@@ -1,1 +1,1 @@
-# jdetle.io
+# jdetle.github.io
