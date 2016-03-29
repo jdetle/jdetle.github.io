@@ -11,13 +11,13 @@ div{
   align-content: center;
   max-width: 300 px;
   margin: 10px 10px 10px 10px;
-  padding: 10% 10% 10% 10%;
+  padding: 5% 5% 5% 5%;
 }
 section {
   align-content: center;
   max-width: 100 px;
   margin: 10px 10px 10px 10px;
-  padding: 10% 10% 10% 10%;
+  padding: 5% 5% 5% 5%;
 }
 a {
   text-decoration: none;
@@ -127,29 +127,6 @@ nav a.selected, nav a:hover {
   color: #FFF;
 }
 
-/*portfolio*/
-
-#gallery {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-#gallery li {
-  width: 45%;
-  margin: 2.5%;
-  background-color: #f0ffff;
-  color: #bdc3c7;
-}
-
-#gallery li a p {
-
-  padding: 5%;
-  margin: 0;
-  font-size: 0.75em;
-  color: #333;
-}
-
 /*footer*/
 footer {
   vertical-align: bottom;
@@ -171,15 +148,7 @@ footer div {
   margin: 5px 5px;
 }
 
-/**********************************
-MEDIA QUERIES
-***********************************/
-
 @media screen and (min-width: 680px) {
-
-  /**********************************
-  TWO COLUMN LAYOUT
-  ***********************************/
 
   #primary {
     width: 50%;
@@ -191,24 +160,6 @@ MEDIA QUERIES
     float: right;
   }
 
-
-
-  /**********************************
-  PAGE: PORTFOLIO
-  ***********************************/
-
-  #gallery li {
-    width: 40%;
-  }
-
-  #gallery li:nth-child(4n) {
-    clear: left;
-  }
-
-  /**********************************
-  PAGE: ABOUT
-  ***********************************/
-
   .profile-photo {
     float: left;
     margin: 0 5% 80px 0;
@@ -218,10 +169,6 @@ MEDIA QUERIES
 
 @media screen and (min-width: 680px) {
 
-  /**********************************
-  HEADER
-  ***********************************/
-
   nav {
     background: none;
     float: right;
@@ -230,7 +177,6 @@ MEDIA QUERIES
     text-align: right;
     width: 45%;
   }
-
   #name {
     float: left;
     margin-left: 5%;
@@ -240,6 +186,7 @@ MEDIA QUERIES
   .icon{
     float: bottom;
   }
+
   h1 {
     font-size: 2.5em;
   }
