@@ -1,78 +1,257 @@
-html, address,
-   blockquote,
-   body, dd, div,
-   dl, dt, fieldset, form,
-   frame, frameset,
-   h1, h2, h3, h4,
-   h5, h6, noframes,
-   ol, p, ul, center,
-   dir, hr, menu, pre   { display: block; unicode-bidi: embed }
-   li              { display: list-item }
-   head            { display: none }
-   table           { display: table }
-   tr              { display: table-row }
-   thead           { display: table-header-group }
-   tbody           { display: table-row-group }
-   tfoot           { display: table-footer-group }
-   col             { display: table-column }
-   colgroup        { display: table-column-group }
-   td, th          { display: table-cell }
-   caption         { display: table-caption }
-   th              { font-weight: bolder; text-align: center }
-   caption         { text-align: center }
-   body            { margin: 8px }
-   h1              { font-size: 2em; margin: .67em 0 }
-   h2              { font-size: 1.5em; margin: .75em 0 }
-   h3              { font-size: 1.17em; margin: .83em 0 }
-   h4, p,
-   blockquote, ul,
-   fieldset, form,
-   ol, dl, dir,
-   menu            { margin: 1.12em 0 }
-   h5              { font-size: .83em; margin: 1.5em 0 }
-   h6              { font-size: .75em; margin: 1.67em 0 }
-   h1, h2, h3, h4,
-   h5, h6, b,
-   strong          { font-weight: bolder }
-   blockquote      { margin-left: 40px; margin-right: 40px }
-   i, cite, em,
-   var, address    { font-style: italic }
-   pre, tt, code,
-   kbd, samp       { font-family: monospace }
-   pre             { white-space: pre }
-   button, textarea,
-   input, select   { display: inline-block }
-   big             { font-size: 1.17em }
-   small, sub, sup { font-size: .83em }
-   sub             { vertical-align: sub }
-   sup             { vertical-align: super }
-   table           { border-spacing: 2px; }
-   thead, tbody,
-   tfoot           { vertical-align: middle }
-   td, th, tr      { vertical-align: inherit }
-   s, strike, del  { text-decoration: line-through }
-   hr              { border: 1px inset }
-   ol, ul, dir,
-   menu, dd        { margin-left: 40px }
-   ol              { list-style-type: decimal }
-   ol ul, ul ol,
-   ul ul, ol ol    { margin-top: 0; margin-bottom: 0 }
-   u, ins          { text-decoration: underline }
-br:before       { content: "\A"; white-space: pre-line }
-center          { text-align: center }
-:link, :visited { text-decoration: underline }
-:focus          { outline: thin dotted invert }
+/* global styling */
+body {
+  align-content: middle;
+  font-family: 'Open Sans', sans-serif;
+}
+div{
+  margin: 40px 40px 40px 40px;
+  margin: auto;
+}
+#wrapper {
+  align-content: center;
+  max-width: 300 px;
+  margin: 10px 10px 10px 10px;
+  padding: 10% 10% 10% 10%;
+}
+section {
+  align-content: center;
+  max-width: 100 px;
+  margin: 10px 10px 10px 10px;
+  padding: 10% 10% 10% 10%;
+}
+a {
+  text-decoration: none;
+}
+h1 {
 
-/* Begin bidirectionality settings (do not change) */
-BDO[DIR="ltr"]  { direction: ltr; unicode-bidi: bidi-override }
-BDO[DIR="rtl"]  { direction: rtl; unicode-bidi: bidi-override }
+  margin: 15px 0;
+  font-size: 2.9em;
+  font-weight: bolder;
+  line-height: 0.8em;
+}
+h2 {
+  font-size: 1.9em;
+  margin: -5px 0 0;
+  font-weight: 800;
+}
+img {
+  max-width: 100%;
+}
 
-*[DIR="ltr"]    { direction: ltr; unicode-bidi: embed }
-*[DIR="rtl"]    { direction: rtl; unicode-bidi: embed }
 
-@media print {
-     h1            { page-break-before: always }
-       h1, h2, h3,
-            h4, h5, h6    { page-break-after: avoid }
-         ul, ol, dl    { page-break-before: avoid }
+/*header*/
+header {
+  float: left;
+  margin: 0 0 30px 0;
+  padding: 5px 0 0 0;
+  width: 100%;
+}
+#name {
+  font-weight:1000;
+  float: left;
+  margin-left: 5%;
+  text-align: left;
+  width: 45%;
+}
+h1 {
+  font-size: 2.5em;
+}
+h2 {
+  font-size: 0.825em;
+  margin-bottom: 0px;
+}
+header {
+  margin-bottom: 60px;
+}
+
+/*navbar*/
+nav {
+  text-align: center;
+  padding: 10px 0;
+  margin: 20px 0 0;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0 10px;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block;
+}
+
+nav a {
+  font-weight: 900;
+  padding: 15px 10px;
+}
+
+/*color*/
+
+h1, h2 {
+  color: #333333;
+}
+
+a {
+  color: #333333;
+}
+
+body {
+  background-color: #333333;
+
+}
+
+
+header {
+  background: #333333;
+
+}
+
+/* logo text */
+h1, h2 {
+  color: #fff;;
+}
+
+/* links */
+a {
+  color: #333333;;
+}
+
+/* nav link */
+nav a, nav a:visited {
+  color: #FFF;
+}
+
+/* selected nav link */
+nav a.selected, nav a:hover {
+  color: #FFF;
+}
+
+/*portfolio*/
+
+#gallery {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#gallery li {
+  width: 45%;
+  margin: 2.5%;
+  background-color: #f0ffff;
+  color: #bdc3c7;
+}
+
+#gallery li a p {
+
+  padding: 5%;
+  margin: 0;
+  font-size: 0.75em;
+  color: #333;
+}
+
+/*footer*/
+footer {
+  vertical-align: bottom;
+  float: bottom;
+  font-size: 0.75em;
+  text-align: center;
+  clear: both;
+  padding-top: 50px;
+  color: #ccc;
+}
+footer div {
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+.icon {
+  width: 120px;
+  height: 120px;
+  margin: 5px 5px;
+}
+
+/**********************************
+MEDIA QUERIES
+***********************************/
+
+@media screen and (min-width: 680px) {
+
+  /**********************************
+  TWO COLUMN LAYOUT
+  ***********************************/
+
+  #primary {
+    width: 50%;
+    float: left;
+  }
+
+  #secondary {
+    width: 40%;
+    float: right;
+  }
+
+
+
+  /**********************************
+  PAGE: PORTFOLIO
+  ***********************************/
+
+  #gallery li {
+    width: 40%;
+  }
+
+  #gallery li:nth-child(4n) {
+    clear: left;
+  }
+
+  /**********************************
+  PAGE: ABOUT
+  ***********************************/
+
+  .profile-photo {
+    float: left;
+    margin: 0 5% 80px 0;
+  }
+
+}
+
+@media screen and (min-width: 680px) {
+
+  /**********************************
+  HEADER
+  ***********************************/
+
+  nav {
+    background: none;
+    float: right;
+    font-size: 2.125em;
+    margin-right: 5%;
+    text-align: right;
+    width: 45%;
+  }
+
+  #name {
+    float: left;
+    margin-left: 5%;
+    text-align: left;
+    width: 45%;
+  }
+  .icon{
+    float: bottom;
+  }
+  h1 {
+    font-size: 2.5em;
+  }
+
+  h2 {
+    font-size: 1.825em;
+    margin-bottom: 20px;
+  }
+
+  header {
+    margin-bottom: 60px;
+  }
+
+
 }
