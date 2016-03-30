@@ -1,17 +1,27 @@
 /* global styling */
 body {
-  align-content: middle;
+  align-content: center;
   font-family: 'Open Sans', sans-serif;
 }
 div{
   margin: 40px 40px 40px 40px;
   margin: auto;
+  align-self: center;
+  text-align: center;
 }
 #wrapper {
   align-content: center;
   max-width: 300 px;
   margin: 10px 10px 10px 10px;
   padding: 5% 5% 5% 5%;
+}
+#surprise {
+  color: #fff;
+  text-align: center;
+  width: 45%;
+  font-size: 2.9em;
+  font-weight: bolder;
+  line-height: 0.8em;
 }
 section {
   align-content: center;
