@@ -1,4 +1,12 @@
+
 /* global styling */
+html {
+  background: url(../images/bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 body {
   align-content: center;
   font-family: 'Open Sans', sans-serif;
@@ -16,7 +24,6 @@ div{
   padding: 5% 5% 5% 5%;
 }
 #surprise {
-  color: #fff;
   text-align: center;
   width: 45%;
   font-size: 2.9em;
@@ -107,14 +114,13 @@ a {
 }
 
 body {
-  background-color: #333333;
 
 }
 
 
 header {
-  background: #333333;
 
+background: rgba(0,0,0,.5);
 }
 
 /* logo text */
