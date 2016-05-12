@@ -27,11 +27,13 @@ h6, .h6 {
 
 
 .blog{
-  padding-left: 30px;
+    align-content: center;
+    padding-left: 30px;
 }
 .blog-header {
   padding-top: 20px;
   padding-bottom: 20px;
+  text-align: center;
 
 }
 .blog-title {
@@ -39,6 +41,7 @@ h6, .h6 {
   margin-bottom: 0;
   font-size: 60px;
   font-weight: normal;
+  color: #000
 }
 .blog-description {
   font-size: 20px;
@@ -91,14 +94,18 @@ h6, .h6 {
 
 .blog-post {
   margin-bottom: 60px;
+
 }
 .blog-post-title {
   margin-bottom: 5px;
   font-size: 40px;
+   color: #000;
+   text-align: center;
 }
 .blog-post-meta {
   margin-bottom: 20px;
   color: #999;
+  text-align: center;
 }
 
 
