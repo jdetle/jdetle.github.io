@@ -36,7 +36,8 @@ section {
   padding: 5% 5% 5% 5%;
 }
 a {
-  text-decoration: none;
+
+  color: #000;
 }
 h1 {
 
@@ -129,17 +130,17 @@ h1, h2 {
 
 /* links */
 a {
-  color: #333333;;
+  color: #000;;
 }
 
 /* nav link */
 nav a, nav a:visited {
-  color: #FFF;
+  color: #000;
 }
 
 /* selected nav link */
 nav a.selected, nav a:hover {
-  color: #FFF;
+  color: #000;
 }
 
 /*footer*/
