@@ -57,6 +57,85 @@
     <div class="col-sm-8 blog-main">
 
       <div class="blog-post">
+        <h2 class="blog-post-title">Tempus Fugit</h2>
+        <p class="blog-post-meta">May 19</p>
+        <p> Bear with me, this title is not as pretentious as it might seem.
+            This title is meant to have a double-meaning; not only is it a reference
+            to the fact that this 'community-bonding' period is <em>FLYING</em>
+            away, but also has to do with my actual <a href="https://summerofcode.withgoogle.com/projects/#5875821348651008">
+            Summer of Code</a> project with <a href="http://www.mdanalysis.org/blog/">MDAnalysis</a>.
+        </p>
+        <p> The main goal of my work this summer will be to implement Principle
+            Component Analysis and Diffusion Maps such that they are fast, but more
+            importantly keep memory costs at a minimum. These are both <i>Dimension
+            Reduction</i> techniques, and in the case of a <a href="https://en.wikipedia.org/wiki/Molecular_dynamics">
+            Molecular Dynamics</a> (MD) simulation, the high-dimensional
+            space being reduced is a 'trajectory' of atoms reflecting what is essentially a matrix
+            in which the i<sub>th</sub> entry in a row (or column, this doesn't matter)
+            reflect the xyz coordinates at the j<sub>th</sub> timestep in a simulation.
+        </p>
+        <p> In a MD trajectory, time flies on while the patterns of movement are left unrecorded
+            in the raw data. The only limitation to the number of frames in a trajectory is access
+            to computing power, this means there can be a tremendous amount of
+            data to sort through. To my knowledge, the
+            biggest things being studied currently are on the scale of the
+            <a href='http://www.bio-itworld.com/2013/5/29/researchers-characterize-chemical-structure-hiv-capsid.html'>
+            HIV-1 capsid</a>, which has 64 million atoms. Ignoring this size limitation,
+            let's imagine that you're watching a tree branch swaying while you should
+            be doing something far more important. Archimedes is
+            quoted as saying, "Give me a lever long enough and a fulcrum on which
+            to place it, and I shall move the world." Well, give me a big enough
+            set of atoms and a powerful computer on which
+            to run the simulation, and I can simulate that tree moving. Go ahead,
+            you can quote me.
+        </p>
+        <p> While viewing the tree branch, your brain is processing that information. It is interpreting visual
+            data that is changing with respect to time and trying to find patterns
+            in that timeseries. It is, in essence, reducing the dimensionality of
+            that very large data set and recording that swaying motion of the tree.
+            The role of a dimension reduction algorithm on the aforementioned
+            simulation is to find a similar pattern as best it can. This same idea can be used
+            for facial recognition (which leads to the <em>awesome</em> term,
+            <a href='https://en.wikipedia.org/wiki/Eigenface'>Eigenfaces</a>)
+            and many other problems. I'm a little worried that I'm being too much
+            of an armchair scientist in saying this, but from what I can tell,
+            the human brain is the best
+            <a href='http://www.theatlantic.com/technology/archive/2014/06/bad-news-computers-are-getting-better-than-we-are-at-facial-recognition/372377/'>all-purpose</a>
+            dimension reducer (according to my brain).
+        </p>
+        <p> Hopefully those attempts at metaphor weren't entirely god-awful.
+            These are the ideas I am implementing and of course I have zero
+            part in coming up with them. I will be drawing from work that other
+            people have done for the most part, my intellectual effort will be
+            spent mostly on ensuring things run as they should and that they run quickly.
+        </p>
+        <p> I officially start work on Monday and over this week I have been working
+            to finish my senior thesis before the start date. I have also been working
+            on a small refactor of an analysis module in MDAnalysis which of course
+            took longer than I expected, but it is almost over with. I try to understand
+            everything I'm looking at when looking at new code, and some times it
+            can be somewhat of a hindrance. I like to follow the advice of smarter
+            people than me, in this instance <a href='http://jvns.ca/'>Julia Evans</a>,
+            and err on the side of thorough understanding. With that being said,
+            a major goal and source of stress of mine is productivity.
+            Eventually I'd like to write something on what I do to encourage productivity
+            in the face of a mostly self-directed work environment.
+        </p>
+        <p>
+            In other news, I've been learning some wonderfully interesting things
+            about <a href='https://en.wikipedia.org/wiki/Free_group'> Free Groups </a>
+            as they pertain to <a href='https://en.wikipedia.org/wiki/Homotopy'>homotopy theory</a>
+            in my Topology class
+            at Cal Poly, I am loving <i>East of Eden</i> by John Steinbeck, (which happens
+            to be set right nextdoor to where I live), and I am doing a good job
+            at maintaining my exercise regime. I hope to get alot of work done
+            this weekend in preparation for my first day of work next week!
+        </p>
+
+
+
+     </div>
+      <div class="blog-post">
         <h2 class="blog-post-title">Introduction!</h2>
         <p class="blog-post-meta">May 11</p>
 
@@ -99,6 +178,7 @@
         <p> I look forward to keeping this up! JD out. </p>
 
       </div><!-- /.blog-post -->
+
   </div><!-- /.blog-main -->
 
   <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
