@@ -1,7 +1,6 @@
 /*
  * Globals
  */
-
 body {
   font-family: Georgia, "Times New Roman", Times, serif;
   color: #555;
@@ -17,10 +16,16 @@ h6, .h6 {
   margin-top: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
-  color: #333;
+  color: #000;
 }
 
-
+img {
+    float: left;
+    position: relative;
+    width: 30%;
+    padding: 20px;
+    padding-top: 0px;
+}
 /*
  * Override Bootstrap's default container.
  */
