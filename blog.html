@@ -84,18 +84,17 @@
         <h2><br> Tip 2: After installing linux, learn your shell commands </h2>
             <h3> Navigating the command line</h3>
             <pre><code>
-                pwd # shows where you are in the filesystem
-                cd # changes directory to specfied path
-                ls # shows existing files in path
-                cp # copy specified file to new filename
-                grep # a tool to search for regular expressions or patterns in
-                # files/directories
-                mkdir # creates a directory with a specified name in current path
-                chmod # changes permissions for a file
-                sudo # if given administrator priveleges, this allows installation
-                # directories if given as a prefix to a shell command
-                rm # deletes stuff
-                which (command here) # shows the path taken to binary executable of a command
+pwd # shows where you are in the filesystem
+cd # changes directory to specfied path
+ls # shows existing files in path
+cp # copy specified file to new filename
+grep # a tool to search for regular expressions or patterns inf iles/directories
+mkdir # creates a directory with a specified name in current path
+chmod # changes permissions for a file
+sudo # if given administrator priveleges, this allows installation
+# directories if given as a prefix to a shell command
+rm # deletes stuff
+which (command here) # shows the path taken to binary executable of a command
             </code></pre>
             <p> Internalizing the numerous tools at ones disposal takes some time.
                 Part of me thinks that I have learned command line tools simply
@@ -111,36 +110,36 @@
             </p>
             <h3>How I copied these downloaded gifs to my website directory</h3>
             <pre><code>
-                # after downloading some files, open terminal.
-                # change to website directory
-                # for me this is:
-                cd github/jdetle.github.io
-                pwd # press enter
-                # i am in /home/jdetlefs/github/jdetle.github.io
-                # trying to copy to /home/jdetlefs/github/jdetle.github.io/images
-                # the filename was some arbitrary string 'YUjaCfF' in Downloads
-                # when typing a path '~' is a placeholder for '/home/username'
-                cp ~/Downloads/YU # (press tab in terminal to autocomplete to filename
-                # YU is a unique identifier for this file, pressing tab twice will list
-                # all files with these characters as an identifier (DONT PRESS
-                # ENTER YET)
-                (continued) images/'filename'.gif # press enter
-                # check that it exists in the appropriate path
-                ls images
-                # 'filename.gif' should exist in this path!
+# after downloading some files, open terminal.
+# change to website directory
+# for me this is:
+cd github/jdetle.github.io
+pwd # press enter
+# i am in /home/jdetlefs/github/jdetle.github.io
+# trying to copy to /home/jdetlefs/github/jdetle.github.io/images
+# the filename was some arbitrary string 'YUjaCfF' in Downloads
+# when typing a path '~' is a placeholder for '/home/username'
+cp ~/Downloads/YU # (press tab in terminal to autocomplete to filename
+# YU is a unique identifier for this file, pressing tab twice will list
+# all files with these characters as an identifier (DONT PRESS
+# ENTER YET)
+(continued) images/'filename'.gif # press enter
+# check that it exists in the appropriate path
+ls images
+# 'filename.gif' should exist in this path!
             </code></pre>
             <p> Initially this process may take longer than dragging and dropping
                 files, but it quickly becomes far faster than using a GUI. </p>
             <h3> How I add a newly installed program to my $PATH</h3>
             <pre><code>
-                echo $path
-                export PATH=$PATH:/path/to/my/program
-                echo $PATH
+echo $path
+export PATH=$PATH:/path/to/my/program
+echo $PATH
             </code></pre>
             <h3> How I work in virtualenvs (kind of complicated) </h3>
             <p> First, upgrade the things! </p>
             <pre><code>
-                sudo apt-get upgrade
+sudo apt-get upgrade
             </pre></code>
                 From here, things can get complicated if you have an installation
                 of <a href='https://www.continuum.io/downloads'>Anaconda.</a>
@@ -168,10 +167,10 @@
                 <em> Be careful with this!!!</em> It recursively deletes this
                 directory and all files in it and can ruin your OS install.
             <pre><code>
-                sudo apt-get install python-pip python-dev python-cython python-numpy g++
-                sudo pip install --upgrade pip
-                sudo pip install virtualenvwrapper
-                vi ~/.bashrc
+sudo apt-get install python-pip python-dev python-cython python-numpy g++
+sudo pip install --upgrade pip
+sudo pip install virtualenvwrapper
+vi ~/.bashrc
             </pre></code>
                 <p> Crap! Another thing I have to explain! vi opens Vim, a text editor
                     that keeps things fast and simple. A fresh installation of
@@ -180,41 +179,41 @@
                     install a working version of Vim that allows for syntax highlighting
                     and easy workflow tools, do the following.
             <pre><code>
-                sudo apt-get update # cant hurt
-                sudo apt-get install vim
-                # ctrl-shift-n to open a new terminal window
-                # vi ~/.vimrc
-                # (press shift+colon) i (press enter) will allow you to start inserting
-                # copy and paste this  with a mouse
-                set expandtab
-                set tabstop=4
-                set softtabstop=4
-                set shiftwidth=3
-                set autoindent
-                set textwidth=80
-                set nocompatible
-                set backspace=2
-                set smartindent
-                set number
-                set cindent
-                colo torte # preinstalled color schemes in /usr/share/vim/vim74/colors
-                syntax on
-                # (press shift+colon) wq (press enter) to write and quit
-                # x does wq simultaneously
+sudo apt-get update # cant hurt
+sudo apt-get install vim
+# ctrl-shift-n to open a new terminal window
+# vi ~/.vimrc
+# (press shift+colon) i (press enter) will allow you to start inserting
+# copy and paste this  with a mouse
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=3
+set autoindent
+set textwidth=80
+set nocompatible
+set backspace=2
+set smartindent
+set number
+set cindent
+colo torte # preinstalled color schemes in /usr/share/vim/vim74/colors
+syntax on
+# (press shift+colon) wq (press enter) to write and quit
+# x does wq simultaneously
             </pre></code>
             <p> Here is some more info on <a href='http://bullium.com/support/vim.html'>Vim</a>.
                 Let's get back to editing our bash shell configuration file (~/.bashrc)
             </p>
             <pre><code>
-                vi ~/.bashrc
-                # before doing anything add the path
-                # (shift+colon) i (enter) and line 1 should be
-                PATH=~/bin:$PATH
-                # line 2
-                export PATH
-                # line 3
-                source /usr/local/bin/virtualenvwrapper.sh
-                # (shift+colon) x (enter) and (ctrl+shift+n) to open a new terminal
+vi ~/.bashrc
+# before doing anything add the path
+# (shift+colon) i (enter) and line 1 should be
+PATH=~/bin:$PATH
+# line 2
+export PATH
+# line 3
+source /usr/local/bin/virtualenvwrapper.sh
+# (shift+colon) x (enter) and (ctrl+shift+n) to open a new terminal
             </pre></code>
             <p> And there you go! You should have a working installation of
                 the <a href='http://virtualenvwrapper.readthedocs.io/en/latest/'>
@@ -227,11 +226,11 @@
             <p> Let's make a pull request for MDAnalysis using the tools we've
                 learned! </p>
             <pre><code>
-                # I like to have a github/ folder for my various repositories
-                # First, let's clone into the repo
-                cd (press enter) # takes us to home user directory
-                mkdir github
-                cd github
+# I like having a github/ folder for my various repositories
+# First, let's clone into the repo
+cd (press enter) # takes us to home user directory
+mkdir github
+cd github
             </pre></code>
             <p> Before moving further, you should create a github account if you
                 haven't already and fork <a href='https://github.com/MDAnalysis/mdanalysis/'>
@@ -241,41 +240,41 @@
                 later.
             </p>
             <pre><code>
-                git clone https://github.com/YOURUSERNAME/mdanalysis
-                # this takes a little bit (289 megabytes)
-                mkvirtualenv MDA
-                workon MDA
-                pip install numpy cython seaborn # installs dependencies
-                pip install -e . # installs MDAnalysis such that changing files
-                # changes how packages behave when loaded for a script
+git clone https://github.com/YOURUSERNAME/mdanalysis
+# this takes a little bit (289 megabytes)
+mkvirtualenv MDA
+workon MDA
+pip install numpy cython seaborn # installs dependencies
+pip install -e . # installs MDAnalysis such that changing files
+# changes how packages behave when loaded for a script
             </pre></code>
-
+<p> From here we can start working on establishing a git workflow using branches. </p>
             <pre><code>
-                git remote add upstream http://github.com/MDAnalysis/mdanalysis
-                git branch NEW_PULL_REQUEST
-                git fetch upstream #checks for updates
-                git checkout upstream/develop -B develop # creates develop
-                # branch to rebase against later and switches to it
-                # there might be a way to do this without checking the branch out
-                # but I dont know
-                git checkout NEW_PULL_REQUEST # do work here
+git remote add upstream http://github.com/MDAnalysis/mdanalysis
+git branch NEW_PULL_REQUEST
+git fetch upstream #checks for updates
+git checkout upstream/develop -B develop # creates develop
+# branch to rebase against later and switches to it
+# there might be a way to do this without checking the branch out
+# but I dont know how
+git checkout NEW_PULL_REQUEST # do work on this branch
             </pre></code>
             <p> Any time you want to save the work you've done, you can see the
                 files you've changed with
             </p>
             <pre><code>
-                git status
+git status
             </code></pre>
             <p> Then add them to be staged for a commit that will be merged into
                 the upstream develop branch if the pull request is accepted.
             <pre><code>
-                git add file_name_here
-                # once you've added everything you want to include in a PR
-                git commit -m 'Insert a descriptive commit message here'
+git add file_name_here
+# once you've added everything you want to include in a PR
+git commit -m 'Insert a descriptive commit message here'
             </code></pre>
             <p> If you want to make a tiny commit, and blend it into a previous commit.
             <pre><code>
-                git rebase -i HEAD~(# of commits back you want to go)
+git rebase -i HEAD~(# of commits back you want to go)
             </code></pre>
             <p> Use vim style interactiveness to rebase commits. Changing 'pick'
                 to 'fixup' 'squashes' a commit into the previous the first pick
@@ -285,28 +284,27 @@
                 If still unsatisfied you can amend the commit manually.
             </p>
             <pre><code>
-                git commit --amend #edit the commit
+git commit --amend #edit the commit
             </code></pre>
             <p> When you're ready to save your work to the origin directory.
             <pre><code>
-                git fetch upstream
-                git checkout develop
-                # if prompted:
-                git pull # updates changes made
-                # if your command prompt makes a recursive merge, you've done
-                # something wrong
-                git checkout NEW_PULL_REQUEST
-                git rebase develop # rebase against develop to avoid merge conflicts
-                git push origin NEW_PULL_REQUEST
+git fetch upstream
+git checkout develop
+# if prompted:
+git pull # updates changes made
+# if your command prompt makes a recursive merge, you've done something wrong
+git checkout NEW_PULL_REQUEST
+git rebase develop # rebase against develop to avoid merge conflicts
+git push origin NEW_PULL_REQUEST
             </code></pre>
             <p> Before actually making a pull requestion on github, make sure
                 you didn't break any tests, and you've written new tests for
                 the new code you've written.
             <pre><code>
-                cd ~/github/mdanalysis/testsuite/
-                pip install -e .
-                cd MDAnalysisTests/
-                ./mda_nosetests (press enter)
+cd ~/github/mdanalysis/testsuite/
+pip install -e .
+cd MDAnalysisTests/
+./mda_nosetests (press enter)
             </pre></code>
                 <p> Hopefully that helps! There is a bevy of more rigorous work
                 that's been done on understand git branching.
