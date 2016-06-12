@@ -1,0 +1,91 @@
+body {
+  background: url(../images/ulam.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Open Sans', sans-serif;
+}
+div.container.about
+{
+  border-radius: 10px;
+  background: rgba(0,0,0,.95);
+}
+div.container.splash
+{
+  border-radius: 10px;
+  background: rgba(255,255,255,.95);
+  color:rgba(0,0,0,.9)
+}
+div.container.blog
+{
+  align-self:center
+  border-radius: 10px;
+  background: rgba(255,255,255,.85);
+  color:rgba(0,0,0,.9)
+  padding:-30px;
+  margin:30px;
+
+}
+div.row.small{
+  padding:50px;
+  margin:100px;
+}
+div.row.splash{
+  padding:50px;
+  margin:100px;
+}
+h1.current{
+  color:rgba(255,255,255,.95);
+  font-variant: small-caps;
+}
+img.featurette-image{
+  margin:10px;
+  padding:10px;
+  border-radius: 20px;
+}
+nav {
+  font-weight:800;
+  font-family: 'Open Sans', sans-serif;
+}
+div.row.heading{
+  text-align: center;
+}
+h1.splash{
+font-family: 'Open Sans', sans-serif;
+  font-weight: 900;
+  font-variant: small-caps;
+  margin:50px;
+}
+div.container.about
+{
+  border-radius: 10px;
+  background: rgba(0,0,0,.95);
+}
+h1.splash{
+  text-align: center;
+}
+h4.splash{
+  font-size-adjust: auto;
+  font-variant: small-caps;
+  font-weight: 600;
+  margin:10px;
+}
+p.splash{
+  text-align: center;
+
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 900;
+  font-variant:normal;
+}
+h2.featurette-heading{
+  color:#FFF;
+}
+h3.featurette-below{
+  color:#FFF;
+}
+
+div.header
+{
+  background: rgba(0,0,0,.5);
+}

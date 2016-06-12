@@ -1,0 +1,552 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Blog</title>
+
+    <!-- Bootstrap core CSS -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="style/blog.css" rel="stylesheet">
+
+
+    <link href="style/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+<link rel="stylesheet" href="style/style.css">
+<script src='javascripts/hello.js'></script>
+<header>
+  <a href="index.html" id="name">
+    <h1>John Detlefs</h1>
+    <h2>enthusiast</h2>
+  </a>
+  <nav>
+    <ul>
+      <li><a href="blog.html">blog</a></li>
+    </ul>
+  </nav>
+</header>
+<div class="container blog">
+  <div class="blog-header">
+    <h1 class="blog-title">John Detlefs' Web Log</h1>
+    <p class="lead blog-description">For those who might be interested</p>
+  </div>
+
+  <div class="row">
+
+    <div class="col-sm-8 blog-main">
+      <div class="blog-post">
+        <h2 class="blog-post-title">Things I wish I had known when I was
+                                    starting computational research and development
+                                </h2>
+        <p class="blog-post-meta">June 9, 2016</p>
+        <p> This is my first post about actual programming! When I started doing
+            computational research about three years ago, I was lazy and borderline
+            incompetent. Today, the tools I have learned allow me to be equally
+            lazy while being somewhat more competent. These range from simple
+            lifestyle decisions to basic tech skills.
+        </p>
+        <h2> Tip 1: Install Linux </h2><link href="style/bg.css" rel="stylesheet">
+        <p><a href='https://www.linuxmint.com/download.php'>
+            <img src='images/justdoit.gif' ></a>
+            Do yourself a favor and install
+            Linux. My first install of Linux was done on my laptop, and it turns
+            out that the wifi was broken until I installed the new drivers. Figuring
+            out why things broke was a bit of a slog, but I eventually
+            stumbled upon a great demonstration of the beauty of open source software.
+            Incredibly, this <a href='https://github.com/lwfinger/'>
+            Realtek employee</a> wrote drivers for Linux on his own time! <a href=
+            'http://askubuntu.com/questions/318608/lenovo-yoga-13-realtek-wireless-driver/358479#358479'>
+            Installing</a> these drivers was a bit of a rabbit's hole, but I firmly
+            believe that system administration builds character. Also, for what
+            its worth the install on my desktop was painless. <br>
+            </p>
+        <h2><br> Tip 2: After installing linux, learn your shell commands </h2>
+            <h3> Navigating the command line</h3>
+            <pre><code>
+pwd # shows where you are in the filesystem
+cd # changes directory to specfied path
+ls # shows existing files in path
+cp # copy specified file to new filename
+grep # a tool to search for regular expressions or patterns inf iles/directories
+mkdir # creates a directory with a specified name in current path
+chmod # changes permissions for a file
+sudo # if given administrator priveleges, this allows installation
+# directories if given as a prefix to a shell command
+rm # deletes stuff
+which (command here) # shows the path taken to binary executable of a command
+            </code></pre>
+            <p> Internalizing the numerous tools at ones disposal takes some time.
+                Part of me thinks that I have learned command line tools simply
+                because it makes me feel like Deckard. <br>
+                <div id='images'>
+                <img src=images/enhance.gif></p>
+                </div>
+            <p> The workflow speed up can be tremendously useful. When it
+                comes to tools like git, the Github Graphic User Interfaces (GUIs)
+                available to Windows are *awful*
+                in comparison and it becomes a necessity. <br><br>
+
+            </p>
+            <h3>How I copied these downloaded gifs to my website directory</h3>
+            <pre><code>
+# after downloading some files, open terminal.
+# change to website directory
+# for me this is:
+cd github/jdetle.github.io
+pwd # press enter
+# i am in /home/jdetlefs/github/jdetle.github.io
+# trying to copy to /home/jdetlefs/github/jdetle.github.io/images
+# the filename was some arbitrary string 'YUjaCfF' in Downloads
+# when typing a path '~' is a placeholder for '/home/username'
+cp ~/Downloads/YU # (press tab in terminal to autocomplete to filename
+# YU is a unique identifier for this file, pressing tab twice will list
+# all files with these characters as an identifier (DONT PRESS
+# ENTER YET)
+(continued) images/'filename'.gif # press enter
+# check that it exists in the appropriate path
+ls images
+# 'filename.gif' should exist in this path!
+            </code></pre>
+            <p> Initially this process may take longer than dragging and dropping
+                files, but it quickly becomes far faster than using a GUI. </p>
+            <h3> How I add a newly installed program to my $PATH</h3>
+            <pre><code>
+echo $path
+export PATH=$PATH:/path/to/my/program
+echo $PATH
+            </code></pre>
+            <h3> How I work in virtualenvs (kind of complicated) </h3>
+            <p> First, upgrade the things! </p>
+            <pre><code>
+sudo apt-get upgrade
+            </pre></code>
+                From here, things can get complicated if you have an installation
+                of <a href='https://www.continuum.io/downloads'>Anaconda.</a>
+                Both <a href='https://pypi.python.org/pypi/pip'>pip</a>
+                and anaconda are package managers, and but when installing itself,
+                anaconda installs pip in its own directory, and handles virtual
+                environments on its own. Things can break when using both conda and
+                pip because managing dependencies is ugly and awful and left for
+                people with higher pain tolerances than me. Of course, one can
+                use conda virtualenvs, the differences probably aren't too significant.
+                This is actually still a problem on my laptop, so I am going to
+                spend this time installing pip without conda and getting virtualenvs
+                to work on my laptop! (<a href='https://www.youtube.com/watch?v=xdZQL04sDBU'>6 and a half hours later.</a>)
+
+                ... Okay so this isn't pretty. If anaconda3 is installed, it looks like
+                virtualenvwrappers won't work because virtualenvwrapper only
+                works using python2.7? (Don't hold me to this). My solution was
+                to delete anaconda3 altogether. Often times I've learned that
+                the brute force solution works pretty well. (Somewhere in the
+                distance <a href=https://twitter.com/pwang> Peter Wang </a>
+                feels a disturbance in the force.)
+            <pre><code>
+rm -rf anaconda3 # CAREFUL
+            </pre></code>
+                <em> Be careful with this!!!</em> It recursively deletes this
+                directory and all files in it and can ruin your OS install.
+            <pre><code>
+sudo apt-get install python-pip python-dev python-cython python-numpy g++
+sudo pip install --upgrade pip
+sudo pip install virtualenvwrapper
+vi ~/.bashrc
+            </pre></code>
+                <p> Crap! Another thing I have to explain! vi opens Vim, a text editor
+                    that keeps things fast and simple. A fresh installation of
+                    Ubuntu 14.04 will come with Vi Improved or vim, that is a
+                    superset of a vi (a relic of days of yore) but has no preinstalled functionality. To
+                    install a working version of Vim that allows for syntax highlighting
+                    and easy workflow tools, do the following.
+            <pre><code>
+sudo apt-get update # cant hurt
+sudo apt-get install vim
+# ctrl-shift-n to open a new terminal window
+# vi ~/.vimrc
+# (press shift+colon) i (press enter) will allow you to start inserting
+# copy and paste this  with a mouse
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=3
+set autoindent
+set textwidth=80
+set nocompatible
+set backspace=2
+set smartindent
+set number
+set cindent
+colo torte # preinstalled color schemes in /usr/share/vim/vim74/colors
+syntax on
+# (press shift+colon) wq (press enter) to write and quit
+# x does wq simultaneously
+            </pre></code>
+            <p> Here is some more info on <a href='http://bullium.com/support/vim.html'>Vim</a>.
+                Let's get back to editing our bash shell configuration file (~/.bashrc)
+            </p>
+            <pre><code>
+vi ~/.bashrc
+# before doing anything add the path
+# (shift+colon) i (enter) and line 1 should be
+PATH=~/bin:$PATH
+# line 2
+export PATH
+# line 3
+source /usr/local/bin/virtualenvwrapper.sh
+# (shift+colon) x (enter) and (ctrl+shift+n) to open a new terminal
+            </pre></code>
+            <p> And there you go! You should have a working installation of
+                the <a href='http://virtualenvwrapper.readthedocs.io/en/latest/'>
+                    virtualenvwrapper</a>
+                such that you are ready to use virtual
+                environments when making your first pull request on your new
+                Linux system!
+            </p>
+            <h3>Using pip virtualenvs to work on github projects</h3>
+            <p> Let's make a pull request for MDAnalysis using the tools we've
+                learned! </p>
+            <pre><code>
+# I like having a github/ folder for my various repositories
+# First, let's clone into the repo
+cd (press enter) # takes us to home user directory
+mkdir github
+cd github
+            </pre></code>
+            <p> Before moving further, you should create a github account if you
+                haven't already and fork <a href='https://github.com/MDAnalysis/mdanalysis/'>
+                MDAnalysis</a>. This will create a clone of the repo that will
+                function as your 'origin' repository. <a href='https://github.com/MDAnalysis/mdanalysis/'>
+                MDAnalysis</a> will be the 'upstream' repository that we set up
+                later.
+            </p>
+            <pre><code>
+git clone https://github.com/YOURUSERNAME/mdanalysis
+# this takes a little bit (289 megabytes)
+mkvirtualenv MDA
+workon MDA
+pip install numpy cython seaborn # installs dependencies
+pip install -e . # installs MDAnalysis such that changing files
+# changes how packages behave when loaded for a script
+            </pre></code>
+<p> From here we can start working on establishing a git workflow using branches. </p>
+            <pre><code>
+git remote add upstream http://github.com/MDAnalysis/mdanalysis
+git branch NEW_PULL_REQUEST
+git fetch upstream #checks for updates
+git checkout upstream/develop -B develop # creates develop
+# branch to rebase against later and switches to it
+# there might be a way to do this without checking the branch out
+# but I dont know how
+git checkout NEW_PULL_REQUEST # do work on this branch
+            </pre></code>
+            <p> Any time you want to save the work you've done, you can see the
+                files you've changed with
+            </p>
+            <pre><code>
+git status
+            </code></pre>
+            <p> Then add them to be staged for a commit that will be merged into
+                the upstream develop branch if the pull request is accepted.
+            <pre><code>
+git add file_name_here
+# once you've added everything you want to include in a PR
+git commit -m 'Insert a descriptive commit message here'
+            </code></pre>
+            <p> If you want to make a tiny commit, and blend it into a previous commit.
+            <pre><code>
+git rebase -i HEAD~(# of commits back you want to go)
+            </code></pre>
+            <p> Use vim style interactiveness to rebase commits. Changing 'pick'
+                to 'fixup' 'squashes' a commit into the previous the first pick
+                commit above it without using the commit statement.
+                Using squash will combine commit statments. When happy, (shift+colon)
+                (ctrl+x) and pressing Y and enter will combine commits.
+                If still unsatisfied you can amend the commit manually.
+            </p>
+            <pre><code>
+git commit --amend #edit the commit
+            </code></pre>
+            <p> When you're ready to save your work to the origin directory.
+            <pre><code>
+git fetch upstream
+git checkout develop
+# if prompted:
+git pull # updates changes made
+# if your command prompt makes a recursive merge, you've done something wrong
+git checkout NEW_PULL_REQUEST
+git rebase develop # rebase against develop to avoid merge conflicts
+git push origin NEW_PULL_REQUEST
+            </code></pre>
+            <p> Before actually making a pull requestion on github, make sure
+                you didn't break any tests, and you've written new tests for
+                the new code you've written.
+            <pre><code>
+cd ~/github/mdanalysis/testsuite/
+pip install -e .
+cd MDAnalysisTests/
+./mda_nosetests (press enter)
+            </pre></code>
+                <p> Hopefully that helps! There is a bevy of more rigorous work
+                that's been done on understand git branching.
+                <a href='http://nvie.com/posts/a-successful-git-branching-model/'>
+                    A succesful Git branching model</a> is very helpful,
+                <a href='https://help.github.com/categories/bootcamp/'>
+                    reading the github helps too.</a>
+                <a href='https://atom.io/'>Atom</a> is a very nice editor with
+                its github integration and hackability.
+                I like to use <a href='jupyter.org'>Jupyter</a>
+                as a script playground for MDAnalysis.
+            <h2> Tip 3: Get good at googling </h2>
+            <p> <img src='images/noidea.jpg'>This tip from <a href='www.freecodecamp.com'>freeCodeCamp</a>
+                is applicable to any problem. <a href='https://github.com/FreeCodeCamp/wiki/blob/master/FreeCodeCamp-Get-Help.md'>
+                Read-search-ask</a> is a strategy that will help you learn
+                indepently and boost confidence. Adding on to this advice, I have
+                found that if you find the email of someone knowledgable in the area
+                you are struggling in, simply by writing an email explaining your problem
+                you can often find the solution on your own. If you don't
+                figure it out, then you might just impress that person with
+                your detailed investigation. Even if they aren't impressed, they'll likely help
+                you out. People in open source are generally receptive
+                to people who demonstrate that they are working hard at becoming self-reliant.
+                Always err on the side of not sending that email though; nobody
+                likes being harassed with trivial questions.
+            </p>
+            <h2> Tip 4: When working, avoid distractions, double check,
+                triple check, quadruple check... </h2>
+                <p> When working on projects involving non-commercial software
+                    it is especially important to think of all the possible ways you could
+                    have screwed something up. Check your code for glaring logic
+                    errors and before running an intensive calculation, run a baseline
+                    to ensure that things work. In quantum chemistry, an example
+                    for this would be running a Hartree-Fock calculation with the STO-3G basis set
+                    before doing something that scales much slower.
+                    Develop scripts to ensure you are getting expected results,
+                    become skilled at using grep and simple regex. (<a href='http://regexr.com/'>Regexr</a>
+                    is a great playground to learn regex)
+                    Assume that you've written bad code and that bugs will
+                    be caused by small changes to input parameters. Expect
+                    things to break easily. Inspect all work exhaustively.
+                </p>
+                <p> When reading academic papers, print them out and read them away from a PC.
+                    Usually academic papers use wildly esoteric jargon. <a href='http://ferguson.matse.illinois.edu/resources/5.pdf'>
+                    This paper</a> on diffusion maps (the subject of my next blog post)
+                    actually features a 'jargon box' which is just *great*. Academic
+                    papers usually also assume a high level of familiarity in the
+                    subject material and are written for those who are skilled at
+                    reading papers. It is easier to dedicate the intense
+                    concentration required for most papers when unplugging from tech
+                    and using some ear plugs.
+                </p>
+                <p> Finally, when communicating over email you can embrace
+                    one of two strategies. Either you can add a 'sent from my iPhone'
+                    tag to everything, or before adding recipients,
+                    take a second to go get a drink of water come back and
+                    reread the message for errors. Unfortunately, people will
+                    judge you for poor grammar even if they don't mean to. (Shoot,
+                    I just ended a sentence in a preposition...)
+                </p>
+            <h2> Tip 5: Tackle what intimidates you </h2>
+                <p> I seriously believe that this is the number one part of
+                    becoming an adult and it is something I have only really
+                    internalized in the last year. Problems will not go away
+                    by avoiding them. Oftentimes I find myself building up things
+                    in my head as if they will be a bigger deal than they actually
+                    are. Figuring out how to us virtualenvs was one example of
+                    such a barrier that occurred recently. This occurs in my personal
+                    life as well and invariably the outcome is always better than
+                    how I imagined it would be.
+                </p><img src='images/shiacrying.gif'>
+                <p> Having trouble getting started on a project? Unfortunately Shia isn't
+                    much help here.
+                    Segment your work into discrete chunks. If you
+                    have a pull request you want to make, think of all the
+                    possible minutia you have to work through in order to get
+                    things done. I like to use Google Inbox's reminder feature
+                    to constantly remind myself of these things I need to get done.
+                    When I finish a task, I can swipe it off my todo list and
+                    enjoy that feeling of catharsis.
+                </p>
+                <p> If you are a budding programmer, take an algorithms class
+                    for free <a href='http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/'>here</a>.
+                    If you still aren't busy enough, read the MDAnalysis <a href='https://github.com/MDAnalysis/mdanalysis/wiki/Guide-for-Developers'>Guide
+                    for Developers</a> and start learning with help from a tight-knit
+                    community of open source contributors.
+                </p>
+
+      </div>
+      <div class="blog-post">
+        <h2 class="blog-post-title">Tempus Fugit</h2>
+        <p class="blog-post-meta">May 19, 2016</p>
+        <p> Bear with me, this title is not as pretentious as it might seem.
+            This title is meant to have a double-meaning; not only is it a reference
+            to the fact that this 'community-bonding' period is <em>FLYING</em>
+            away, but also has to do with my actual <a href="https://summerofcode.withgoogle.com/projects/#5875821348651008">
+            Summer of Code</a> project with <a href="http://www.mdanalysis.org/blog/">MDAnalysis</a>.
+        </p>
+        <p> The main goal of my work this summer will be to implement Principle
+            Component Analysis and Diffusion Maps such that they are fast, but more
+            importantly keep memory costs at a minimum. These are both <i>Dimension
+            Reduction</i> techniques, and in the case of a <a href="https://en.wikipedia.org/wiki/Molecular_dynamics">
+            Molecular Dynamics</a> (MD) simulation, the high-dimensional
+            space being reduced is a 'trajectory' of atoms reflecting what is essentially a matrix
+            in which the i<sub>th</sub> entry in a row (or column, this doesn't matter)
+            reflect the xyz coordinates at the j<sub>th</sub> timestep in a simulation.
+        </p>
+        <p> In a MD trajectory, time flies on while the patterns of movement are left unrecorded
+            in the raw data. The only limitation to the number of frames in a trajectory is access
+            to computing power, this means there can be a tremendous amount of
+            data to sort through. To my knowledge, the
+            biggest things being studied currently are on the scale of the
+            <a href='http://www.bio-itworld.com/2013/5/29/researchers-characterize-chemical-structure-hiv-capsid.html'>
+            HIV-1 capsid</a>, which has 64 million atoms. Ignoring this size limitation,
+            let's imagine that you're watching a tree branch swaying while you should
+            be doing something far more important. Archimedes is
+            quoted as saying, "Give me a lever long enough and a fulcrum on which
+            to place it, and I shall move the world." Well, give me a big enough
+            set of atoms and a powerful computer on which
+            to run the simulation, and I can simulate that tree moving. Go ahead,
+            you can quote me.
+        </p>
+        <p> While viewing the tree branch, your brain is processing that information. It is interpreting visual
+            data that is changing with respect to time and trying to find patterns
+            in that timeseries. It is, in essence, reducing the dimensionality of
+            that very large data set and recording that swaying motion of the tree.
+            The role of a dimension reduction algorithm on the aforementioned
+            simulation is to find a similar pattern as best it can. This same idea can be used
+            for facial recognition (which leads to the <em>awesome</em> term,
+            <a href='https://en.wikipedia.org/wiki/Eigenface'>Eigenfaces</a>)
+            and many other problems. I'm a little worried that I'm being too much
+            of an armchair scientist in saying this, but from what I can tell,
+            the human brain is the best
+            <a href='http://www.theatlantic.com/technology/archive/2014/06/bad-news-computers-are-getting-better-than-we-are-at-facial-recognition/372377/'>all-purpose</a>
+            dimension reducer (according to my brain).
+        </p>
+        <p> Hopefully those attempts at metaphor weren't entirely god-awful.
+            These are the ideas I am implementing and of course I have zero
+            part in coming up with them. I will be drawing from work that other
+            people have done for the most part, my intellectual effort will be
+            spent mostly on ensuring things run as they should and that they run quickly.
+        </p>
+        <p> I officially start work on Monday and over this week I have been working
+            to finish my senior thesis before the start date. I have also been working
+            on a small refactor of an analysis module in MDAnalysis which of course
+            took longer than I expected, but it is almost over with. I try to understand
+            everything I'm looking at when looking at new code, and some times it
+            can be somewhat of a hindrance. I like to follow the advice of smarter
+            people than me, in this instance <a href='http://jvns.ca/'>Julia Evans</a>,
+            and err on the side of thorough understanding. With that being said,
+            a major goal and source of stress of mine is productivity.
+            Eventually I'd like to write something on what I do to encourage productivity
+            in the face of a mostly self-directed work environment.
+        </p>
+        <p>
+            In other news, I've been learning some wonderfully interesting things
+            about <a href='https://en.wikipedia.org/wiki/Free_group'> Free Groups </a>
+            as they pertain to <a href='https://en.wikipedia.org/wiki/Homotopy'>homotopy theory</a>
+            in my Topology class
+            at Cal Poly, I am loving <i>East of Eden</i> by John Steinbeck, (which happens
+            to be set right nextdoor to where I live), and I am doing a good job
+            at maintaining my exercise regime. I hope to get alot of work done
+            this weekend in preparation for my first day of work next week!
+        </p>
+
+     </div>
+      <div class="blog-post">
+        <h2 class="blog-post-title">Introduction!</h2>
+        <p class="blog-post-meta">May 11, 2016</p>
+
+        <p>Hello world! I recently was given the amazing opportunity
+            to contribute to MDAnalysis, an open source Molecular Dynamics simulation
+            Analysis project through the Google Summer of Code initiative. I've
+            been encouraged to maintain a blog by those giving me this opportunity
+            so I'll start things off by explaining how I got this great summer job.
+        </p>
+        <p>To summarize it quickly, Google sponsors a program in which college
+            students apply to work on projects for open source software organizations.
+            I was very lucky to have my research advisor, Dr. Ashley Ringer
+            McDonald, encourage me to apply. I satisfied the first application requirement
+            by learning how to use git and closing an issue on the <a href="https://github.com/MDAnalysis/mdanalysis/issues">MDAnalysis Github page</a>.
+            After that, I spent about 40 hours of concentrated effort over spring break
+            studying dimensionality reduction and molecular dynamics in order to write a coherent
+            application. By turning in a rough draft early I ensured the process was iterative; the contributors to
+            MDAnalysis were very helpful with their critiques of my application.
+        </p>
+        <p> After turning in my final application, the process didn't really stop. I made
+            sure to keep making pull requests and to learn more about development workflow. I have
+            learned <strong>so</strong> much about workflow and how to get over
+            the dread of starting a pull request in the past few months.
+        </p>
+        <p> And then I got the news! I had been accepted to the Google Summer of Code!
+            I was and still am extremely excited. With that being said, success
+            made me lazy and somewhat complacent. Recently, I have been doing the
+            bare minimum in terms of work and that is about to change. Even if
+            no one is reading this, consider this blog as the first step in accountability
+            for the rest of the summer. I will be using this to keep a record of everything I
+            am working on day to day.
+        </p>
+        <p> With the exception of this introduction post, every post will attempt to
+            keep a focus on a particular issue. I might write a post about a
+            topic related to my Summer of Code work, or something related to
+            my many other interests. I endeavor to remain positive and
+            thoughtful, I will work on my clear overuse of commas, and I will
+            try to make my readers laugh.
+        </p>
+        <p> I look forward to keeping this up! JD out. </p>
+
+      </div><!-- /.blog-post -->
+
+  </div><!-- /.blog-main -->
+
+  <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+    <div class="sidebar-module sidebar-module-inset">
+      <h4>About</h4>
+      <p>John Detlefs is a 22 year old Math and Chemistry Double Major
+          at Cal Poly SLO graduating in June 2016. He has never been much of a
+          writer. Especially when it comes to writing about himself.
+
+    </div>
+    <div class="sidebar-module">
+      <h4>Archives</h4>
+      <ol class="list-unstyled">
+
+      </ol>
+    </div>
+    <div class="sidebar-module">
+      <h4>Elsewhere</h4>
+      <ol class="list-unstyled">
+        <li><a href="www.github.com/jdetle">GitHub</a></li>
+        <li><a href="www.twitter.com/jdetle">Twitter</a></li>
+      </ol>
+    </div>
+  </div><!-- /.blog-sidebar -->
+
+</div><!-- /.row -->
+
+</div><!-- /.container -->
+<footer>
+  <div>
+  <a href="http://twitter.com/jdetle"><img
+  src="images/twitter/twitterlogo.png" alt="Twitter Logo" class="icon"></a>
+  <a href="http://github.com/jdetle"><img src="images/GitHub-Mark/PNG/GitHub-Mark-120px-plus.png" alt="GitHub Logo" class="icon"></a>
+  </div>
+</footer>
