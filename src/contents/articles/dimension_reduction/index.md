@@ -65,27 +65,20 @@ In these situations the problem posed is $$ X_a M = \lambda X_b M $$
 Where $X_a$ and $X_b$ are distinct but both still generated from some manipulation
 on the original data matrix X.
 
-The methods discussed so far necessitate the use of convex cost functions for
-an optimization. In set theory, convexity indicates that a set contains its subsets.
-An open interval $ (a,b) $ is convex whereas the open interval missing a point is not.
+The methods discussed so far necessitate the use of convex cost functions to be
+optimized against. In set theory, convexity indicates that a set contains its subsets.
+An open interval $ (a,b) $ is convex whereas the open interval minus a point is not.
 Convex functions are similar but not entirely related, a convex function does not
 have any *local optima* which means that if you're at a maximum, you know it is global.
 
 (I think there is a reason why people in optimization refer to surfaces as landscapes.
 An interesting surface may have many hills and valleys, and finding an optimal path
-is like a hiker trying to cross a mountain path blind --- potentially problematic.)
+is like a hiker trying to cross a mountain path blind, potentially problematic.)
 
 Convex functions will always achieve the same solution given some input parameters,
 but non-convex functions may get stuck on some local optima. This is why a method
 like [t-SNE][3] will converge to different results on different iterations.
 
-Methods for dimension reduction will be either linear or non-linear mappings.
-In both cases, the original data matrix $X$ is embeddable in some manifold. A manifold
-is any surface that is [locally homeomorphic](http://planetmath.org/locallyhomeomorphic) to $R^{2}$
-
-Great
-examples of this are ![swiss roll](swissroll.gif) borrowed from [dinoj](http://people.cs.uchicago.edu/~dinoj/manifold/swissroll.html)
-The m
 
 
 It might be a little silly, but the rest of this post will be focused on providing
