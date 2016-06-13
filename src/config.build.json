@@ -7,8 +7,7 @@
     "description": "a blog for my coding adventures"
   },
   "plugins": [
-    "./plugins/paginator.coffee",
-    "./node_modules/wintersmith-pandoc/"
+    "./plugins/paginator.coffee"
   ],
   "require": {
     "moment": "moment",
