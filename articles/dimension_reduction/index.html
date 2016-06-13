@@ -72,23 +72,17 @@ is called a <a href="https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matri
 In these situations the problem posed is $$ X_a M = \lambda X_b M $$
 Where $X_a$ and $X_b$ are distinct but both still generated from some manipulation
 on the original data matrix&nbsp;X.</p>
-<p>The methods discussed so far necessitate the use of convex cost functions for
-an optimization. In set theory, convexity indicates that a set contains its subsets.
-An open interval $ (a,b) $ is convex whereas the open interval missing a point is not.
+<p>The methods discussed so far necessitate the use of convex cost functions to be
+optimized against. In set theory, convexity indicates that a set contains its subsets.
+An open interval $ (a,b) $ is convex whereas the open interval minus a point is not.
 Convex functions are similar but not entirely related, a convex function does not
 have any <em>local optima</em> which means that if you’re at a maximum, you know it is&nbsp;global.</p>
 <p>(I think there is a reason why people in optimization refer to surfaces as landscapes.
 An interesting surface may have many hills and valleys, and finding an optimal path
-is like a hiker trying to cross a mountain path blind — potentially&nbsp;problematic.)</p>
+is like a hiker trying to cross a mountain path blind, potentially&nbsp;problematic.)</p>
 <p>Convex functions will always achieve the same solution given some input parameters,
 but non-convex functions may get stuck on some local optima. This is why a method
 like <a href="https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf">t-<span class="caps">SNE</span></a> will converge to different results on different&nbsp;iterations.</p>
-<p>Methods for dimension reduction will be either linear or non-linear mappings.
-In both cases, the original data matrix $X$ is embeddable in some manifold. A manifold
-is any surface that is <a href="http://planetmath.org/locallyhomeomorphic">locally homeomorphic</a> to&nbsp;$R^{2}$</p>
-<p>Great
-examples of this are <img src="/articles/first_post/swissroll.gif" alt="swiss roll"> borrowed from <a href="http://people.cs.uchicago.edu/~dinoj/manifold/swissroll.html">dinoj</a>
-The&nbsp;m</p>
 <p>It might be a little silly, but the rest of this post will be focused on providing
 a quick explanation of various dimension reduction techniques. The general format
 will be:

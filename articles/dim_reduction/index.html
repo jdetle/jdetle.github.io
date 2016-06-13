@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>Dimension Reduction, a review of a review - John Detlefs' Web Log
+    </title>
+    <link rel="alternate" href="/feed.xml" type="application/rss+xml" title="a blog for my coding adventures">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Anonymous+Pro:400,700,400italic,700italic|Merriweather:400,700,300">
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body class="article-detail">
+    <header class="header">
+      <div class="content-wrap">
+        <h1>Dimension Reduction, a review of a review</h1>
+        <p class="author">Written by <span class="author">John Detlefs</span>
+        </p>
+      </div>
+    </header>
+    <div id="content">
+      <div class="content-wrap">
+        <article class="article">
+          <section class="content"><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>Hello! This is my first post moving over to a new site built by
+<a href="https://github.com/jnordberg/wintersmith">wintersmith</a>. Originally I was going
+to use jekyll pages, but there was an issue with the latest ruby version not being
+available for Linux, (maybe macs are better…). I spent <em>way too much</em> time
+figuring out how to install a markdown plugin that allowed for the inclusion of
+Latex. I did this all without realizing I could simply&nbsp;include:</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot; async
+  src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+</code></pre><p>below my article title and latex would easily render. Now that this roadblock is
+cleared, I have no excuses preventing me from writing a post about my&nbsp;work.  </p>
+<p><span class="more"></span></p>
+<p>This post is meant to discuss various dimension reduction methods in brief
+as a preface to a more in-depth post about diffusion maps as they pertain
+to chemistry. It assumes basic math skills, but will try to briefly explain
+high-level concepts from Math and Stats. Towards the end I will provide a segue
+into the next post, which will be posted on the same&nbsp;day.</p>
+<p><a href="https://en.wikipedia.org/wiki/Dimensionality_reduction">Dimension reduction</a>
+is performed on a data matrix $ M $ consisting of $n$ ‘features’ wherein
+each vector has a set of $m$ data points associated with it. The data in the matrix
+is considered to have dimension $m$, but oftentimes the actual ‘intrinsic dimensionality’
+is much lower. As Laurens van der Maaten <a href="https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf">defines it</a>, ‘intrinsic dimensionality’
+is ‘the the minimum number of parameters needed to account for the observed properties of the&nbsp;data’.</p>
+<p>(So far, the most didactic explanation of this fact was presented
+in a paper on diffusion maps by <a href="http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf">Porte et al</a>
+In the paper, a dataset of m-by-n pixel pictures of a simple image randomly rotated
+originally has dimension $mn$ but after dimension reduction, the dataset can be
+organized two dimensionally based on angle-of&nbsp;rotation.)</p>
+<p>At the most abstract level, dimension reduction methods usually are posed as an
+optimization problem that ultimately requires the solution to an eigenvalue problem.
+What is an <a href="https://en.wikipedia.org/wiki/Optimization_problem">optimization problem</a> you ask?
+That wikipedia article should help some, the optimization being done in dimension
+reduction is finding some linear or non-linear relation $ M $ that minmizes (or maximizes)
+a cost function $ \phi (x) $ on some manipulation of the data matrix, call it $ X_{manipulated} $.
+Examples of various functions will be given in detail&nbsp;later.</p>
+<p>In most cases this can be turned into an eigenproblem posed as:
+$$ X_{manipulated} M = \lambda M&nbsp;$$</p>
+<p>Solving this equation using some algorithm like Singular Value Decomposition
+or Symmetric Eigenvalue Decomposition will provide a set of m linearly-independent
+eigenvectors that act as a basis for a lower dimensional space.
+(Linear independence means no vector in the set can be expressed as
+some sum of the others, a basis set has the property that any vector in a space
+can be written as the sum of vectors in the&nbsp;set.)</p>
+<p>In some cases, the manipulation is somewhat more complicated, and creates what
+is called a <a href="https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Generalized_eigenvalue_problem"><em>generalized eigenvalue problem</em></a>.
+In these situations the problem posed is $$ X_a M = \lambda X_b M $$
+Where $X_a$ and $X_b$ are distinct but both still generated from some manipulation
+on the original data matrix&nbsp;X.</p>
+<p>The methods discussed so far necessitate the use of convex cost functions for
+an optimization. In set theory, convexity indicates that a set contains its subsets.
+An open interval $ (a,b) $ is convex whereas the open interval missing a point is not.
+Convex functions are similar but not entirely related, a convex function does not
+have any <em>local optima</em> which means that if you’re at a maximum or minimum, you know it is&nbsp;global.</p>
+<p>(I think there is a reason why people in optimization refer to surfaces as landscapes.
+An interesting surface may have many hills and valleys, and finding an optimal path
+is like a hiker trying to cross a mountain path blind — potentially&nbsp;problematic.)</p>
+<p>Convex functions will always achieve the same solution given some input parameters,
+but non-convex functions may get stuck on some local optima. This is why a method
+like <a href="https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf">t-<span class="caps">SNE</span></a> will converge to different results on different&nbsp;iterations.</p>
+<p>Methods for dimension reduction will be either linear or non-linear mappings.
+In both cases, the original data matrix $X$ is embeddable in some manifold. A manifold
+is any surface that is <a href="http://planetmath.org/locallyhomeomorphic">locally homeomorphic</a> to $R^{2}$.
+We want these mappings to preserve both the local structure of the manifold, while also
+preserving the global structure. I think the notion of structure is left specifically
+vague in literature because it is just so damn weird (it is really hard to think about
+things in greater than 3&nbsp;dimensions…)</p>
+<p>A great example of data embeddable in a weird manifold, albeit three dimensional manifold is the swiss roll:
+<img src="/articles/dim_reduction/swissroll.gif" alt="swiss roll"> borrowed from <a href="http://people.cs.uchicago.edu/~dinoj/manifold/swissroll.html">dinoj</a>.
+The many different dimension reduction methods available will have disparate
+results when performed on this data. When restricted to paths along the manifold,
+red data will be far apart from black, but if a simple euclidean distance is measured,
+the points might be considered close. A dimension map that uses simple euclidean
+distance between points to resolve structure will fail miserably to eek out the
+swiss roll&nbsp;embedding.</p>
+<p>It might be a little silly, but the rest of this post will be focused on providing
+a quick explanation of various dimension reduction techniques. The general format
+will&nbsp;be:</p>
+<ul>
+<li>optimization problem&nbsp;posed</li>
+<li>formal eigenvalue problem&nbsp;given</li>
+<li>interesting insights and&nbsp;relations</li>
+<li>pictures that I like from other&nbsp;work  </li>
+</ul>
+<h2 id="multidimensional-scaling-mds-classical-scaling-pca">Multidimensional Scaling (<span class="caps">MDS</span>), Classical Scaling,&nbsp;PCA</h2>
+<ul>
+<li><span class="caps">PCA</span> cost function: Maximizes&nbsp;$Trace(M^{T}cov(X)M)$</li>
+<li><span class="caps">PCA</span> eigenvalue problem $ Mv = \lambda v $ where M is this linear mapping minimizing
+the&nbsp;covariance</li>
+<li>Classical scaling relies on the number of datapoints not the&nbsp;dimensionality.</li>
+<li>Classical scaling cost function: Minimizes $ \phi ( Y )$ = $ \Sigma<em>{ij}$ = ( d</em>{ij} - || y_i - y_j ||^2 )
+this is referred to as a strain cost&nbsp;function</li>
+<li>Other <span class="caps">MDS</span> methods can use stress or squared stress cost&nbsp;functions</li>
+<li>Classical scaling gives the exact same solution as&nbsp;<span class="caps">PCA</span></li>
+</ul>
+<h2 id="isomap">Isomap</h2>
+<ul>
+<li>Geodesic distances are computed by constructing a nearest-neighbor graph and
+using <a href="https://www.youtube.com/watch?v=2E7MmKv0Y24">Djistrka’s algorithm</a> to find short distance. Erroneous connections
+can be made by improperly connecting&nbsp;neighbors.</li>
+<li>Can fail if manifold has&nbsp;holes.</li>
+<li>Demonstration of failure of <span class="caps">PCA</span> versus success of Isomap
+<img src="/articles/dim_reduction/isomapfail.png" alt="isomap"></li>
+</ul>
+<h2 id="kernel-pca">Kernel&nbsp;<span class="caps">PCA</span></h2>
+<ul>
+<li>Does <span class="caps">PCA</span> on a kernel function, retains large pairwise distances even though they are measured in the feature&nbsp;space</li>
+</ul>
+<h2 id="diffusion-maps">Diffusion&nbsp;Maps</h2>
+<ul>
+<li>The key idea behind the diffusion distance is that it is based on integrating over all paths through the graph. This makes the diffusion distance more robust to short-circuiting than, e.g., the geodesic distance that is employed in&nbsp;Isomap.</li>
+<li>Pairs of datapoints with a high forward transition probability have a small diffusion distance. Since the diffusion distance is based on integrating over all paths through the graph, it is more robust to short-circuiting than the geodesic distance that is employed in&nbsp;Isomap</li>
+<li>Eigenvalue problem: $ P^(t) v = \lambda v $, where p is a diffusion&nbsp;matrix.</li>
+<li>Diagnalization means that we can solve the equation for t=1 and then exponentiate eigenvalues
+  to find time solutions for longer diffusion&nbsp;distances</li>
+<li>Because the graph is fully connected, the largest eigenvalue is trivial (viz. λ 1 = 1), and its eigenvector&nbsp;v1</li>
+<li>The same revelation also stems from the fact that the process is markovian, that is
+  the step at time t only depends on the step at time t-1, it forms a (markov chain)[<a href="https://en.wikipedia.org/wiki/Markov_chain">https://en.wikipedia.org/wiki/Markov_chain</a>].</li>
+<li>Molecular dynamics processes are certainly&nbsp;markovian!</li>
+</ul>
+<h2 id="locally-linear-embedding-">Locally Linear&nbsp;Embedding:</h2>
+<ul>
+<li><span class="caps">LLE</span> describes the local properties of the manifold around a datapoint x i by writing the datapoint
+as a linear combination $w_i$ (the so-called reconstruction weights) of its k nearest-neighbors $x&nbsp;i_j$.</li>
+<li>Generalized eigenvalue problem, preserves local&nbsp;structure.</li>
+<li>Invariant to local scale, rotation,&nbsp;translations</li>
+<li>Fails when the manifold has&nbsp;holes</li>
+<li>In addition, <span class="caps">LLE</span> tends to collapse large portions of the data very close together in the low-dimensional space, because the covariance constraint on the solution is too&nbsp;simple</li>
+</ul>
+<h2 id="laplacian-eigenmaps-">Laplacian&nbsp;Eigenmaps:</h2>
+<ul>
+<li>Laplacian Eigenmaps compute a low-dimensional representation of
+the data in which the distances between a datapoint and its k nearest neighbors are&nbsp;minimized.</li>
+<li>The ideas studied here are a part of spectral graph&nbsp;theory</li>
+<li>The computation of the degree matrix M and the <a href="https://en.wikipedia.org/wiki/Laplacian_matrix">graph laplacian</a>
+L of the graph W allows for formulating the minimization problem in defined above as an&nbsp;eigenproblem.</li>
+<li>Generalized Eigenproblem: $Lv = \lambda&nbsp;Mv$</li>
+</ul>
+<h2 id="hessian-lle-">Hessian&nbsp;<span class="caps">LLE</span>:</h2>
+<ul>
+<li>Minimizes curviness of the high-dimensional manifold when embedding it into
+a low dimensional data representation that is <a href="https://en.wikipedia.org/wiki/Isometry_(Riemannian_geometry">locally isometric</a>)</li>
+<li><a href="https://en.wikipedia.org/wiki/Hessian_matrix">What is a Hessian?</a>, uses a local hessian at every point to describe&nbsp;curviness.</li>
+<li>Hessian <span class="caps">LLE</span> shares many characteristics with Laplacian Eigenmaps:
+it simply replaces the manifold <a href="https://en.wikipedia.org/wiki/Laplacian_matrix">Laplacian</a> by the manifold Hessian.
+‘As a result, Hessian <span class="caps">LLE</span> suffers from many of the same weaknesses as Laplacian Eigenmaps
+and&nbsp;LLE.’</li>
+</ul>
+<h2 id="local-tangent-space-analysis-">Local Tangent Space&nbsp;Analysis:</h2>
+<ul>
+<li><span class="caps">LTSA</span> simultaneously searches for the coordinates of the low-dimensional
+data representations, and for the linear mappings of the low-dimensional
+datapoints to the local tangent space of the high-dimensional&nbsp;data.</li>
+<li>Involves applying <span class="caps">PCA</span> on k neighbors of x before finding local tangent&nbsp;space</li>
+</ul>
+<h2 id="works-cited">Works&nbsp;Cited</h2>
+<p>Isomap image borrowed from: <a href="http://web.mit.edu/6.454/www/www_fall_2003/ihler/slides.pdf">http://web.mit.edu/6.454/www/www_fall_2003/ihler/slides.pdf</a>
+<a href="https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf">Dimension Reduction Review</a>
+<a href="http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf">Diffusion Map Brief</a>
+<a href="https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf">t-<span class="caps">SNE</span>&nbsp;paper</a></p>
+</section>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="content-wrap">
+        <div class="nav"><a href="/">&laquo; Full blog</a></div>
+        <section class="about"><p>Wintersmith is made by <a href="http://johan-nordberg.com">Johan Nordberg</a> and licensed under the <a href="http://opensource.org/licenses/MIT">MIT-license</a>.</p>
+
+        </section>
+        <section class="copy">
+          <p>&copy; 2016 John Detlefs &mdash; powered by&nbsp;<a href="https://github.com/jnordberg/wintersmith">Wintersmith</a>
+          </p>
+        </section>
+      </div>
+    </footer>
+  </body>
+</html>

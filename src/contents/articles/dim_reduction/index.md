@@ -36,9 +36,9 @@ high-level concepts from Math and Stats. Towards the end I will provide a segue
 into the next post, which will be posted on the same day.
 
 [Dimension reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction)
-is performed on a data matrix $ M $ consisting of *n* 'feature vectors' wherein
-each vector has a set of *m* data points associated with it. The data in the matrix
-is considered to have dimension *m*, but oftentimes the actual 'intrinsic dimensionality'
+is performed on a data matrix $ M $ consisting of $n$ 'features' wherein
+each vector has a set of $m$ data points associated with it. The data in the matrix
+is considered to have dimension $m$, but oftentimes the actual 'intrinsic dimensionality'
 is much lower. As Laurens van der Maaten [defines it][1], 'intrinsic dimensionality'
 is 'the the minimum number of parameters needed to account for the observed properties of the data'.
 
