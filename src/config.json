@@ -1,5 +1,4 @@
 {
-  "output": "../",
   "locals": {
     "url": "http://localhost:8080",
     "name": "John Detlefs' Web Log",

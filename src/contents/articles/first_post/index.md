@@ -1,133 +1,25 @@
 ---
 title: Dimension Reduction and Diffusion Maps
 author: John Detlefs
-date: 2016-06-12 12:30
+date: 2016-06-13 12:30
 template: article.jade
 ---
-Hello! This is my first post moving over to a new site built by
-[wintersmith](https://github.com/jnordberg/wintersmith).
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
+Hello! This is my first post moving over to a new site built by
+[wintersmith](https://github.com/jnordberg/wintersmith). Originally I was going
+to use jekyll pages, but there was an issue with the latest ruby version not being
+available for Linux, (maybe macs are better...). I spent *way too much* time
+figuring out how to install a markdown plugin that allowed for the inclusion of
+Latex. I did this all without realizing I could simply include:
+```
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+```
+below my article title and latex would easily render. Now that this roadblock is
+cleared, I have no excuses preventing me from writing a post about my work.  
 
 <span class="more"></span>
-
-### JavaScript
-
-```javascript
-function getRandomNumber() {
-   return 4; // chosen by fair dice roll.
-             // guaranteed to be random.
-}
-```
-
-### CoffeeScript
-
-```coffeescript
-class Animal
- ### Intellegent design ###
- getDNA: ->
-   print 'sequencing...'
-   while true
-     sleep 1
-
-class Monkey extends Animal
- speak: ->
-   print 'ah ah ah'
-
-class Human extends Monkey
- speak: ->
-   print ['yolo' unless i % 3] + ['swag' unless i % 5] or i for i in [1..100]
-```
-
-### C
-
-```c
-#include <stdio.h>
-
-int main(void)
-{
- printf("Hello world\n");
- return 0;
-}
-```
-
-### C++
-
-```cpp
-#include <iostream>
-
-int main()
-{
- std::cout << "Hello World!" << std::endl;
- return 0;
-}
-```
-
-### C-sharp
-
-```cs
-class ExampleClass
-{
-   static void Main()
-   {
-       System.Console.WriteLine("Hello, world!");
-   }
-}
-```
-
-### Erlang
-
-```erlang
-io:format("~s~n", ["hello, world"])
-```
-
-### Go
-
-```go
-package main
-
-import "fmt"
-
-func main() {
-  fmt.Println("Hello World!")
-}
-```
-
-### Java
-
-```java
-public class HelloWorld {
-  public static void main(String[] args) {
-      System.out.println("Hello world!");
-  }
-}
-```
-
-### ObjectiveC
-
-```objectivec
-#import <stdio.h>
-
-int main(void)
-{
-   printf("Hello, World!\n");
-   return 0;
-}
-```
-
-### PHP
-
-```php
-<?php echo 'Hello, world'; ?>
-```
-
-### Python
-
-```python
-print("Hello World")
-```
-
-### Ruby
-
-```ruby
-puts "Hello world!"
-```
