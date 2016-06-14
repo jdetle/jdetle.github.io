@@ -104,7 +104,7 @@ A great example of data embeddable in a weird manifold, albeit three dimensional
 The many different dimension reduction methods available will have disparate
 results when performed on this data. When restricted to paths along the manifold,
 red data will be far apart from black, but if a simple euclidean distance is measured,
-the points might be considered close. A dimension map that uses simple euclidean
+the points might be considered close. A dimension reduction that uses simple euclidean
 distance between points to resolve structure will fail miserably to eek out the
 swiss roll embedding.
 
