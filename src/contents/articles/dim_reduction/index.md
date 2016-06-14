@@ -67,9 +67,9 @@ some sum of the others, a basis set has the property that any vector in a space
 can be written as the sum of vectors in the set.) The set of eigenvectors is of
 given by an eigenvalue decomposition will be the 'spectrum' of the matrix $M$.
 This spectrum will have what's referred to as a 'spectral gap' after a certain number
-of eigenvalues, where the number of eigenvalues falls dramatically compared to the
-previous. The number of significant eigenvalues before this gap reflects the
-intrinsic dimension of a space.
+of eigenvalues, where the value of all subsequent eigenvalues is much smaller
+than all those before them. The number of significant eigenvalues before this
+first diminished value reflects the intrinsic dimension of a space.
 
 In some cases, the manipulation is somewhat more complicated, and creates what
 is called a [*generalized eigenvalue problem*](https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Generalized_eigenvalue_problem).
