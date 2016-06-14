@@ -10,9 +10,9 @@
     <language>en</language>
     <item>
       <title>Dimension Reduction, a review of a review</title>
-      <link>/articles/dim_reduction/</link>
+      <link>/articles/dimension_reduction/</link>
       <pubDate>Sun, 12 Jun 2016 17:00:00 -0700</pubDate>
-      <guid isPermaLink="true">/articles/dim_reduction/</guid>
+      <guid isPermaLink="true">/articles/dimension_reduction/</guid>
       <author></author>
       <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
 MathJax.Hub.Config({
@@ -40,6 +40,168 @@ as a preface to a more in-depth post about diffusion maps as they pertain
 to chemistry. It assumes basic math skills, but will try to briefly explain
 high-level concepts from Math and Stats. Towards the end I will provide a segue
 into the next post, which will be posted on the same day.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Dimensionality_reduction&quot;&gt;Dimension reduction&lt;/a&gt;
+is performed on a data matrix $ M $ consisting of &lt;em&gt;n&lt;/em&gt; ‘feature vectors’ wherein
+each vector has a set of &lt;em&gt;m&lt;/em&gt; data points associated with it. The data in the matrix
+is considered to have dimension &lt;em&gt;m&lt;/em&gt;, but oftentimes the actual ‘intrinsic dimensionality’
+is much lower. As Laurens van der Maaten &lt;a href=&quot;https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf&quot;&gt;defines it&lt;/a&gt;, ‘intrinsic dimensionality’
+is ‘the the minimum number of parameters needed to account for the observed properties of the data’.&lt;/p&gt;
+&lt;p&gt;(So far, the most didactic explanation of this fact was presented
+in a paper on diffusion maps by &lt;a href=&quot;http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf&quot;&gt;Porte et al&lt;/a&gt;
+In the paper, a dataset of m-by-n pixel pictures of a simple image randomly rotated
+originally has dimension (mn) but after dimension reduction, the dataset can be
+organized two dimensionally based on angle-of rotation.)&lt;/p&gt;
+&lt;p&gt;At the most abstract level, dimension reduction methods usually are posed as an
+optimization problem that ultimately requires the solution to an eigenvalue problem.
+What is an &lt;a href=&quot;https://en.wikipedia.org/wiki/Optimization_problem&quot;&gt;optimization problem&lt;/a&gt; you ask?
+That wikipedia article should help some, the optimization being done in dimension
+reduction is finding some linear or non-linear relation $ M $ that minmizes (or maximizes)
+a cost function $ \phi (x) $ on some manipulation of the data matrix, call it $ X_{manipulated} $.
+Examples of various functions will be given in detail later.&lt;/p&gt;
+&lt;p&gt;In most cases this can be turned into an eigenproblem posed as:
+$$ X_{manipulated} M = \lambda M $$&lt;/p&gt;
+&lt;p&gt;In some cases, the manipulation is somewhat more complicated, and creates what
+is called a &lt;a href=&quot;https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Generalized_eigenvalue_problem&quot;&gt;&lt;em&gt;generalized eigenvalue problem&lt;/em&gt;&lt;/a&gt;.
+In these situations the problem posed is $$ X_a M = \lambda X_b M $$
+Where $X_a$ and $X_b$ are distinct but both still generated from some manipulation
+on the original data matrix X.&lt;/p&gt;
+&lt;p&gt;The methods discussed so far necessitate the use of convex cost functions to be
+optimized against. In set theory, convexity indicates that a set contains its subsets.
+An open interval $ (a,b) $ is convex whereas the open interval minus a point is not.
+Convex functions are similar but not entirely related, a convex function does not
+have any &lt;em&gt;local optima&lt;/em&gt; which means that if you’re at a maximum, you know it is global.&lt;/p&gt;
+&lt;p&gt;(I think there is a reason why people in optimization refer to surfaces as landscapes.
+An interesting surface may have many hills and valleys, and finding an optimal path
+is like a hiker trying to cross a mountain path blind, potentially problematic.)&lt;/p&gt;
+&lt;p&gt;Convex functions will always achieve the same solution given some input parameters,
+but non-convex functions may get stuck on some local optima. This is why a method
+like &lt;a href=&quot;https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf&quot;&gt;t-SNE&lt;/a&gt; will converge to different results on different iterations.&lt;/p&gt;
+&lt;p&gt;It might be a little silly, but the rest of this post will be focused on providing
+a quick explanation of various dimension reduction techniques. The general format
+will be:
++optimization problem posed
++formal eigenvalue problem given
++interesting insights and relations
++pictures that I like from other work  &lt;/p&gt;
+&lt;h2 id=&quot;works-cited&quot;&gt;Works Cited&lt;/h2&gt;
+</description>
+    </item>
+    <item>
+      <title>Dimension Reduction, a review of a review</title>
+      <link>/articles/first_post/</link>
+      <pubDate>Sun, 12 Jun 2016 17:00:00 -0700</pubDate>
+      <guid isPermaLink="true">/articles/first_post/</guid>
+      <author></author>
+      <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; async
+  src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;p&gt;Hello! This is my first post moving over to a new site built by
+&lt;a href=&quot;https://github.com/jnordberg/wintersmith&quot;&gt;wintersmith&lt;/a&gt;. Originally I was going
+to use jekyll pages, but there was an issue with the latest ruby version not being
+available for Linux, (maybe macs are better…). I spent &lt;em&gt;way too much&lt;/em&gt; time
+figuring out how to install a markdown plugin that allowed for the inclusion of
+Latex. I did this all without realizing I could simply include:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot; async
+  src=&amp;quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&amp;quot;&amp;gt;
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;below my article title and latex would easily render. Now that this roadblock is
+cleared, I have no excuses preventing me from writing a post about my work.  &lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This post is meant to discuss various dimension reduction methods in brief
+as a preface to a more in-depth post about diffusion maps as they pertain
+to chemistry. It assumes basic math skills, but will try to briefly explain
+high-level concepts from Math and Stats. Towards the end I will provide a segue
+into the next post, which will be posted on the same day.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Dimensionality_reduction&quot;&gt;Dimension reduction&lt;/a&gt;
+is performed on a data matrix $ M $ consisting of &lt;em&gt;n&lt;/em&gt; ‘feature vectors’ wherein
+each vector has a set of &lt;em&gt;m&lt;/em&gt; data points associated with it. The data in the matrix
+is considered to have dimension &lt;em&gt;m&lt;/em&gt;, but oftentimes the actual ‘intrinsic dimensionality’
+is much lower. As Laurens van der Maaten &lt;a href=&quot;https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf&quot;&gt;defines it&lt;/a&gt;, ‘intrinsic dimensionality’
+is ‘the the minimum number of parameters needed to account for the observed properties of the data’.&lt;/p&gt;
+&lt;p&gt;(So far, the most didactic explanation of this fact was presented
+in a paper on diffusion maps by &lt;a href=&quot;http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf&quot;&gt;Porte et al&lt;/a&gt;
+In the paper, a dataset of m-by-n pixel pictures of a simple image randomly rotated
+originally has dimension (mn) but after dimension reduction, the dataset can be
+organized two dimensionally based on angle-of rotation.)&lt;/p&gt;
+&lt;p&gt;At the most abstract level, dimension reduction methods usually are posed as an
+optimization problem that ultimately requires the solution to an eigenvalue problem.
+What is an &lt;a href=&quot;https://en.wikipedia.org/wiki/Optimization_problem&quot;&gt;optimization problem&lt;/a&gt; you ask?
+That wikipedia article should help some, the optimization being done in dimension
+reduction is finding some linear or non-linear relation $ M $ that minmizes (or maximizes)
+a cost function $ \phi (x) $ on some manipulation of the data matrix, call it $ X_{manipulated} $.
+Examples of various functions will be given in detail later.&lt;/p&gt;
+&lt;p&gt;In most cases this can be turned into an eigenproblem posed as:
+$$ X_{manipulated} M = \lambda M $$&lt;/p&gt;
+&lt;p&gt;In some cases, the manipulation is somewhat more complicated, and creates what
+is called a &lt;a href=&quot;https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Generalized_eigenvalue_problem&quot;&gt;&lt;em&gt;generalized eigenvalue problem&lt;/em&gt;&lt;/a&gt;.
+In these situations the problem posed is $$ X_a M = \lambda X_b M $$
+Where $X_a$ and $X_b$ are distinct but both still generated from some manipulation
+on the original data matrix X.&lt;/p&gt;
+&lt;p&gt;The methods discussed so far necessitate the use of convex cost functions for
+an optimization. In set theory, convexity indicates that a set contains its subsets.
+An open interval $ (a,b) $ is convex whereas the open interval missing a point is not.
+Convex functions are similar but not entirely related, a convex function does not
+have any &lt;em&gt;local optima&lt;/em&gt; which means that if you’re at a maximum, you know it is global.&lt;/p&gt;
+&lt;p&gt;(I think there is a reason why people in optimization refer to surfaces as landscapes.
+An interesting surface may have many hills and valleys, and finding an optimal path
+is like a hiker trying to cross a mountain path blind — potentially problematic.)&lt;/p&gt;
+&lt;p&gt;Convex functions will always achieve the same solution given some input parameters,
+but non-convex functions may get stuck on some local optima. This is why a method
+like &lt;a href=&quot;https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf&quot;&gt;t-SNE&lt;/a&gt; will converge to different results on different iterations.&lt;/p&gt;
+&lt;p&gt;Methods for dimension reduction will be either linear or non-linear mappings.
+In both cases, the original data matrix $X$ is embeddable in some manifold. A manifold
+is any surface that is &lt;a href=&quot;http://planetmath.org/locallyhomeomorphic&quot;&gt;locally homeomorphic&lt;/a&gt; to $R^{2}$&lt;/p&gt;
+&lt;p&gt;Great
+examples of this are &lt;img src=&quot;/articles/first_post/swissroll.gif&quot; alt=&quot;swiss roll&quot;&gt; borrowed from &lt;a href=&quot;http://people.cs.uchicago.edu/~dinoj/manifold/swissroll.html&quot;&gt;dinoj&lt;/a&gt;
+The m&lt;/p&gt;
+&lt;p&gt;It might be a little silly, but the rest of this post will be focused on providing
+a quick explanation of various dimension reduction techniques. The general format
+will be:
++optimization problem posed
++formal eigenvalue problem given
++interesting insights and relations
++pictures that I like from other work  &lt;/p&gt;
+&lt;h2 id=&quot;works-cited&quot;&gt;Works Cited&lt;/h2&gt;
+</description>
+    </item>
+    <item>
+      <title>Dimension Reduction, a review of a review</title>
+      <link>/articles/dim_reduction/</link>
+      <pubDate>Sun, 12 Jun 2016 17:00:00 -0700</pubDate>
+      <guid isPermaLink="true">/articles/dim_reduction/</guid>
+      <author></author>
+      <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; async
+  src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;p&gt;Hello! This is my first post moving over to a new site built by
+&lt;a href=&quot;https://github.com/jnordberg/wintersmith&quot;&gt;wintersmith&lt;/a&gt;. Originally I was going
+to use jekyll pages, but there was an issue with the latest ruby version not being
+available for Linux, (maybe macs are better…). I spent &lt;em&gt;way too much&lt;/em&gt; time
+figuring out how to install a markdown plugin that allowed for the inclusion of
+Latex. I did this all without realizing I could simply include:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot; async
+  src=&amp;quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&amp;quot;&amp;gt;
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;below my article title and latex would easily render. Now that this roadblock is
+cleared, I have no excuses preventing me from writing a post about my work.  &lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;This post is meant to discuss various dimension reduction methods
+as a preface to a more in-depth post about diffusion maps as they pertain
+to molecular dynamics simulations. It assumes college-level math skills, but
+will try to briefly explain high-level concepts from Math and Stats.
+Towards the end I will provide a segue into the next post.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Dimensionality_reduction&quot;&gt;Dimension reduction&lt;/a&gt;
 is performed on a data matrix $ X $ consisting of $n$ ‘samples’ wherein
 each sample has a set of $m$ features associated with it. The data in the matrix
@@ -221,168 +383,6 @@ really are an analogue the physical nature of complex molecular systems.&lt;/p&g
 &lt;li&gt;&lt;a href=&quot;http://web.mit.edu/6.454/www/www_fall_2003/ihler/slides.pdf&quot;&gt;MIT Slides&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf&quot;&gt;t-SNE paper&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    <item>
-      <title>Dimension Reduction, a review of a review</title>
-      <link>/articles/dimension_reduction/</link>
-      <pubDate>Sun, 12 Jun 2016 17:00:00 -0700</pubDate>
-      <guid isPermaLink="true">/articles/dimension_reduction/</guid>
-      <author></author>
-      <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
-MathJax.Hub.Config({
-  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-});
-&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; async
-  src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
-&lt;/script&gt;
-
-&lt;p&gt;Hello! This is my first post moving over to a new site built by
-&lt;a href=&quot;https://github.com/jnordberg/wintersmith&quot;&gt;wintersmith&lt;/a&gt;. Originally I was going
-to use jekyll pages, but there was an issue with the latest ruby version not being
-available for Linux, (maybe macs are better…). I spent &lt;em&gt;way too much&lt;/em&gt; time
-figuring out how to install a markdown plugin that allowed for the inclusion of
-Latex. I did this all without realizing I could simply include:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot; async
-  src=&amp;quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&amp;quot;&amp;gt;
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;below my article title and latex would easily render. Now that this roadblock is
-cleared, I have no excuses preventing me from writing a post about my work.  &lt;/p&gt;
-&lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;This post is meant to discuss various dimension reduction methods in brief
-as a preface to a more in-depth post about diffusion maps as they pertain
-to chemistry. It assumes basic math skills, but will try to briefly explain
-high-level concepts from Math and Stats. Towards the end I will provide a segue
-into the next post, which will be posted on the same day.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Dimensionality_reduction&quot;&gt;Dimension reduction&lt;/a&gt;
-is performed on a data matrix $ M $ consisting of &lt;em&gt;n&lt;/em&gt; ‘feature vectors’ wherein
-each vector has a set of &lt;em&gt;m&lt;/em&gt; data points associated with it. The data in the matrix
-is considered to have dimension &lt;em&gt;m&lt;/em&gt;, but oftentimes the actual ‘intrinsic dimensionality’
-is much lower. As Laurens van der Maaten &lt;a href=&quot;https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf&quot;&gt;defines it&lt;/a&gt;, ‘intrinsic dimensionality’
-is ‘the the minimum number of parameters needed to account for the observed properties of the data’.&lt;/p&gt;
-&lt;p&gt;(So far, the most didactic explanation of this fact was presented
-in a paper on diffusion maps by &lt;a href=&quot;http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf&quot;&gt;Porte et al&lt;/a&gt;
-In the paper, a dataset of m-by-n pixel pictures of a simple image randomly rotated
-originally has dimension (mn) but after dimension reduction, the dataset can be
-organized two dimensionally based on angle-of rotation.)&lt;/p&gt;
-&lt;p&gt;At the most abstract level, dimension reduction methods usually are posed as an
-optimization problem that ultimately requires the solution to an eigenvalue problem.
-What is an &lt;a href=&quot;https://en.wikipedia.org/wiki/Optimization_problem&quot;&gt;optimization problem&lt;/a&gt; you ask?
-That wikipedia article should help some, the optimization being done in dimension
-reduction is finding some linear or non-linear relation $ M $ that minmizes (or maximizes)
-a cost function $ \phi (x) $ on some manipulation of the data matrix, call it $ X_{manipulated} $.
-Examples of various functions will be given in detail later.&lt;/p&gt;
-&lt;p&gt;In most cases this can be turned into an eigenproblem posed as:
-$$ X_{manipulated} M = \lambda M $$&lt;/p&gt;
-&lt;p&gt;In some cases, the manipulation is somewhat more complicated, and creates what
-is called a &lt;a href=&quot;https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Generalized_eigenvalue_problem&quot;&gt;&lt;em&gt;generalized eigenvalue problem&lt;/em&gt;&lt;/a&gt;.
-In these situations the problem posed is $$ X_a M = \lambda X_b M $$
-Where $X_a$ and $X_b$ are distinct but both still generated from some manipulation
-on the original data matrix X.&lt;/p&gt;
-&lt;p&gt;The methods discussed so far necessitate the use of convex cost functions to be
-optimized against. In set theory, convexity indicates that a set contains its subsets.
-An open interval $ (a,b) $ is convex whereas the open interval minus a point is not.
-Convex functions are similar but not entirely related, a convex function does not
-have any &lt;em&gt;local optima&lt;/em&gt; which means that if you’re at a maximum, you know it is global.&lt;/p&gt;
-&lt;p&gt;(I think there is a reason why people in optimization refer to surfaces as landscapes.
-An interesting surface may have many hills and valleys, and finding an optimal path
-is like a hiker trying to cross a mountain path blind, potentially problematic.)&lt;/p&gt;
-&lt;p&gt;Convex functions will always achieve the same solution given some input parameters,
-but non-convex functions may get stuck on some local optima. This is why a method
-like &lt;a href=&quot;https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf&quot;&gt;t-SNE&lt;/a&gt; will converge to different results on different iterations.&lt;/p&gt;
-&lt;p&gt;It might be a little silly, but the rest of this post will be focused on providing
-a quick explanation of various dimension reduction techniques. The general format
-will be:
-+optimization problem posed
-+formal eigenvalue problem given
-+interesting insights and relations
-+pictures that I like from other work  &lt;/p&gt;
-&lt;h2 id=&quot;works-cited&quot;&gt;Works Cited&lt;/h2&gt;
-</description>
-    </item>
-    <item>
-      <title>Dimension Reduction, a review of a review</title>
-      <link>/articles/first_post/</link>
-      <pubDate>Sun, 12 Jun 2016 17:00:00 -0700</pubDate>
-      <guid isPermaLink="true">/articles/first_post/</guid>
-      <author></author>
-      <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
-MathJax.Hub.Config({
-  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-});
-&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; async
-  src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
-&lt;/script&gt;
-
-&lt;p&gt;Hello! This is my first post moving over to a new site built by
-&lt;a href=&quot;https://github.com/jnordberg/wintersmith&quot;&gt;wintersmith&lt;/a&gt;. Originally I was going
-to use jekyll pages, but there was an issue with the latest ruby version not being
-available for Linux, (maybe macs are better…). I spent &lt;em&gt;way too much&lt;/em&gt; time
-figuring out how to install a markdown plugin that allowed for the inclusion of
-Latex. I did this all without realizing I could simply include:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot; async
-  src=&amp;quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&amp;quot;&amp;gt;
-&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;below my article title and latex would easily render. Now that this roadblock is
-cleared, I have no excuses preventing me from writing a post about my work.  &lt;/p&gt;
-&lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;This post is meant to discuss various dimension reduction methods in brief
-as a preface to a more in-depth post about diffusion maps as they pertain
-to chemistry. It assumes basic math skills, but will try to briefly explain
-high-level concepts from Math and Stats. Towards the end I will provide a segue
-into the next post, which will be posted on the same day.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Dimensionality_reduction&quot;&gt;Dimension reduction&lt;/a&gt;
-is performed on a data matrix $ M $ consisting of &lt;em&gt;n&lt;/em&gt; ‘feature vectors’ wherein
-each vector has a set of &lt;em&gt;m&lt;/em&gt; data points associated with it. The data in the matrix
-is considered to have dimension &lt;em&gt;m&lt;/em&gt;, but oftentimes the actual ‘intrinsic dimensionality’
-is much lower. As Laurens van der Maaten &lt;a href=&quot;https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf&quot;&gt;defines it&lt;/a&gt;, ‘intrinsic dimensionality’
-is ‘the the minimum number of parameters needed to account for the observed properties of the data’.&lt;/p&gt;
-&lt;p&gt;(So far, the most didactic explanation of this fact was presented
-in a paper on diffusion maps by &lt;a href=&quot;http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf&quot;&gt;Porte et al&lt;/a&gt;
-In the paper, a dataset of m-by-n pixel pictures of a simple image randomly rotated
-originally has dimension (mn) but after dimension reduction, the dataset can be
-organized two dimensionally based on angle-of rotation.)&lt;/p&gt;
-&lt;p&gt;At the most abstract level, dimension reduction methods usually are posed as an
-optimization problem that ultimately requires the solution to an eigenvalue problem.
-What is an &lt;a href=&quot;https://en.wikipedia.org/wiki/Optimization_problem&quot;&gt;optimization problem&lt;/a&gt; you ask?
-That wikipedia article should help some, the optimization being done in dimension
-reduction is finding some linear or non-linear relation $ M $ that minmizes (or maximizes)
-a cost function $ \phi (x) $ on some manipulation of the data matrix, call it $ X_{manipulated} $.
-Examples of various functions will be given in detail later.&lt;/p&gt;
-&lt;p&gt;In most cases this can be turned into an eigenproblem posed as:
-$$ X_{manipulated} M = \lambda M $$&lt;/p&gt;
-&lt;p&gt;In some cases, the manipulation is somewhat more complicated, and creates what
-is called a &lt;a href=&quot;https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Generalized_eigenvalue_problem&quot;&gt;&lt;em&gt;generalized eigenvalue problem&lt;/em&gt;&lt;/a&gt;.
-In these situations the problem posed is $$ X_a M = \lambda X_b M $$
-Where $X_a$ and $X_b$ are distinct but both still generated from some manipulation
-on the original data matrix X.&lt;/p&gt;
-&lt;p&gt;The methods discussed so far necessitate the use of convex cost functions for
-an optimization. In set theory, convexity indicates that a set contains its subsets.
-An open interval $ (a,b) $ is convex whereas the open interval missing a point is not.
-Convex functions are similar but not entirely related, a convex function does not
-have any &lt;em&gt;local optima&lt;/em&gt; which means that if you’re at a maximum, you know it is global.&lt;/p&gt;
-&lt;p&gt;(I think there is a reason why people in optimization refer to surfaces as landscapes.
-An interesting surface may have many hills and valleys, and finding an optimal path
-is like a hiker trying to cross a mountain path blind — potentially problematic.)&lt;/p&gt;
-&lt;p&gt;Convex functions will always achieve the same solution given some input parameters,
-but non-convex functions may get stuck on some local optima. This is why a method
-like &lt;a href=&quot;https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf&quot;&gt;t-SNE&lt;/a&gt; will converge to different results on different iterations.&lt;/p&gt;
-&lt;p&gt;Methods for dimension reduction will be either linear or non-linear mappings.
-In both cases, the original data matrix $X$ is embeddable in some manifold. A manifold
-is any surface that is &lt;a href=&quot;http://planetmath.org/locallyhomeomorphic&quot;&gt;locally homeomorphic&lt;/a&gt; to $R^{2}$&lt;/p&gt;
-&lt;p&gt;Great
-examples of this are &lt;img src=&quot;/articles/first_post/swissroll.gif&quot; alt=&quot;swiss roll&quot;&gt; borrowed from &lt;a href=&quot;http://people.cs.uchicago.edu/~dinoj/manifold/swissroll.html&quot;&gt;dinoj&lt;/a&gt;
-The m&lt;/p&gt;
-&lt;p&gt;It might be a little silly, but the rest of this post will be focused on providing
-a quick explanation of various dimension reduction techniques. The general format
-will be:
-+optimization problem posed
-+formal eigenvalue problem given
-+interesting insights and relations
-+pictures that I like from other work  &lt;/p&gt;
-&lt;h2 id=&quot;works-cited&quot;&gt;Works Cited&lt;/h2&gt;
 </description>
     </item>
     <item>

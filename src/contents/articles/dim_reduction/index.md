@@ -29,11 +29,11 @@ cleared, I have no excuses preventing me from writing a post about my work.
 
 <span class="more"></span>
 
-This post is meant to discuss various dimension reduction methods in brief
+This post is meant to discuss various dimension reduction methods
 as a preface to a more in-depth post about diffusion maps as they pertain
-to chemistry. It assumes basic math skills, but will try to briefly explain
-high-level concepts from Math and Stats. Towards the end I will provide a segue
-into the next post, which will be posted on the same day.
+to molecular dynamics simulations. It assumes college-level math skills, but
+will try to briefly explain high-level concepts from Math and Stats.
+Towards the end I will provide a segue into the next post.
 
 [Dimension reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction)
 is performed on a data matrix $ X $ consisting of $n$ 'samples' wherein
