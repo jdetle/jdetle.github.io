@@ -30,8 +30,8 @@ cleared, I have no excuses preventing me from writing a post about my work.
 <span class="more"></span>
 
 This post is meant to discuss various dimension reduction methods
-as a preface to a more in-depth post about diffusion maps as they pertain
-to molecular dynamics simulations. It assumes college-level math skills, but
+as a preface to a more in-depth post about diffusion maps
+performed molecular dynamics simulation trajectories. It assumes college-level math skills, but
 will try to briefly explain high-level concepts from Math and Stats.
 Towards the end I will provide a segue into the next post.
 
