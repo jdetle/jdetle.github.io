@@ -49,12 +49,12 @@ will try to briefly explain high-level concepts from Math and Stats.
 Towards the end I will provide a segue into the next&nbsp;post.</p>
 <p><a href="https://en.wikipedia.org/wiki/Dimensionality_reduction">Dimension reduction</a>
 is performed on a data matrix $ X $ consisting of $n$ ‘samples’ wherein
-each sample has a set of $m$ ‘features’ associated with it. The data in the matrix
+each sample has a set of $m$ features associated with it. The data in the matrix
 is considered to have dimension $m$, but oftentimes the actual ‘intrinsic dimensionality’
 is much lower. As Laurens van der Maaten <a href="https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf">defines it</a>, ‘intrinsic dimensionality’
 is ‘the the minimum number of parameters needed to account for the observed properties of the&nbsp;data’.</p>
 <p>(So far, the most didactic explanation of this fact was presented
-in a paper on diffusion maps by <a href="http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf">Porte et al</a>.
+in a paper on diffusion maps by <a href="http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf">Porte et al</a>
 In the paper, a dataset of m-by-n pixel pictures of a simple image randomly rotated
 originally has dimension $mn$ but after dimension reduction, the dataset can be
 organized two dimensionally based on angle-of&nbsp;rotation.)</p>
@@ -74,10 +74,10 @@ eigenvectors that act as a basis for a lower dimensional space.
 some sum of the others, a basis set has the property that any vector in a space
 can be written as the sum of vectors in the set.) The set of eigenvectors is of
 given by an eigenvalue decomposition will be the ‘spectrum’ of the matrix $M$.
-This spectrum will have what is referred to as a ‘spectral gap’ after a certain number
-of eigenvalues. After these $k$ eigenvalues, the value of all subsequent eigenvalues
-is much smaller than all those before them. The number of significant eigenvalues before this
-first diminished value reflects the intrinsic dimension $k$ of a&nbsp;space.</p>
+This spectrum will have what’s referred to as a ‘spectral gap’ after a certain number
+of eigenvalues, where the number of eigenvalues falls dramatically compared to the
+previous. The number of significant eigenvalues before this gap reflects the
+intrinsic dimension of a&nbsp;space.</p>
 <p>In some cases, the manipulation is somewhat more complicated, and creates what
 is called a <a href="https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Generalized_eigenvalue_problem"><em>generalized eigenvalue problem</em></a>.
 In these situations the problem posed is $$ X_a M = \lambda X_b M $$
@@ -106,8 +106,8 @@ things in greater than 3&nbsp;dimensions…)</p>
 The many different dimension reduction methods available will have disparate
 results when performed on this data. When restricted to paths along the manifold,
 red data will be far apart from black, but if a simple euclidean distance is measured,
-the points might be considered close. A dimension reduction that uses simple euclidean
-distance between points to resolve structure will fail miserably to eke out the
+the points might be considered close. A dimension map that uses simple euclidean
+distance between points to resolve structure will fail miserably to eek out the
 swiss roll&nbsp;embedding.</p>
 <p>When looking to investigate the lower dimensional space created by a dimension
 reduction, linear mappings have an explicit projection provided by the matrix formed
@@ -128,14 +128,17 @@ The general format will&nbsp;be:</p>
 <li><span class="caps">PCA</span> cost function: Maximizes&nbsp;$Trace(M^{T}cov(X)M)$</li>
 <li><span class="caps">PCA</span> eigenvalue problem $ Mv = \lambda v $ where M is this linear mapping minimizing
 the&nbsp;covariance</li>
-<li>Classical scaling relies on the number of datapoints not the&nbsp;dimensionality.</li>
-<li>Classical scaling cost function: Minimizes $$ \phi ( Y ) = $ \Sigma ij =  ( d{ij} - || y{i} - y{j} ||^{2} ) $$
+<li><p>Quote from a <a href="https://chemistry.rice.edu/FacultyDetail.aspx?RiceID=238">Cecilia Clementi</a> paper on diffusion maps where she mentions <span class="caps">PCA</span>:
+‘Essentially, PCA computes a hyperplane that passes through the data points
+ as best as possible in a least-squares sense. The principal components
+ are the tangent vectors that describe this&nbsp;hyperplane’</p>
+</li>
+<li><p>Classical scaling relies on the number of datapoints not the&nbsp;dimensionality.</p>
+</li>
+<li>Classical scaling cost function: Minimizes $$ \phi ( Y ) = \Sigma ij =  ( d{ij} - || y{i} - y{j} ||^{2} ) $$
 this is referred to as a strain cost function. (subscripts are currently an&nbsp;issue…)</li>
 <li>Other <span class="caps">MDS</span> methods can use stress or squared stress cost&nbsp;functions</li>
 <li>Classical scaling gives the exact same solution as&nbsp;<span class="caps">PCA</span></li>
-<li><span class="caps">PCA</span> applied to image data gives this <em>awesome</em> term eigenfaces, an example
-of which can be found below:
-<img src="/articles/dim_reduction/Eigenface.jpg" alt="eigenfaces"></li>
 </ul>
 <h2 id="isomap">Isomap</h2>
 <ul>
@@ -169,17 +172,15 @@ be modeled as a diffusion process with <a href="https://en.wikipedia.org/wiki/Ro
 <h2 id="locally-linear-embedding-">Locally Linear&nbsp;Embedding:</h2>
 <ul>
 <li><span class="caps">LLE</span> describes the local properties of the manifold around a datapoint x i by writing the datapoint
-as a linear combination $w i$ (the so-called reconstruction weights) of its
-k-nearest-neighbors&nbsp;$xij$.</li>
+as a linear combination $w_i$ (the so-called reconstruction weights) of its k nearest-neighbors $x&nbsp;i_j$.</li>
 <li>It solves a generalized eigenvalue problem, preserves local&nbsp;structure.</li>
 <li>Invariant to local scale, rotation,&nbsp;translations</li>
-<li><p>This is a cool picture demonstrating power of <span class="caps">LLE</span> on facial/expression&nbsp;recognition:</p>
+<li><p>Cool picture demnostrating power of&nbsp;<span class="caps">LLE</span>:</p>
 <p><img src="/articles/dim_reduction/LLE.jpg" alt="lle"></p>
 </li>
-<li><span class="caps">LLE</span> fails when the manifold has&nbsp;holes</li>
-<li>In addition, <span class="caps">LLE</span> can collapse large portions of the data very close
-together in the low-dimensional space, because the covariance constraint
-on the solution is too&nbsp;simple</li>
+<li>Fails when the manifold has&nbsp;holes</li>
+<li>In addition, <span class="caps">LLE</span> tends to collapse large portions of the data very close
+together in the low-dimensional space, because the covariance constraint on the solution is too&nbsp;simple</li>
 </ul>
 <h2 id="laplacian-eigenmaps-">Laplacian&nbsp;Eigenmaps:</h2>
 <ul>
@@ -221,7 +222,7 @@ to the cost function by the inverse of their pairwise distance in the high-dimen
 number of neurons such that the neural network is forced to learn a
 lower dimensional&nbsp;structure</li>
 <li>This is identical to <span class="caps">PCA</span> if using a linear activation function! What undiscovered
-algorithms will be replicated by neural nets? Will neural nets actually hurt
+algorithms will be replicated my neural nets? Will neural nets actually hurt
 scientific&nbsp;discovery?</li>
 </ul>
 <hr>
@@ -232,13 +233,12 @@ molecular dynamics simulations. Diffusion maps are really cool in that they
 really are an analogue the physical nature of complex molecular&nbsp;systems.</p>
 <h2 id="works-cited">Works&nbsp;Cited</h2>
 <ul>
-<li><a href="http://www.pages.drexel.edu/~sis26/Eigenface%20Tutorial.htm">Eigenfaces from&nbsp;Drexel</a></li>
 <li><a href="http://web.mit.edu/6.454/www/www_fall_2003/ihler/slides.pdf"><span class="caps">MIT</span> Manifold Learning&nbsp;Slides</a></li>
 <li><a href="https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf">Dimension Reduction&nbsp;Review</a></li>
 <li><a href="http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf">Diffusion Map&nbsp;Brief</a></li>
 <li><a href="http://web.mit.edu/6.454/www/www_fall_2003/ihler/slides.pdf"><span class="caps">MIT</span>&nbsp;Slides</a></li>
 <li><a href="https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf">t-<span class="caps">SNE</span>&nbsp;paper</a></li>
-<li><a href="/articles/dim_reduction/">Clementi&nbsp;Diffusion</a></li>
+<li><a href="https://www.cs.rice.edu/CS/Robotics/papers/das2006low-dim-land-folding-dim-reduction.pdf">Free Energy&nbsp;Landscapes</a></li>
 </ul>
 </section>
         </article>
