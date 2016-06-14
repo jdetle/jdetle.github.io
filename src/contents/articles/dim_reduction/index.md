@@ -67,7 +67,7 @@ some sum of the others, a basis set has the property that any vector in a space
 can be written as the sum of vectors in the set.) The set of eigenvectors is of
 given by an eigenvalue decomposition will be the 'spectrum' of the matrix $M$.
 This spectrum will have what is referred to as a 'spectral gap' after a certain number
-of eigenvalues. After these $k$ eigenvalues, the value of all subsequent eigenvalues 
+of eigenvalues. After these $k$ eigenvalues, the value of all subsequent eigenvalues
 is much smaller than all those before them. The number of significant eigenvalues before this
 first diminished value reflects the intrinsic dimension $k$ of a space.
 
@@ -133,6 +133,9 @@ Multidimensional Scaling (MDS), Classical Scaling, PCA
     this is referred to as a strain cost function. (subscripts are currently an issue...)
 +   Other MDS methods can use stress or squared stress cost functions
 +   Classical scaling gives the exact same solution as PCA
++   PCA applied to image data gives this *awesome* term eigenfaces, an example
+    of which can be found below:
+    ![eigenfaces](./Eigenface.jpg)
 
 Isomap
 ------
@@ -166,15 +169,17 @@ Diffusion Maps
 Locally Linear Embedding:
 ------------------------
 +   LLE describes the local properties of the manifold around a datapoint x i by writing the datapoint
-    as a linear combination $w_i$ (the so-called reconstruction weights) of its k nearest-neighbors $x i_j$.
+    as a linear combination $w i$ (the so-called reconstruction weights) of its
+    k-nearest-neighbors $xij$.
 +   It solves a generalized eigenvalue problem, preserves local structure.
 +   Invariant to local scale, rotation, translations
-+   Cool picture demnostrating power of LLE:
++   This is a cool picture demonstrating power of LLE on facial/expression recognition:
 
     ![lle](./LLE.jpg)
-+   Fails when the manifold has holes
-+   In addition, LLE tends to collapse large portions of the data very close
-    together in the low-dimensional space, because the covariance constraint on the solution is too simple
++   LLE ails when the manifold has holes
++   In addition, LLE can collapse large portions of the data very close
+    together in the low-dimensional space, because the covariance constraint
+    on the solution is too simple
 
 Laplacian Eigenmaps:
 --------------------
@@ -230,12 +235,13 @@ really are an analogue the physical nature of complex molecular systems.
 
 Works Cited
 -----------
++   [Eigenfaces from Drexel](http://www.pages.drexel.edu/~sis26/Eigenface%20Tutorial.htm)
 +   [MIT Manifold Learning Slides](http://web.mit.edu/6.454/www/www_fall_2003/ihler/slides.pdf)
 +   [Dimension Reduction Review](https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf)
 +   [Diffusion Map Brief](http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf)
 +   [MIT Slides](http://web.mit.edu/6.454/www/www_fall_2003/ihler/slides.pdf)
 +   [t-SNE paper](https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf)
-
++   [Clementi Diffusion]()
 [1]: https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf
 [2]: http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf
 [3]: https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf

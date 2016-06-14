@@ -68,7 +68,7 @@ some sum of the others, a basis set has the property that any vector in a space
 can be written as the sum of vectors in the set.) The set of eigenvectors is of
 given by an eigenvalue decomposition will be the ‘spectrum’ of the matrix $M$.
 This spectrum will have what is referred to as a ‘spectral gap’ after a certain number
-of eigenvalues. After these $k$ eigenvalues, the value of all subsequent eigenvalues 
+of eigenvalues. After these $k$ eigenvalues, the value of all subsequent eigenvalues
 is much smaller than all those before them. The number of significant eigenvalues before this
 first diminished value reflects the intrinsic dimension $k$ of a space.&lt;/p&gt;
 &lt;p&gt;In some cases, the manipulation is somewhat more complicated, and creates what
@@ -126,6 +126,9 @@ the covariance&lt;/li&gt;
 this is referred to as a strain cost function. (subscripts are currently an issue…)&lt;/li&gt;
 &lt;li&gt;Other MDS methods can use stress or squared stress cost functions&lt;/li&gt;
 &lt;li&gt;Classical scaling gives the exact same solution as PCA&lt;/li&gt;
+&lt;li&gt;PCA applied to image data gives this &lt;em&gt;awesome&lt;/em&gt; term eigenfaces, an example
+of which can be found below:
+&lt;img src=&quot;/articles/dim_reduction/Eigenface.jpg&quot; alt=&quot;eigenfaces&quot;&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;isomap&quot;&gt;Isomap&lt;/h2&gt;
 &lt;ul&gt;
@@ -159,15 +162,17 @@ be modeled as a diffusion process with &lt;a href=&quot;https://en.wikipedia.org
 &lt;h2 id=&quot;locally-linear-embedding-&quot;&gt;Locally Linear Embedding:&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;LLE describes the local properties of the manifold around a datapoint x i by writing the datapoint
-as a linear combination $w_i$ (the so-called reconstruction weights) of its k nearest-neighbors $x i_j$.&lt;/li&gt;
+as a linear combination $w i$ (the so-called reconstruction weights) of its
+k-nearest-neighbors $xij$.&lt;/li&gt;
 &lt;li&gt;It solves a generalized eigenvalue problem, preserves local structure.&lt;/li&gt;
 &lt;li&gt;Invariant to local scale, rotation, translations&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Cool picture demnostrating power of LLE:&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;This is a cool picture demonstrating power of LLE on facial/expression recognition:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/articles/dim_reduction/LLE.jpg&quot; alt=&quot;lle&quot;&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;Fails when the manifold has holes&lt;/li&gt;
-&lt;li&gt;In addition, LLE tends to collapse large portions of the data very close
-together in the low-dimensional space, because the covariance constraint on the solution is too simple&lt;/li&gt;
+&lt;li&gt;LLE ails when the manifold has holes&lt;/li&gt;
+&lt;li&gt;In addition, LLE can collapse large portions of the data very close
+together in the low-dimensional space, because the covariance constraint
+on the solution is too simple&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;laplacian-eigenmaps-&quot;&gt;Laplacian Eigenmaps:&lt;/h2&gt;
 &lt;ul&gt;
@@ -220,11 +225,13 @@ molecular dynamics simulations. Diffusion maps are really cool in that they
 really are an analogue the physical nature of complex molecular systems.&lt;/p&gt;
 &lt;h2 id=&quot;works-cited&quot;&gt;Works Cited&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.pages.drexel.edu/~sis26/Eigenface%20Tutorial.htm&quot;&gt;Eigenfaces from Drexel&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://web.mit.edu/6.454/www/www_fall_2003/ihler/slides.pdf&quot;&gt;MIT Manifold Learning Slides&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf&quot;&gt;Dimension Reduction Review&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf&quot;&gt;Diffusion Map Brief&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://web.mit.edu/6.454/www/www_fall_2003/ihler/slides.pdf&quot;&gt;MIT Slides&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf&quot;&gt;t-SNE paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;/articles/dim_reduction/&quot;&gt;Clementi Diffusion&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

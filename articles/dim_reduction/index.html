@@ -75,7 +75,7 @@ some sum of the others, a basis set has the property that any vector in a space
 can be written as the sum of vectors in the set.) The set of eigenvectors is of
 given by an eigenvalue decomposition will be the ‘spectrum’ of the matrix $M$.
 This spectrum will have what is referred to as a ‘spectral gap’ after a certain number
-of eigenvalues. After these $k$ eigenvalues, the value of all subsequent eigenvalues 
+of eigenvalues. After these $k$ eigenvalues, the value of all subsequent eigenvalues
 is much smaller than all those before them. The number of significant eigenvalues before this
 first diminished value reflects the intrinsic dimension $k$ of a&nbsp;space.</p>
 <p>In some cases, the manipulation is somewhat more complicated, and creates what
@@ -133,6 +133,9 @@ the&nbsp;covariance</li>
 this is referred to as a strain cost function. (subscripts are currently an&nbsp;issue…)</li>
 <li>Other <span class="caps">MDS</span> methods can use stress or squared stress cost&nbsp;functions</li>
 <li>Classical scaling gives the exact same solution as&nbsp;<span class="caps">PCA</span></li>
+<li><span class="caps">PCA</span> applied to image data gives this <em>awesome</em> term eigenfaces, an example
+of which can be found below:
+<img src="/articles/dim_reduction/Eigenface.jpg" alt="eigenfaces"></li>
 </ul>
 <h2 id="isomap">Isomap</h2>
 <ul>
@@ -166,15 +169,17 @@ be modeled as a diffusion process with <a href="https://en.wikipedia.org/wiki/Ro
 <h2 id="locally-linear-embedding-">Locally Linear&nbsp;Embedding:</h2>
 <ul>
 <li><span class="caps">LLE</span> describes the local properties of the manifold around a datapoint x i by writing the datapoint
-as a linear combination $w_i$ (the so-called reconstruction weights) of its k nearest-neighbors $x&nbsp;i_j$.</li>
+as a linear combination $w i$ (the so-called reconstruction weights) of its
+k-nearest-neighbors&nbsp;$xij$.</li>
 <li>It solves a generalized eigenvalue problem, preserves local&nbsp;structure.</li>
 <li>Invariant to local scale, rotation,&nbsp;translations</li>
-<li><p>Cool picture demnostrating power of&nbsp;<span class="caps">LLE</span>:</p>
+<li><p>This is a cool picture demonstrating power of <span class="caps">LLE</span> on facial/expression&nbsp;recognition:</p>
 <p><img src="/articles/dim_reduction/LLE.jpg" alt="lle"></p>
 </li>
-<li>Fails when the manifold has&nbsp;holes</li>
-<li>In addition, <span class="caps">LLE</span> tends to collapse large portions of the data very close
-together in the low-dimensional space, because the covariance constraint on the solution is too&nbsp;simple</li>
+<li><span class="caps">LLE</span> ails when the manifold has&nbsp;holes</li>
+<li>In addition, <span class="caps">LLE</span> can collapse large portions of the data very close
+together in the low-dimensional space, because the covariance constraint
+on the solution is too&nbsp;simple</li>
 </ul>
 <h2 id="laplacian-eigenmaps-">Laplacian&nbsp;Eigenmaps:</h2>
 <ul>
@@ -227,11 +232,13 @@ molecular dynamics simulations. Diffusion maps are really cool in that they
 really are an analogue the physical nature of complex molecular&nbsp;systems.</p>
 <h2 id="works-cited">Works&nbsp;Cited</h2>
 <ul>
+<li><a href="http://www.pages.drexel.edu/~sis26/Eigenface%20Tutorial.htm">Eigenfaces from&nbsp;Drexel</a></li>
 <li><a href="http://web.mit.edu/6.454/www/www_fall_2003/ihler/slides.pdf"><span class="caps">MIT</span> Manifold Learning&nbsp;Slides</a></li>
 <li><a href="https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf">Dimension Reduction&nbsp;Review</a></li>
 <li><a href="http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf">Diffusion Map&nbsp;Brief</a></li>
 <li><a href="http://web.mit.edu/6.454/www/www_fall_2003/ihler/slides.pdf"><span class="caps">MIT</span>&nbsp;Slides</a></li>
 <li><a href="https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf">t-<span class="caps">SNE</span>&nbsp;paper</a></li>
+<li><a href="/articles/dim_reduction/">Clementi&nbsp;Diffusion</a></li>
 </ul>
 </section>
         </article>
