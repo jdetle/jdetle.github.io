@@ -37,13 +37,13 @@ Towards the end I will provide a segue into the next post.
 
 [Dimension reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction)
 is performed on a data matrix $ X $ consisting of $n$ 'samples' wherein
-each sample has a set of $m$ features associated with it. The data in the matrix
+each sample has a set of $m$ 'features' associated with it. The data in the matrix
 is considered to have dimension $m$, but oftentimes the actual 'intrinsic dimensionality'
 is much lower. As Laurens van der Maaten [defines it][1], 'intrinsic dimensionality'
 is 'the the minimum number of parameters needed to account for the observed properties of the data'.
 
 (So far, the most didactic explanation of this fact was presented
-in a paper on diffusion maps by [Porte et al][2]
+in a paper on diffusion maps by [Porte et al][2].
 In the paper, a dataset of m-by-n pixel pictures of a simple image randomly rotated
 originally has dimension $mn$ but after dimension reduction, the dataset can be
 organized two dimensionally based on angle-of rotation.)
@@ -66,10 +66,10 @@ eigenvectors that act as a basis for a lower dimensional space.
 some sum of the others, a basis set has the property that any vector in a space
 can be written as the sum of vectors in the set.) The set of eigenvectors is of
 given by an eigenvalue decomposition will be the 'spectrum' of the matrix $M$.
-This spectrum will have what's referred to as a 'spectral gap' after a certain number
-of eigenvalues, where the value of all subsequent eigenvalues is much smaller
-than all those before them. The number of significant eigenvalues before this
-first diminished value reflects the intrinsic dimension of a space.
+This spectrum will have what is referred to as a 'spectral gap' after a certain number
+of eigenvalues. After these $k$ eigenvalues, the value of all subsequent eigenvalues 
+is much smaller than all those before them. The number of significant eigenvalues before this
+first diminished value reflects the intrinsic dimension $k$ of a space.
 
 In some cases, the manipulation is somewhat more complicated, and creates what
 is called a [*generalized eigenvalue problem*](https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Generalized_eigenvalue_problem).

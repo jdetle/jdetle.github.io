@@ -42,12 +42,12 @@ will try to briefly explain high-level concepts from Math and Stats.
 Towards the end I will provide a segue into the next post.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Dimensionality_reduction&quot;&gt;Dimension reduction&lt;/a&gt;
 is performed on a data matrix $ X $ consisting of $n$ ‘samples’ wherein
-each sample has a set of $m$ features associated with it. The data in the matrix
+each sample has a set of $m$ ‘features’ associated with it. The data in the matrix
 is considered to have dimension $m$, but oftentimes the actual ‘intrinsic dimensionality’
 is much lower. As Laurens van der Maaten &lt;a href=&quot;https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf&quot;&gt;defines it&lt;/a&gt;, ‘intrinsic dimensionality’
 is ‘the the minimum number of parameters needed to account for the observed properties of the data’.&lt;/p&gt;
 &lt;p&gt;(So far, the most didactic explanation of this fact was presented
-in a paper on diffusion maps by &lt;a href=&quot;http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf&quot;&gt;Porte et al&lt;/a&gt;
+in a paper on diffusion maps by &lt;a href=&quot;http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf&quot;&gt;Porte et al&lt;/a&gt;.
 In the paper, a dataset of m-by-n pixel pictures of a simple image randomly rotated
 originally has dimension $mn$ but after dimension reduction, the dataset can be
 organized two dimensionally based on angle-of rotation.)&lt;/p&gt;
@@ -67,10 +67,10 @@ eigenvectors that act as a basis for a lower dimensional space.
 some sum of the others, a basis set has the property that any vector in a space
 can be written as the sum of vectors in the set.) The set of eigenvectors is of
 given by an eigenvalue decomposition will be the ‘spectrum’ of the matrix $M$.
-This spectrum will have what’s referred to as a ‘spectral gap’ after a certain number
-of eigenvalues, where the value of all subsequent eigenvalues is much smaller
-than all those before them. The number of significant eigenvalues before this
-first diminished value reflects the intrinsic dimension of a space.&lt;/p&gt;
+This spectrum will have what is referred to as a ‘spectral gap’ after a certain number
+of eigenvalues. After these $k$ eigenvalues, the value of all subsequent eigenvalues 
+is much smaller than all those before them. The number of significant eigenvalues before this
+first diminished value reflects the intrinsic dimension $k$ of a space.&lt;/p&gt;
 &lt;p&gt;In some cases, the manipulation is somewhat more complicated, and creates what
 is called a &lt;a href=&quot;https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Generalized_eigenvalue_problem&quot;&gt;&lt;em&gt;generalized eigenvalue problem&lt;/em&gt;&lt;/a&gt;.
 In these situations the problem posed is $$ X_a M = \lambda X_b M $$
