@@ -36,8 +36,8 @@ high-level concepts from Math and Stats. Towards the end I will provide a segue
 into the next post, which will be posted on the same day.
 
 [Dimension reduction](https://en.wikipedia.org/wiki/Dimensionality_reduction)
-is performed on a data matrix $ M $ consisting of $n$ 'features' wherein
-each vector has a set of $m$ data points associated with it. The data in the matrix
+is performed on a data matrix $ X $ consisting of $n$ 'samples' wherein
+each sample has a set of $m$ features associated with it. The data in the matrix
 is considered to have dimension $m$, but oftentimes the actual 'intrinsic dimensionality'
 is much lower. As Laurens van der Maaten [defines it][1], 'intrinsic dimensionality'
 is 'the the minimum number of parameters needed to account for the observed properties of the data'.
@@ -103,10 +103,16 @@ the points might be considered close. A dimension map that uses simple euclidean
 distance between points to resolve structure will fail miserably to eek out the
 swiss roll embedding.
 
+When looking to investigate the lower dimensional space created by a dimension
+reduction, linear mappings have an explicit projection provided by the matrix formed
+by the eigenvectors. Non-linear methods do not have such an explicit relationship.
+Finding physical meaning from the order parameters given by a non-linear technique
+is an active area of research.
 
-It might be a little silly, but the rest of this post will be focused on providing
-a quick explanation of various dimension reduction techniques. The general format
-will be:
+
+It might be too small of detail for some, but the rest of this post will be
+focused on providing a quick explanation of various dimension reduction techniques.
+The general format will be:
 +   optimization problem posed
 +   formal eigenvalue problem given
 +   interesting insights and relations
@@ -118,8 +124,8 @@ Multidimensional Scaling (MDS), Classical Scaling, PCA
 +   PCA eigenvalue problem $ Mv = \lambda v $ where M is this linear mapping minimizing
     the covariance
 +   Classical scaling relies on the number of datapoints not the dimensionality.
-+   Classical scaling cost function: Minimizes $ \phi ( Y )$ = $ \Sigma_{ij}$ = ( d_{ij} - || y_i - y_j ||^2 )
-    this is referred to as a strain cost function
++   Classical scaling cost function: Minimizes $$ \phi ( Y ) = $ \Sigma ij =  ( d{ij} - || y{i} - y{j} ||^{2} ) $$
+    this is referred to as a strain cost function. (subscripts are currently an issue...)
 +   Other MDS methods can use stress or squared stress cost functions
 +   Classical scaling gives the exact same solution as PCA
 
@@ -138,24 +144,32 @@ Kernel PCA
 
 Diffusion Maps
 --------------
-+   The key idea behind the diffusion distance is that it is based on integrating over all paths through the graph. This makes the diffusion distance more robust to short-circuiting than, e.g., the geodesic distance that is employed in Isomap.
-+ Pairs of datapoints with a high forward transition probability have a small diffusion distance. Since the diffusion distance is based on integrating over all paths through the graph, it is more robust to short-circuiting than the geodesic distance that is employed in Isomap
-+ Eigenvalue problem: $ P^(t) v = \lambda v $, where p is a diffusion matrix.
-+ Diagnalization means that we can solve the equation for t=1 and then exponentiate eigenvalues
++   The key idea behind the diffusion distance is that it is based on integrating over all paths through the graph.
++   Isomap will possibly short circuit, but the averaging of paths in diffusion maps will prevent this from happening,
+    it is not one shortest distance but a collective of shortest distances.
++   Pairs of datapoints with a high forward transition probability have a small diffusion distance
++   Eigenvalue problem: $ P^{(t)} v = \lambda v $, where $P$ is a diffusion matrix reflecting
+    all possible pairwise diffusion distances between two samples
++   Diagonalization means that we can solve the equation for t=1 and then exponentiate eigenvalues
     to find time solutions for longer diffusion distances
-+ Because the graph is fully connected, the largest eigenvalue is trivial (viz. λ 1 = 1), and its eigenvector v1
-+ The same revelation also stems from the fact that the process is markovian, that is
-    the step at time t only depends on the step at time t-1, it forms a (markov chain)[https://en.wikipedia.org/wiki/Markov_chain].
-+ Molecular dynamics processes are certainly markovian!
++   Because the graph is fully connected, the largest eigenvalue is trivial
++   The same revelation also stems from the fact that the process is markovian, that is
+    the step at time t only depends on the step at time t-1, it forms a [markov chain](https://en.wikipedia.org/wiki/Markov_chain).
++   Molecular dynamics processes are certainly markovian, protein folding can
+    be modeled as a diffusion process with [RMSD](https://en.wikipedia.org/wiki/Root-mean-square_deviation_of_atomic_positions) as a metric
 
 Locally Linear Embedding:
 ------------------------
 +   LLE describes the local properties of the manifold around a datapoint x i by writing the datapoint
     as a linear combination $w_i$ (the so-called reconstruction weights) of its k nearest-neighbors $x i_j$.
-+   Generalized eigenvalue problem, preserves local structure.
++   It solves a generalized eigenvalue problem, preserves local structure.
 +   Invariant to local scale, rotation, translations
++   Cool picture demnostrating power of LLE:
+
+    ![lle](./LLE.jpg)
 +   Fails when the manifold has holes
-+   In addition, LLE tends to collapse large portions of the data very close together in the low-dimensional space, because the covariance constraint on the solution is too simple
++   In addition, LLE tends to collapse large portions of the data very close
+    together in the low-dimensional space, because the covariance constraint on the solution is too simple
 
 Laplacian Eigenmaps:
 --------------------
@@ -163,16 +177,17 @@ Laplacian Eigenmaps:
     the data in which the distances between a datapoint and its k nearest neighbors are minimized.
 +   The ideas studied here are a part of spectral graph theory
 +   The computation of the degree matrix M and the [graph laplacian](https://en.wikipedia.org/wiki/Laplacian_matrix)
- L of the graph W allows for formulating the minimization problem in defined above as an eigenproblem.
+    L of the graph W allows for formulating the minimization problem in defined above as an eigenproblem.
 + Generalized Eigenproblem: $Lv = \lambda Mv$
 
 Hessian LLE:
 ------------
 +   Minimizes curviness of the high-dimensional manifold when embedding it into
-    a low dimensional data representation that is [locally isometric](https://en.wikipedia.org/wiki/Isometry_(Riemannian_geometry))
-+   [What is a Hessian?](https://en.wikipedia.org/wiki/Hessian_matrix), uses a local hessian at every point to describe curviness.
+    a low dimensional data representation that is [locally isometric](https://en.wikipedia.org/wiki/Isometry_(Riemannian_geometry)
++   [What is a Hessian?](https://en.wikipedia.org/wiki/Hessian_matrix).
+    Hessian LLE uses a local hessian at every point to describe curviness.
 +   Hessian LLE shares many characteristics with Laplacian Eigenmaps:
-    it simply replaces the manifold [Laplacian](https://en.wikipedia.org/wiki/Laplacian_matrix) by the manifold Hessian.
+    It replaces the manifold [Laplacian](https://en.wikipedia.org/wiki/Laplacian_matrix) by the manifold Hessian.
     'As a result, Hessian LLE suffers from many of the same weaknesses as Laplacian Eigenmaps
     and LLE.'
 
@@ -183,13 +198,38 @@ Local Tangent Space Analysis:
     datapoints to the local tangent space of the high-dimensional data.
 +   Involves applying PCA on k neighbors of x before finding local tangent space
 
+Non-Linear Methods
+------
+------
+Sammon mapping
+--------------
++   Adapts classical scaling by weighting the contribution of each pair $(i, j)$
+    to the cost function by the inverse of their pairwise distance in the high-dimensional space d_ij
+
+Multilayer Autoencoder
+----------------------
++   Uses a feed forward neural network that has a hidden layer with a small
+    number of neurons such that the neural network is forced to learn a
+    lower dimensional structure
++   This is identical to PCA if using a linear activation function! What undiscovered
+    algorithms will be replicated my neural nets? Will neural nets actually hurt
+    scientific discovery?
+-------------------------
+
+Alright, so that's all the gas that is in my tank for this post.
+Hopefully you've come and understood something a little bit better than before.
+In my next post, I am going to focus on diffusion maps as they pertain to
+molecular dynamics simulations. Diffusion maps are really cool in that they
+really are an analogue the physical nature of complex molecular systems.
+
 
 Works Cited
 -----------
-Isomap image borrowed from: http://web.mit.edu/6.454/www/www_fall_2003/ihler/slides.pdf
-[Dimension Reduction Review](https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf)
-[Diffusion Map Brief](http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf)
-[t-SNE paper](https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf)
++   [MIT Manifold Learning Slides](http://web.mit.edu/6.454/www/www_fall_2003/ihler/slides.pdf)
++   [Dimension Reduction Review](https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf)
++   [Diffusion Map Brief](http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf)
++   [MIT Slides](http://web.mit.edu/6.454/www/www_fall_2003/ihler/slides.pdf)
++   [t-SNE paper](https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf)
 
 [1]: https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf
 [2]: http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf
