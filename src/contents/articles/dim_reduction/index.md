@@ -105,7 +105,7 @@ The many different dimension reduction methods available will have disparate
 results when performed on this data. When restricted to paths along the manifold,
 red data will be far apart from black, but if a simple euclidean distance is measured,
 the points might be considered close. A dimension reduction that uses simple euclidean
-distance between points to resolve structure will fail miserably to eek out the
+distance between points to resolve structure will fail miserably to eke out the
 swiss roll embedding.
 
 When looking to investigate the lower dimensional space created by a dimension
@@ -176,7 +176,7 @@ Locally Linear Embedding:
 +   This is a cool picture demonstrating power of LLE on facial/expression recognition:
 
     ![lle](./LLE.jpg)
-+   LLE ails when the manifold has holes
++   LLE fails when the manifold has holes
 +   In addition, LLE can collapse large portions of the data very close
     together in the low-dimensional space, because the covariance constraint
     on the solution is too simple
@@ -222,7 +222,7 @@ Multilayer Autoencoder
     number of neurons such that the neural network is forced to learn a
     lower dimensional structure
 +   This is identical to PCA if using a linear activation function! What undiscovered
-    algorithms will be replicated my neural nets? Will neural nets actually hurt
+    algorithms will be replicated by neural nets? Will neural nets actually hurt
     scientific discovery?
 -------------------------
 
