@@ -1,7 +1,7 @@
 ---
 title: Diffusion Maps in Molecular Dynamics Analysis
 author: John Detlefs
-date: 2016-06-14
+date: 2016-06-15
 template: article.jade
 ---
 <script type="text/x-mathjax-config">
@@ -217,17 +217,18 @@ Why are we doing this? There are plenty of reasons, and I am going to list a few
     carefully with [LSD][Clementi_DiffusionReaction]
 +   There are more listed in my works cited
 
-The first item in that list is especially cool, because instead of using a standard
-RMSD metric, they abstracted a  cluster-matching problem into a graph matching problem
-and used an algorithm called Isorank to find an approximate greedy solution.
+The first item in that list is especially cool; instead of using a standard
+RMSD metric, they abstracted a cluster-matching problem into a graph matching problem,
+using an algorithm called Isorank to find an approximate 'greedy' solution.
 
-There is a solid greedy vs. dynamic explanation [here](https://www.quora.com/Greedy-algorithm-vs-dynamic-programming-Whats-the-difference).
-The example I remember getting is that if you are a programmer for a GPS
-direction provider, there are two main ways of deciding an optimal route.
-At each gridpoint on a map, a greedy algorithm will take the fastest choice.
-A dynamic algorithm will branch ahead, look into the future, and possibly
+There are some solid 'greedy' vs. 'dynamic' explanations [here](https://www.quora.com/Greedy-algorithm-vs-dynamic-programming-Whats-the-difference).
+The example I remember getting is to imagine you are a programmer for a GPS
+direction provider. We can consider two ways of deciding an optimal route, one
+with a greedy algorithm and the other with a dynamic algorithm.
+At each gridpoint on a map, a greedy algorithm will take the fastest route at
+that point. A dynamic algorithm will branch ahead, look into the future, and possibly
 avoid short-term gain for long term drive-time savings. The greedy algorithm
-might have a better best-case performance, but a much worse worse case performance.
+might have a better best-case performance, but a much poorer worst-case performance.
 
 In any case, we want to allow for the execution of a diffusion map algorithm where
 a user can provide their own metric, tune the choice of epsilon, the choice of timescale,

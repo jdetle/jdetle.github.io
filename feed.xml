@@ -5,13 +5,13 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <link></link>
     <description>a blog for my coding adventures</description>
-    <pubDate>Mon, 13 Jun 2016 17:00:00 -0700</pubDate>
+    <pubDate>Tue, 14 Jun 2016 17:00:00 -0700</pubDate>
     <generator>Wintersmith - https://github.com/jnordberg/wintersmith</generator>
     <language>en</language>
     <item>
       <title>Diffusion Maps in Molecular Dynamics Analysis</title>
       <link>/articles/diffusion_maps/</link>
-      <pubDate>Mon, 13 Jun 2016 17:00:00 -0700</pubDate>
+      <pubDate>Tue, 14 Jun 2016 17:00:00 -0700</pubDate>
       <guid isPermaLink="true">/articles/diffusion_maps/</guid>
       <author></author>
       <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
@@ -213,16 +213,17 @@ Why are we doing this? There are plenty of reasons, and I am going to list a few
 carefully with &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/21456654&quot;&gt;LSD&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;There are more listed in my works cited&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;The first item in that list is especially cool, because instead of using a standard
-RMSD metric, they abstracted a  cluster-matching problem into a graph matching problem
-and used an algorithm called Isorank to find an approximate greedy solution.&lt;/p&gt;
-&lt;p&gt;There is a solid greedy vs. dynamic explanation &lt;a href=&quot;https://www.quora.com/Greedy-algorithm-vs-dynamic-programming-Whats-the-difference&quot;&gt;here&lt;/a&gt;.
-The example I remember getting is that if you are a programmer for a GPS
-direction provider, there are two main ways of deciding an optimal route.
-At each gridpoint on a map, a greedy algorithm will take the fastest choice.
-A dynamic algorithm will branch ahead, look into the future, and possibly
+&lt;p&gt;The first item in that list is especially cool; instead of using a standard
+RMSD metric, they abstracted a cluster-matching problem into a graph matching problem,
+using an algorithm called Isorank to find an approximate ‘greedy’ solution.&lt;/p&gt;
+&lt;p&gt;There are some solid ‘greedy’ vs. ‘dynamic’ explanations &lt;a href=&quot;https://www.quora.com/Greedy-algorithm-vs-dynamic-programming-Whats-the-difference&quot;&gt;here&lt;/a&gt;.
+The example I remember getting is to imagine you are a programmer for a GPS
+direction provider. We can consider two ways of deciding an optimal route, one
+with a greedy algorithm and the other with a dynamic algorithm.
+At each gridpoint on a map, a greedy algorithm will take the fastest route at
+that point. A dynamic algorithm will branch ahead, look into the future, and possibly
 avoid short-term gain for long term drive-time savings. The greedy algorithm
-might have a better best-case performance, but a much worse worse case performance.&lt;/p&gt;
+might have a better best-case performance, but a much poorer worst-case performance.&lt;/p&gt;
 &lt;p&gt;In any case, we want to allow for the execution of a diffusion map algorithm where
 a user can provide their own metric, tune the choice of epsilon, the choice of timescale,
 and project the original trajectory &lt;em&gt;timesteps&lt;/em&gt; onto the new dominant eigenvector, eigenvalue pairs.&lt;/p&gt;
