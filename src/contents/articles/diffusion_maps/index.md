@@ -110,12 +110,13 @@ In this paper, the authors acknowledge that oftentimes an isotropic kernel is no
 
 The derivation from here requires a few more steps:
 
-+	Form a new kernel from anisotropic diffusion term: Let $$ q_{\epsilon}(x) = \int_X k_{\epsilon}(x,y)q(y) \,dy$$
++	Form a new kernel from anisotropic diffusion term: Let $$ q_{\epsilon}(x) = \int k{\epsilon}(x,y)q(y) \,dy$$  
+    Where
 	$$ k{\epsilon}^{(\alpha)} =  \frac{k{\epsilon}(x,y)}{q{\epsilon}(x) q{\epsilon}(y) }$$
 +	Apply weighted graph Laplacian normalization:
-	$$ d{\epsilon}^{(\alpha)}(x) = \int_X k{\epsiilon}^{(\alpha)}(x,y)q(y) \,dy $$
+	$$ d{\epsilon}^{(\alpha)}(x) = \int k{\epsilon}^{(\alpha)}(x,y)q(y) \,dy $$
 +	Define anisotropic transition kernel from this term
-	$$ p{\epsilon,\alpha}(x, y) =   \frac{k{\epsiilon}^{(\alpha)}(x,y)}{d_{\epsilon}^{(\alpha)}(x)}$$
+	$$ p{\epsilon,\alpha}(x, y) =   \frac{k{\epsilon}^{(\alpha)}(x,y)}{d_{\epsilon}^{(\alpha)}(x)}$$
 
 This was all kinds of painful, but what this means for diffusion maps in MD is
 that a meaningful diffusion map will have an anisotropic, (and therefore unsymmetric kernel).
