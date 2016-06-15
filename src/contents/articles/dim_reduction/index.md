@@ -76,6 +76,7 @@ is called a [*generalized eigenvalue problem*](https://en.wikipedia.org/wiki/Eig
 In these situations the problem posed is $$ X_a M = \lambda X_b M $$
 Where $X_a$ and $X_b$ are distinct but both still generated from some manipulation
 on the original data matrix X.
+
 The methods discussed so far necessitate the use of convex cost functions for an optimization. From my professor Dr. Erin Pearse (thanks!):
 
 >The term convexity only make sense when discussing vector spaces, and in that case a subset U of a vector space is convex iff any convex combination of vectors in U is again in U. A convex combination is a linear combination where the coefficients are nonnegative and sum to 1.
