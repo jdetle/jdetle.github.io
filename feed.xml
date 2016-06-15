@@ -113,23 +113,23 @@ popular Gaussian kernel:&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;The derivation from here requires a few more steps:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Form a new kernel from anisotropic diffusion term: Let $$q{\epsilon}(x) = \int&lt;em&gt;X k&lt;/em&gt;{\epsilon}(x,y)q(y) \,dy$$
-$$ k&lt;em&gt;{\epsiilon}^{(\alpha)} =  \frac{k&lt;/em&gt;{\epsilon}(x,y)}{q&lt;em&gt;{\epsilon}(x) q&lt;/em&gt;{\epsilon}(y) }$$&lt;/li&gt;
-&lt;li&gt;Apply weighted graph laplacian normalization:
+&lt;li&gt;Form a new kernel from anisotropic diffusion term: Let $$ q_{\epsilon}(x) = \int&lt;em&gt;X k&lt;/em&gt;{\epsilon}(x,y)q(y) \,dy$$
+$$ k&lt;em&gt;{\epsilon}^{(\alpha)} =  \frac{k&lt;/em&gt;{\epsilon}(x,y)}{q&lt;em&gt;{\epsilon}(x) q&lt;/em&gt;{\epsilon}(y) }$$&lt;/li&gt;
+&lt;li&gt;Apply weighted graph Laplacian normalization:
 $$ d_{\epsilon}^{(\alpha)}(x) = \int&lt;em&gt;X k&lt;/em&gt;{\epsiilon}^{(\alpha)}(x,y)q(y) \,dy $$&lt;/li&gt;
 &lt;li&gt;Define anisotropic transition kernel from this term
-$$p&lt;em&gt;{\epsilon,\alpha}(x, y) =   \frac{k&lt;/em&gt;{\epsiilon}^{(\alpha)}(x,y)}{d_{\epsilon}^{(\alpha)}(x)}$$&lt;/li&gt;
+$$ p&lt;em&gt;{\epsilon,\alpha}(x, y) =   \frac{k&lt;/em&gt;{\epsiilon}^{(\alpha)}(x,y)}{d_{\epsilon}^{(\alpha)}(x)}$$&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;This was all kinds of painful, but what this means for diffusion maps in MD is
 that a meaningful diffusion map will have an anisotropic, (and therefore unsymmetric kernel).
-[Coifman and Lafon][LafonPaper] go on to prove that for $\alpha$ equal to $frac{1}{2}
+&lt;a href=&quot;http://cis-linux1.temple.edu/~latecki/Courses/RobotFall08/Papers/DiffusionMaps06.pdf&quot;&gt;Coifman and Lafon&lt;/a&gt; go on to prove that for $\alpha$ equal to $\frac{1}{2}$
 this anisotropic kernel is an effective approximation for the Fokker-Plank equation!
 This is a really cool result that is in no way obvious.&lt;/p&gt;
 &lt;p&gt;Originally, when I studied diffusion maps while applying for the Summer of Code
 I was completely unaware of Fokker-Plank and the anisotropic kernel. Of course,
 learning these topics takes time, but I was under the impression that diffusion
 kernels were symmetric across the board, which is just dead wrong. This of course
-changes how eigenvalue decomposition can be performed on a matrix and requires a \
+changes how eigenvalue decomposition can be performed on a matrix and requires a
 routine like Singular Value Decomposition instead of Symmetric Eigenvalue Decomposition.
 If I had spent more time researching literature on my own I think I could have figured this out
 With that being said, there are 100+ dense pages given in the citations below.&lt;/p&gt;
@@ -203,7 +203,7 @@ sense without notation.&lt;/p&gt;
 &lt;p&gt;Alright, this has been a lot to digest, but hopefully you are still with me.
 Why are we doing this? There are plenty of reasons, and I am going to list a few:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Dr. Ferguson used diffusion maps for the assembly of polymer subunits in
+&lt;li&gt;Dr. Ferguson used diffusion maps to investigate the assembly of polymer subunits in
 &lt;a href=&quot;http://ferguson.matse.illinois.edu/resources/10.pdf&quot;&gt;this paper&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Also for the order parameters in &lt;a href=&quot;http://ferguson.matse.illinois.edu/resources/2.pdf&quot;&gt;alkane chain dynamics&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Also for &lt;a href=&quot;http://ferguson.matse.illinois.edu/resources/4.pdf&quot;&gt;umbrella sampling&lt;/a&gt;&lt;/li&gt;

@@ -110,16 +110,16 @@ In this paper, the authors acknowledge that oftentimes an isotropic kernel is no
 
 The derivation from here requires a few more steps:
 
-+	Form a new kernel from anisotropic diffusion term: Let $$q{\epsilon}(x) = \int_X k_{\epsilon}(x,y)q(y) \,dy$$
-	$$ k_{\epsiilon}^{(\alpha)} =  \frac{k_{\epsilon}(x,y)}{q_{\epsilon}(x) q_{\epsilon}(y) }$$
-+	Apply weighted graph laplacian normalization:
++	Form a new kernel from anisotropic diffusion term: Let $$ q_{\epsilon}(x) = \int_X k_{\epsilon}(x,y)q(y) \,dy$$
+	$$ k_{\epsilon}^{(\alpha)} =  \frac{k_{\epsilon}(x,y)}{q_{\epsilon}(x) q_{\epsilon}(y) }$$
++	Apply weighted graph Laplacian normalization:
 	$$ d_{\epsilon}^{(\alpha)}(x) = \int_X k_{\epsiilon}^{(\alpha)}(x,y)q(y) \,dy $$
 +	Define anisotropic transition kernel from this term
-	$$p_{\epsilon,\alpha}(x, y) =   \frac{k_{\epsiilon}^{(\alpha)}(x,y)}{d_{\epsilon}^{(\alpha)}(x)}$$
+	$$ p_{\epsilon,\alpha}(x, y) =   \frac{k_{\epsiilon}^{(\alpha)}(x,y)}{d_{\epsilon}^{(\alpha)}(x)}$$
 
 This was all kinds of painful, but what this means for diffusion maps in MD is
 that a meaningful diffusion map will have an anisotropic, (and therefore unsymmetric kernel).
-[Coifman and Lafon][LafonPaper] go on to prove that for $\alpha$ equal to $frac{1}{2}
+[Coifman and Lafon][LafonDiffusion] go on to prove that for $\alpha$ equal to $\frac{1}{2}$
 this anisotropic kernel is an effective approximation for the Fokker-Plank equation!
 This is a really cool result that is in no way obvious.
 
@@ -127,7 +127,7 @@ Originally, when I studied diffusion maps while applying for the Summer of Code
 I was completely unaware of Fokker-Plank and the anisotropic kernel. Of course,
 learning these topics takes time, but I was under the impression that diffusion
 kernels were symmetric across the board, which is just dead wrong. This of course
-changes how eigenvalue decomposition can be performed on a matrix and requires a \
+changes how eigenvalue decomposition can be performed on a matrix and requires a
 routine like Singular Value Decomposition instead of Symmetric Eigenvalue Decomposition.
 If I had spent more time researching literature on my own I think I could have figured this out
 With that being said, there are 100+ dense pages given in the citations below.
@@ -207,7 +207,7 @@ Using Diffusion Maps in MDAnalysis
 Alright, this has been a lot to digest, but hopefully you are still with me.
 Why are we doing this? There are plenty of reasons, and I am going to list a few:
 
-+   Dr. Ferguson used diffusion maps for the assembly of polymer subunits in
++   Dr. Ferguson used diffusion maps to investigate the assembly of polymer subunits in
     [this paper][Ferg_machinelearning]
 +   Also for the order parameters in [alkane chain dynamics][Ferg_chain]
 +   Also for [umbrella sampling][Ferg_WHAM]

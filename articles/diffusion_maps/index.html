@@ -120,23 +120,23 @@ popular Gaussian&nbsp;kernel:</p>
 </blockquote>
 <p>The derivation from here requires a few more&nbsp;steps:</p>
 <ul>
-<li>Form a new kernel from anisotropic diffusion term: Let $$q{\epsilon}(x) = \int<em>X k</em>{\epsilon}(x,y)q(y) \,dy$$
-$$ k<em>{\epsiilon}^{(\alpha)} =  \frac{k</em>{\epsilon}(x,y)}{q<em>{\epsilon}(x) q</em>{\epsilon}(y)&nbsp;}$$</li>
-<li>Apply weighted graph laplacian normalization:
+<li>Form a new kernel from anisotropic diffusion term: Let $$ q_{\epsilon}(x) = \int<em>X k</em>{\epsilon}(x,y)q(y) \,dy$$
+$$ k<em>{\epsilon}^{(\alpha)} =  \frac{k</em>{\epsilon}(x,y)}{q<em>{\epsilon}(x) q</em>{\epsilon}(y)&nbsp;}$$</li>
+<li>Apply weighted graph Laplacian normalization:
 $$ d_{\epsilon}^{(\alpha)}(x) = \int<em>X k</em>{\epsiilon}^{(\alpha)}(x,y)q(y) \,dy&nbsp;$$</li>
 <li>Define anisotropic transition kernel from this term
-$$p<em>{\epsilon,\alpha}(x, y) =   \frac{k</em>{\epsiilon}^{(\alpha)}(x,y)}{d_{\epsilon}^{(\alpha)}(x)}$$</li>
+$$ p<em>{\epsilon,\alpha}(x, y) =   \frac{k</em>{\epsiilon}^{(\alpha)}(x,y)}{d_{\epsilon}^{(\alpha)}(x)}$$</li>
 </ul>
 <p>This was all kinds of painful, but what this means for diffusion maps in <span class="caps">MD</span> is
 that a meaningful diffusion map will have an anisotropic, (and therefore unsymmetric kernel).
-[Coifman and Lafon][LafonPaper] go on to prove that for $\alpha$ equal to $frac{1}{2}
+<a href="http://cis-linux1.temple.edu/~latecki/Courses/RobotFall08/Papers/DiffusionMaps06.pdf">Coifman and Lafon</a> go on to prove that for $\alpha$ equal to $\frac{1}{2}$
 this anisotropic kernel is an effective approximation for the Fokker-Plank equation!
 This is a really cool result that is in no way&nbsp;obvious.</p>
 <p>Originally, when I studied diffusion maps while applying for the Summer of Code
 I was completely unaware of Fokker-Plank and the anisotropic kernel. Of course,
 learning these topics takes time, but I was under the impression that diffusion
 kernels were symmetric across the board, which is just dead wrong. This of course
-changes how eigenvalue decomposition can be performed on a matrix and requires a \
+changes how eigenvalue decomposition can be performed on a matrix and requires a
 routine like Singular Value Decomposition instead of Symmetric Eigenvalue Decomposition.
 If I had spent more time researching literature on my own I think I could have figured this out
 With that being said, there are 100+ dense pages given in the citations&nbsp;below.</p>
@@ -210,7 +210,7 @@ sense without&nbsp;notation.</p>
 <p>Alright, this has been a lot to digest, but hopefully you are still with me.
 Why are we doing this? There are plenty of reasons, and I am going to list a&nbsp;few:</p>
 <ul>
-<li>Dr. Ferguson used diffusion maps for the assembly of polymer subunits in
+<li>Dr. Ferguson used diffusion maps to investigate the assembly of polymer subunits in
 <a href="http://ferguson.matse.illinois.edu/resources/10.pdf">this&nbsp;paper</a></li>
 <li>Also for the order parameters in <a href="http://ferguson.matse.illinois.edu/resources/2.pdf">alkane chain&nbsp;dynamics</a></li>
 <li>Also for <a href="http://ferguson.matse.illinois.edu/resources/4.pdf">umbrella&nbsp;sampling</a></li>
