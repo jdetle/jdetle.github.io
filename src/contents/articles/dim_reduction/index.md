@@ -15,16 +15,16 @@ MathJax.Hub.Config({
 
 Hello! This is my first post moving over to a new site built by
 [wintersmith](https://github.com/jnordberg/wintersmith). Originally I was going
-to use jekyll pages, but there was an issue with the latest ruby version not being
+to use jekyll pages, but there was an issue with the latest Ruby version not being
 available for Linux, (maybe macs are better...). I spent *way too much* time
 figuring out how to install a markdown plugin that allowed for the inclusion of
-Latex. I did this all without realizing I could simply include:
+LaTex. I did this all without realizing I could simply include:
 ```
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 ```
-below my article title and latex would easily render. Now that this roadblock is
+below my article title and LaTex would easily render. Now that this roadblock is
 cleared, I have no excuses preventing me from writing a post about my work.  
 
 <span class="more"></span>
@@ -42,17 +42,17 @@ is considered to have dimension $m$, but oftentimes the actual 'intrinsic dimens
 is much lower. As Laurens van der Maaten [defines it][1], 'intrinsic dimensionality'
 is 'the the minimum number of parameters needed to account for the observed properties of the data'.
 
-(So far, the most didactic explanation of this fact was presented
+(So far, the most helpful explanation of this fact was presented
 in a paper on diffusion maps by [Porte et al][2]
 In the paper, a dataset of m-by-n pixel pictures of a simple image randomly rotated
 originally has dimension $mn$ but after dimension reduction, the dataset can be
-organized two dimensionally based on angle-of rotation.)
+organized two dimensionally based on angle of rotation.)
 
 At the most abstract level, dimension reduction methods usually are posed as an
-optimization problem that ultimately requires the solution to an eigenvalue problem.
+optimization problem that often requires the solution to an eigenvalue problem.
 What is an [optimization problem](https://en.wikipedia.org/wiki/Optimization_problem) you ask?
 That wikipedia article should help some, the optimization being done in dimension
-reduction is finding some linear or non-linear relation $ M $ that minmizes (or maximizes)
+reduction is finding some linear or non-linear relation $ M $ that minimizes (or maximizes)
 a cost function $ \phi (x) $ on some manipulation of the data matrix, call it $ X_{manipulated} $.
 Examples of various functions will be given in detail later.
 
@@ -76,12 +76,11 @@ is called a [*generalized eigenvalue problem*](https://en.wikipedia.org/wiki/Eig
 In these situations the problem posed is $$ X_a M = \lambda X_b M $$
 Where $X_a$ and $X_b$ are distinct but both still generated from some manipulation
 on the original data matrix X.
+The methods discussed so far necessitate the use of convex cost functions for an optimization. From my professor Dr. Erin Pearse (thanks!):
 
-The methods discussed so far necessitate the use of convex cost functions for
-an optimization. In set theory, convexity indicates that a set contains its subsets.
-An open interval $ (a,b) $ is convex whereas the open interval missing a point is not.
-Convex functions are similar but not entirely related, a convex function does not
-have any *local optima* which means that if you're at a maximum or minimum, you know it is global.
+>The term convexity only make sense when discussing vector spaces, and in that case a subset U of a vector space is convex iff any convex combination of vectors in U is again in U. A convex combination is a linear combination where the coefficients are nonnegative and sum to 1.
+
+Convex functions are similar but not entirely related. A convex function does not have any local optima that aren’t also global optima which means that if you’re at a maximum or minimum, you know it is global.
 
 (I think there is a reason why people in optimization refer to surfaces as landscapes.
 An interesting surface may have many hills and valleys, and finding an optimal path
@@ -94,19 +93,19 @@ like [t-SNE][3] will converge to different results on different iterations.
 Methods for dimension reduction will be either linear or non-linear mappings.
 In both cases, the original data matrix $X$ is embeddable in some manifold. A manifold
 is any surface that is [locally homeomorphic](http://planetmath.org/locallyhomeomorphic) to $R^{2}$.
-We want these mappings to preserve both the local structure of the manifold, while also
-preserving the global structure. I think the notion of structure is left specifically
+We want these mappings to preserve the local structure of the manifold, while also possibly
+preserving the global structure. This depends on the task meant to be done with the reduced data. I think the notion of structure is left specifically
 vague in literature because it is just so damn weird (it is really hard to think about
 things in greater than 3 dimensions...)
 
-A great example of data embeddable in a weird manifold, albeit three dimensional manifold is the swiss roll:
+A great example of data embeddable in a weird, albeit three dimensional manifold is the Swiss roll:
 ![swiss roll](./swissroll.gif) borrowed from [dinoj](http://people.cs.uchicago.edu/~dinoj/manifold/swissroll.html).
 The many different dimension reduction methods available will have disparate
 results when performed on this data. When restricted to paths along the manifold,
 red data will be far apart from black, but if a simple euclidean distance is measured,
 the points might be considered close. A dimension map that uses simple euclidean
-distance between points to resolve structure will fail miserably to eek out the
-swiss roll embedding.
+distance between points to resolve structure will fail miserably to eke out the
+Swiss roll embedding.
 
 When looking to investigate the lower dimensional space created by a dimension
 reduction, linear mappings have an explicit projection provided by the matrix formed
@@ -222,7 +221,7 @@ Multilayer Autoencoder
     number of neurons such that the neural network is forced to learn a
     lower dimensional structure
 +   This is identical to PCA if using a linear activation function! What undiscovered
-    algorithms will be replicated my neural nets? Will neural nets actually hurt
+    algorithms will be replicated by neural nets? Will neural nets actually hurt
     scientific discovery?
 -------------------------
 

@@ -32,14 +32,14 @@ MathJax.Hub.Config({
 
 <p>Hello! This is my first post moving over to a new site built by
 <a href="https://github.com/jnordberg/wintersmith">wintersmith</a>. Originally I was going
-to use jekyll pages, but there was an issue with the latest ruby version not being
+to use jekyll pages, but there was an issue with the latest Ruby version not being
 available for Linux, (maybe macs are better…). I spent <em>way too much</em> time
 figuring out how to install a markdown plugin that allowed for the inclusion of
-Latex. I did this all without realizing I could simply&nbsp;include:</p>
+LaTex. I did this all without realizing I could simply&nbsp;include:</p>
 <pre><code>&lt;script type=&quot;text/javascript&quot; async
   src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
 &lt;/script&gt;
-</code></pre><p>below my article title and latex would easily render. Now that this roadblock is
+</code></pre><p>below my article title and LaTex would easily render. Now that this roadblock is
 cleared, I have no excuses preventing me from writing a post about my&nbsp;work.  </p>
 <p><span class="more"></span></p>
 <p>This post is meant to discuss various dimension reduction methods
@@ -53,16 +53,16 @@ each sample has a set of $m$ features associated with it. The data in the matrix
 is considered to have dimension $m$, but oftentimes the actual ‘intrinsic dimensionality’
 is much lower. As Laurens van der Maaten <a href="https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf">defines it</a>, ‘intrinsic dimensionality’
 is ‘the the minimum number of parameters needed to account for the observed properties of the&nbsp;data’.</p>
-<p>(So far, the most didactic explanation of this fact was presented
+<p>(So far, the most helpful explanation of this fact was presented
 in a paper on diffusion maps by <a href="http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf">Porte et al</a>
 In the paper, a dataset of m-by-n pixel pictures of a simple image randomly rotated
 originally has dimension $mn$ but after dimension reduction, the dataset can be
-organized two dimensionally based on angle-of&nbsp;rotation.)</p>
+organized two dimensionally based on angle of&nbsp;rotation.)</p>
 <p>At the most abstract level, dimension reduction methods usually are posed as an
 optimization problem that often requires the solution to an eigenvalue problem.
 What is an <a href="https://en.wikipedia.org/wiki/Optimization_problem">optimization problem</a> you ask?
 That wikipedia article should help some, the optimization being done in dimension
-reduction is finding some linear or non-linear relation $ M $ that minmizes (or maximizes)
+reduction is finding some linear or non-linear relation $ M $ that minimizes (or maximizes)
 a cost function $ \phi (x) $ on some manipulation of the data matrix, call it $ X_{manipulated} $.
 Examples of various functions will be given in detail&nbsp;later.</p>
 <p>In most cases this can be turned into an eigenproblem posed as:
@@ -82,17 +82,12 @@ intrinsic dimension of a&nbsp;space.</p>
 is called a <a href="https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Generalized_eigenvalue_problem"><em>generalized eigenvalue problem</em></a>.
 In these situations the problem posed is $$ X_a M = \lambda X_b M $$
 Where $X_a$ and $X_b$ are distinct but both still generated from some manipulation
-on the original data matrix&nbsp;X.</p>
-<p>The methods discussed so far necessitate the use of convex cost functions for
-an optimization. From my professor Dr. Erin Pearse&nbsp;(thanks!):</p>
+on the original data matrix X.
+The methods discussed so far necessitate the use of convex cost functions for an optimization. From my professor Dr. Erin Pearse&nbsp;(thanks!):</p>
 <blockquote>
-<p>The term convexity only make sense when discussing vector spaces,
-and in that case a subset U of a vector space is convex iff any convex combination of vectors
-in U is again in U. A convex combination is a linear combination where the coefficients are nonnegative and sum to&nbsp;1.</p>
+<p>The term convexity only make sense when discussing vector spaces, and in that case a subset U of a vector space is convex iff any convex combination of vectors in U is again in U. A convex combination is a linear combination where the coefficients are nonnegative and sum to&nbsp;1.</p>
 </blockquote>
-<p>Convex functions are similar but not entirely related, a convex function does not
-have any <em>local optima</em> that aren’t also global optima which means that if you’re at
-a maximum or minimum, you know it is&nbsp;global.</p>
+<p>Convex functions are similar but not entirely related. A convex function does not have any local optima that aren’t also global optima which means that if you’re at a maximum or minimum, you know it is&nbsp;global.</p>
 <p>(I think there is a reason why people in optimization refer to surfaces as landscapes.
 An interesting surface may have many hills and valleys, and finding an optimal path
 is like a hiker trying to cross a mountain path blind — potentially&nbsp;problematic.)</p>
@@ -102,32 +97,29 @@ like <a href="https://lvdmaaten.github.io/publications/papers/JMLR_2008.pdf">t-<
 <p>Methods for dimension reduction will be either linear or non-linear mappings.
 In both cases, the original data matrix $X$ is embeddable in some manifold. A manifold
 is any surface that is <a href="http://planetmath.org/locallyhomeomorphic">locally homeomorphic</a> to $R^{2}$.
-We want these mappings to preserve both the some structure of the manifold, be it
-local, global, or both. I think the notion of structure is left specifically
+We want these mappings to preserve the local structure of the manifold, while also possibly
+preserving the global structure. This depends on the task meant to be done with the reduced data. I think the notion of structure is left specifically
 vague in literature because it is just so damn weird (it is really hard to think about
 things in greater than 3&nbsp;dimensions…)</p>
-<p>A great example of data embeddable in a weird manifold, albeit three dimensional manifold is the swiss roll:
+<p>A great example of data embeddable in a weird, albeit three dimensional manifold is the Swiss roll:
 <img src="/articles/dim_reduction/swissroll.gif" alt="swiss roll"> borrowed from <a href="http://people.cs.uchicago.edu/~dinoj/manifold/swissroll.html">dinoj</a>.
 The many different dimension reduction methods available will have disparate
 results when performed on this data. When restricted to paths along the manifold,
 red data will be far apart from black, but if a simple euclidean distance is measured,
-the points might be considered close. A dimension reduction that uses simple euclidean
+the points might be considered close. A dimension map that uses simple euclidean
 distance between points to resolve structure will fail miserably to eke out the
-swiss roll&nbsp;embedding.</p>
+Swiss roll&nbsp;embedding.</p>
 <p>When looking to investigate the lower dimensional space created by a dimension
 reduction, linear mappings have an explicit projection provided by the matrix formed
 by the eigenvectors. Non-linear methods do not have such an explicit relationship.
 Finding physical meaning from the order parameters given by a non-linear technique
-is an active area of research. Even given the explicit mapping in a linear map,
-the ‘principal components’ in <span class="caps">PCA</span> or other such parameters may be very difficult to relate
-to meaningful properties. (What the heck do the tangent vectors of a n-dimensional
-hyperplane&nbsp;describe?)</p>
+is an active area of&nbsp;research.</p>
 <p>It might be too small of detail for some, but the rest of this post will be
 focused on providing a quick explanation of various dimension reduction techniques.
 The general format will&nbsp;be:</p>
 <ul>
 <li>optimization problem&nbsp;posed</li>
-<li>formal eigenvalue problem given (if it is one of&nbsp;coursew)</li>
+<li>formal eigenvalue problem&nbsp;given</li>
 <li>interesting insights and&nbsp;relations</li>
 <li>pictures that I like from other&nbsp;work  </li>
 </ul>
@@ -153,9 +145,6 @@ this is referred to as a strain cost function. (subscripts are currently an&nbsp
 <li>Geodesic distances are computed by constructing a nearest-neighbor graph and
 using <a href="https://www.youtube.com/watch?v=2E7MmKv0Y24">Djistrka’s algorithm</a> to find short distance. Erroneous connections
 can be made by improperly connecting&nbsp;neighbors.</li>
-<li>The most relevant example of traveling along geodesics is air travel,
-a flight might travel over the north pole if it is the shortest path, certainly
-it can’t take a straight line path through the&nbsp;earth.  </li>
 <li>Can fail if manifold has&nbsp;holes.</li>
 <li>Demonstration of failure of <span class="caps">PCA</span> versus success of Isomap
 <img src="/articles/dim_reduction/isomapfail.png" alt="isomap"></li>
@@ -186,7 +175,7 @@ be modeled as a diffusion process with <a href="https://en.wikipedia.org/wiki/Ro
 as a linear combination $w_i$ (the so-called reconstruction weights) of its k nearest-neighbors $x&nbsp;i_j$.</li>
 <li>It solves a generalized eigenvalue problem, preserves local&nbsp;structure.</li>
 <li>Invariant to local scale, rotation,&nbsp;translations</li>
-<li><p>Cool picture demonstrating power of&nbsp;<span class="caps">LLE</span>:</p>
+<li><p>Cool picture demnostrating power of&nbsp;<span class="caps">LLE</span>:</p>
 <p><img src="/articles/dim_reduction/LLE.jpg" alt="lle"></p>
 </li>
 <li>Fails when the manifold has&nbsp;holes</li>

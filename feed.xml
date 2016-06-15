@@ -25,14 +25,14 @@ MathJax.Hub.Config({
 
 &lt;p&gt;Hello! This is my first post moving over to a new site built by
 &lt;a href=&quot;https://github.com/jnordberg/wintersmith&quot;&gt;wintersmith&lt;/a&gt;. Originally I was going
-to use jekyll pages, but there was an issue with the latest ruby version not being
+to use jekyll pages, but there was an issue with the latest Ruby version not being
 available for Linux, (maybe macs are better…). I spent &lt;em&gt;way too much&lt;/em&gt; time
 figuring out how to install a markdown plugin that allowed for the inclusion of
-Latex. I did this all without realizing I could simply include:&lt;/p&gt;
+LaTex. I did this all without realizing I could simply include:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot; async
   src=&amp;quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&amp;quot;&amp;gt;
 &amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;below my article title and latex would easily render. Now that this roadblock is
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;below my article title and LaTex would easily render. Now that this roadblock is
 cleared, I have no excuses preventing me from writing a post about my work.  &lt;/p&gt;
 &lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;This post is meant to discuss various dimension reduction methods
@@ -46,16 +46,16 @@ each sample has a set of $m$ features associated with it. The data in the matrix
 is considered to have dimension $m$, but oftentimes the actual ‘intrinsic dimensionality’
 is much lower. As Laurens van der Maaten &lt;a href=&quot;https://www.tilburguniversity.edu/upload/59afb3b8-21a5-4c78-8eb3-6510597382db_TR2009005.pdf&quot;&gt;defines it&lt;/a&gt;, ‘intrinsic dimensionality’
 is ‘the the minimum number of parameters needed to account for the observed properties of the data’.&lt;/p&gt;
-&lt;p&gt;(So far, the most didactic explanation of this fact was presented
+&lt;p&gt;(So far, the most helpful explanation of this fact was presented
 in a paper on diffusion maps by &lt;a href=&quot;http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf&quot;&gt;Porte et al&lt;/a&gt;
 In the paper, a dataset of m-by-n pixel pictures of a simple image randomly rotated
 originally has dimension $mn$ but after dimension reduction, the dataset can be
-organized two dimensionally based on angle-of rotation.)&lt;/p&gt;
+organized two dimensionally based on angle of rotation.)&lt;/p&gt;
 &lt;p&gt;At the most abstract level, dimension reduction methods usually are posed as an
-optimization problem that ultimately requires the solution to an eigenvalue problem.
+optimization problem that often requires the solution to an eigenvalue problem.
 What is an &lt;a href=&quot;https://en.wikipedia.org/wiki/Optimization_problem&quot;&gt;optimization problem&lt;/a&gt; you ask?
 That wikipedia article should help some, the optimization being done in dimension
-reduction is finding some linear or non-linear relation $ M $ that minmizes (or maximizes)
+reduction is finding some linear or non-linear relation $ M $ that minimizes (or maximizes)
 a cost function $ \phi (x) $ on some manipulation of the data matrix, call it $ X_{manipulated} $.
 Examples of various functions will be given in detail later.&lt;/p&gt;
 &lt;p&gt;In most cases this can be turned into an eigenproblem posed as:
@@ -75,12 +75,12 @@ intrinsic dimension of a space.&lt;/p&gt;
 is called a &lt;a href=&quot;https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix#Generalized_eigenvalue_problem&quot;&gt;&lt;em&gt;generalized eigenvalue problem&lt;/em&gt;&lt;/a&gt;.
 In these situations the problem posed is $$ X_a M = \lambda X_b M $$
 Where $X_a$ and $X_b$ are distinct but both still generated from some manipulation
-on the original data matrix X.&lt;/p&gt;
-&lt;p&gt;The methods discussed so far necessitate the use of convex cost functions for
-an optimization. In set theory, convexity indicates that a set contains its subsets.
-An open interval $ (a,b) $ is convex whereas the open interval missing a point is not.
-Convex functions are similar but not entirely related, a convex function does not
-have any &lt;em&gt;local optima&lt;/em&gt; which means that if you’re at a maximum or minimum, you know it is global.&lt;/p&gt;
+on the original data matrix X.
+The methods discussed so far necessitate the use of convex cost functions for an optimization. From my professor Dr. Erin Pearse (thanks!):&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The term convexity only make sense when discussing vector spaces, and in that case a subset U of a vector space is convex iff any convex combination of vectors in U is again in U. A convex combination is a linear combination where the coefficients are nonnegative and sum to 1.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Convex functions are similar but not entirely related. A convex function does not have any local optima that aren’t also global optima which means that if you’re at a maximum or minimum, you know it is global.&lt;/p&gt;
 &lt;p&gt;(I think there is a reason why people in optimization refer to surfaces as landscapes.
 An interesting surface may have many hills and valleys, and finding an optimal path
 is like a hiker trying to cross a mountain path blind — potentially problematic.)&lt;/p&gt;
@@ -90,18 +90,18 @@ like &lt;a href=&quot;https://lvdmaaten.github.io/publications/papers/JMLR_2008.
 &lt;p&gt;Methods for dimension reduction will be either linear or non-linear mappings.
 In both cases, the original data matrix $X$ is embeddable in some manifold. A manifold
 is any surface that is &lt;a href=&quot;http://planetmath.org/locallyhomeomorphic&quot;&gt;locally homeomorphic&lt;/a&gt; to $R^{2}$.
-We want these mappings to preserve both the local structure of the manifold, while also
-preserving the global structure. I think the notion of structure is left specifically
+We want these mappings to preserve the local structure of the manifold, while also possibly
+preserving the global structure. This depends on the task meant to be done with the reduced data. I think the notion of structure is left specifically
 vague in literature because it is just so damn weird (it is really hard to think about
 things in greater than 3 dimensions…)&lt;/p&gt;
-&lt;p&gt;A great example of data embeddable in a weird manifold, albeit three dimensional manifold is the swiss roll:
+&lt;p&gt;A great example of data embeddable in a weird, albeit three dimensional manifold is the Swiss roll:
 &lt;img src=&quot;/articles/dim_reduction/swissroll.gif&quot; alt=&quot;swiss roll&quot;&gt; borrowed from &lt;a href=&quot;http://people.cs.uchicago.edu/~dinoj/manifold/swissroll.html&quot;&gt;dinoj&lt;/a&gt;.
 The many different dimension reduction methods available will have disparate
 results when performed on this data. When restricted to paths along the manifold,
 red data will be far apart from black, but if a simple euclidean distance is measured,
 the points might be considered close. A dimension map that uses simple euclidean
-distance between points to resolve structure will fail miserably to eek out the
-swiss roll embedding.&lt;/p&gt;
+distance between points to resolve structure will fail miserably to eke out the
+Swiss roll embedding.&lt;/p&gt;
 &lt;p&gt;When looking to investigate the lower dimensional space created by a dimension
 reduction, linear mappings have an explicit projection provided by the matrix formed
 by the eigenvectors. Non-linear methods do not have such an explicit relationship.
@@ -215,7 +215,7 @@ to the cost function by the inverse of their pairwise distance in the high-dimen
 number of neurons such that the neural network is forced to learn a
 lower dimensional structure&lt;/li&gt;
 &lt;li&gt;This is identical to PCA if using a linear activation function! What undiscovered
-algorithms will be replicated my neural nets? Will neural nets actually hurt
+algorithms will be replicated by neural nets? Will neural nets actually hurt
 scientific discovery?&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
