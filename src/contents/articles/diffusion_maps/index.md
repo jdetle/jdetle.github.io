@@ -111,11 +111,11 @@ In this paper, the authors acknowledge that oftentimes an isotropic kernel is no
 The derivation from here requires a few more steps:
 
 +	Form a new kernel from anisotropic diffusion term: Let $$ q_{\epsilon}(x) = \int_X k_{\epsilon}(x,y)q(y) \,dy$$
-	$$ k_{\epsilon}^{(\alpha)} =  \frac{k_{\epsilon}(x,y)}{q_{\epsilon}(x) q_{\epsilon}(y) }$$
+	$$ k{\epsilon}^{(\alpha)} =  \frac{k{\epsilon}(x,y)}{q{\epsilon}(x) q{\epsilon}(y) }$$
 +	Apply weighted graph Laplacian normalization:
-	$$ d_{\epsilon}^{(\alpha)}(x) = \int_X k_{\epsiilon}^{(\alpha)}(x,y)q(y) \,dy $$
+	$$ d{\epsilon}^{(\alpha)}(x) = \int_X k{\epsiilon}^{(\alpha)}(x,y)q(y) \,dy $$
 +	Define anisotropic transition kernel from this term
-	$$ p_{\epsilon,\alpha}(x, y) =   \frac{k_{\epsiilon}^{(\alpha)}(x,y)}{d_{\epsilon}^{(\alpha)}(x)}$$
+	$$ p{\epsilon,\alpha}(x, y) =   \frac{k{\epsiilon}^{(\alpha)}(x,y)}{d_{\epsilon}^{(\alpha)}(x)}$$
 
 This was all kinds of painful, but what this means for diffusion maps in MD is
 that a meaningful diffusion map will have an anisotropic, (and therefore unsymmetric kernel).
@@ -129,7 +129,7 @@ learning these topics takes time, but I was under the impression that diffusion
 kernels were symmetric across the board, which is just dead wrong. This of course
 changes how eigenvalue decomposition can be performed on a matrix and requires a
 routine like Singular Value Decomposition instead of Symmetric Eigenvalue Decomposition.
-If I had spent more time researching literature on my own I think I could have figured this out
+If I had spent more time researching literature on my own I think I could have figured this out.
 With that being said, there are 100+ dense pages given in the citations below.
 
 So where are we at? Quick recap about diffusion maps:

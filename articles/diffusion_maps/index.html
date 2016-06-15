@@ -121,11 +121,11 @@ popular Gaussian&nbsp;kernel:</p>
 <p>The derivation from here requires a few more&nbsp;steps:</p>
 <ul>
 <li>Form a new kernel from anisotropic diffusion term: Let $$ q_{\epsilon}(x) = \int<em>X k</em>{\epsilon}(x,y)q(y) \,dy$$
-$$ k<em>{\epsilon}^{(\alpha)} =  \frac{k</em>{\epsilon}(x,y)}{q<em>{\epsilon}(x) q</em>{\epsilon}(y)&nbsp;}$$</li>
+$$ k{\epsilon}^{(\alpha)} =  \frac{k{\epsilon}(x,y)}{q{\epsilon}(x) q{\epsilon}(y)&nbsp;}$$</li>
 <li>Apply weighted graph Laplacian normalization:
-$$ d_{\epsilon}^{(\alpha)}(x) = \int<em>X k</em>{\epsiilon}^{(\alpha)}(x,y)q(y) \,dy&nbsp;$$</li>
+$$ d{\epsilon}^{(\alpha)}(x) = \int_X k{\epsiilon}^{(\alpha)}(x,y)q(y) \,dy&nbsp;$$</li>
 <li>Define anisotropic transition kernel from this term
-$$ p<em>{\epsilon,\alpha}(x, y) =   \frac{k</em>{\epsiilon}^{(\alpha)}(x,y)}{d_{\epsilon}^{(\alpha)}(x)}$$</li>
+$$ p{\epsilon,\alpha}(x, y) =&nbsp;\frac{k{\epsiilon}^{(\alpha)}(x,y)}{d_{\epsilon}^{(\alpha)}(x)}$$</li>
 </ul>
 <p>This was all kinds of painful, but what this means for diffusion maps in <span class="caps">MD</span> is
 that a meaningful diffusion map will have an anisotropic, (and therefore unsymmetric kernel).
@@ -138,7 +138,7 @@ learning these topics takes time, but I was under the impression that diffusion
 kernels were symmetric across the board, which is just dead wrong. This of course
 changes how eigenvalue decomposition can be performed on a matrix and requires a
 routine like Singular Value Decomposition instead of Symmetric Eigenvalue Decomposition.
-If I had spent more time researching literature on my own I think I could have figured this out
+If I had spent more time researching literature on my own I think I could have figured this out.
 With that being said, there are 100+ dense pages given in the citations&nbsp;below.</p>
 <p>So where are we at? Quick recap about diffusion&nbsp;maps:</p>
 <ul>
