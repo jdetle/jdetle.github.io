@@ -70,7 +70,7 @@ What is a vector, what is an eigenvector?
 Good question! A vector has a magnitude (which is just some positive number
 for anything that we are doing) and a direction (a property that is drawn
 from the *vector space* to which the vector belongs). Being told to walk 10
-paces due north is to be given follow a vector with magnitude 10
+paces due north is to follow a vector with magnitude 10
 and direction north. Vectors are presented as if they are centered at the origin,
 and their *head* is reflects their magnitude and direction. This allows some
 consistency when discussing things, when we are given the vector $(1,1)$ in $R^2$
