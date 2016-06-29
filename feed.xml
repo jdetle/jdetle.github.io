@@ -5,9 +5,318 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <link></link>
     <description>a blog for my coding adventures</description>
-    <pubDate>Tue, 14 Jun 2016 17:00:00 -0700</pubDate>
+    <pubDate>Tue, 28 Jun 2016 17:00:00 -0700</pubDate>
     <generator>Wintersmith - https://github.com/jnordberg/wintersmith</generator>
     <language>en</language>
+    <item>
+      <title>Principal Component Analysis</title>
+      <link>/articles/pca/</link>
+      <pubDate>Tue, 28 Jun 2016 17:00:00 -0700</pubDate>
+      <guid isPermaLink="true">/articles/pca/</guid>
+      <author></author>
+      <description>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; async
+  src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;p&gt;My next subject for bloggery is Principal Component Analysis (PCA)
+(its sibling Multidimensional scaling has been left out for a future post,
+but it is just as special, don’t worry). If I were to give a talk on PCA,
+the slides would be roughly ordered as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A very short recap of dimension reduction&lt;/li&gt;
+&lt;li&gt;PCA, what it stands for, rough background, history&lt;/li&gt;
+&lt;li&gt;Eigenvectors (what are those?!)&lt;/li&gt;
+&lt;li&gt;Covariance (Because variance matrix didn’t sound cool enough)&lt;/li&gt;
+&lt;li&gt;The very fancy sounding method of Lagrange Multipliers (why they aren’t that hard)&lt;/li&gt;
+&lt;li&gt;Explain the PCA Algorithm&lt;/li&gt;
+&lt;li&gt;Random Walks: What are they, how are they taken on a configuration space&lt;/li&gt;
+&lt;li&gt;Interpreting the results after applying PCA on MD simulation data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;
+In reality not going to follow these bullet points, if you want to get information
+pertaining to the first two points, please read some of my previous posts.
+The last two points are going to be a subject for a post next week.&lt;/p&gt;
+&lt;p&gt;Here are some good sources for those seeking to acquaint themselves with
+Linear Algebra and Statistics. &lt;a href=&quot;https://onlinecourses.science.psu.edu/stat505/node/2&quot;&gt;Multivariate Statistics and PCA&lt;/a&gt;
+(Lessons two through 10) and the &lt;a href=&quot;http://www.feynmanlectures.caltech.edu/I_06.html&quot;&gt;Feynman Lecture on Physics: Probability&lt;/a&gt;.
+The Feynman lectures on physics are &lt;em&gt;so&lt;/em&gt; good and &lt;em&gt;so&lt;/em&gt; accessible. Richard
+Feynman certainly had his flaws but teaching was not one of them. If you’re
+too busy to read those, here’s a quick summary of some important ideas I
+will be using.&lt;/p&gt;
+&lt;h2 id=&quot;what-is-a-linear-transformation-john-&quot;&gt;What is a Linear Transformation, John?&lt;/h2&gt;
+&lt;p&gt;Glad you asked, friend! Let’s just stick to linearity.
+for a function to be linear, it means that $f(a+b) = f(a) + f(b)$. As an
+example of a non-linear function, consider $ y = x^{3} $ . After plugging
+some numbers in we can see this is non-linear $ 2^{3} \neq 1^{3} + 1^{3} $.&lt;/p&gt;
+&lt;p&gt;A transformation at its most abstract is the description of an algorithm
+that gets an object A to become an object B.
+In linear algebra the transformation is being done on vectors belonging to a
+domain (where vectors exist before the transformation) space  $V$ and a range
+(where vectors exist after the transformation) space $W$. For the purposes of
+our work, these are both $R^{n}$, the Cartesian product n-times of the real line.
+(The standard (x,y) coordinate system is the Cartesian product of the real line
+twice, or $R^{2}$)&lt;/p&gt;
+&lt;p&gt;When dealing with vector spaces, our linear transformation can be represented
+by a $m$-by-$n$ matrix, where $n$ is the dimension of the space we are sending a
+vector into (always less than or equal to m), and $m$ is the dimension of the
+vector space in which our original vector (or set of vectors) being transformed
+originally exists in. So if we have some set of $k$ vectors being transformed,
+the matrices will be have row-by-column sizes:
+$$[ k-by-m ] [m-by-n] = [k-by-n]$$. These maps can be scalings, rotations,
+shearings and more.&lt;/p&gt;
+&lt;h2 id=&quot;what-is-a-vector-what-is-an-eigenvector-&quot;&gt;What is a vector, what is an eigenvector?&lt;/h2&gt;
+&lt;p&gt;Good question! A vector has a magnitude (which is just some positive number
+for anything that we are doing) and a direction (a property that is drawn
+from the &lt;em&gt;vector space&lt;/em&gt; to which the vector belongs). Being told to walk 10
+paces due north is to be given follow a vector with magnitude 10
+and direction north. Vectors are presented as if they are centered at the origin,
+and their &lt;em&gt;head&lt;/em&gt; is reflects their magnitude and direction. This allows some
+consistency when discussing things, when we are given the vector $(1,1)$ in $R^2$
+we know it is centered at the origin, and thus has magnitude (from the distance
+formula) of $\sqrt{2}$ and the direction is 45 degrees from the horizontal
+axis. An &lt;strong&gt;eigenvector&lt;/strong&gt; sounds a lot scarier than it is;
+the purpose of an eigenvector is to answer the question,
+‘what vectors don’t change direction under a given linear transformation?’
+&lt;img src=&quot;/articles/pca/Mona_Lisa_eigenvector_grid.png&quot; alt=&quot;mona lisa eigenvector&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This picture is stolen from wikipedia, but it should be clear that the
+blue vector is an eigenvector of this transformation, while the red vector
+is not.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The standard equation given when an eigenvalue problem is posed is:
+$$ Mv = \lambda v $$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$M$ is some linear transformation, $v$ is an eigenvector
+we are trying to find, and $\lambda$ is the corresponding eigenvalue.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;From this equation, we can see that eigenvector-eigenvalue pairs
+are not unique; direction is not a unique property of a vector. If we
+find a vector $v$ that satisfies this equation for our linear
+transformation $M$, scaling the vector by some constant $\alpha$
+will simply change the eigenvalue associated with the solution.
+The vector $(1,1)$ in $R^2$ has the same direction as
+$(2,2)$ in $R^2$. If one of these vectors isn’t subject to a direction change
+(and therefore an eigenvector), then the other must be as well, because the
+eigenvector-ness (yes, I just coined this phrase) applies to all vectors with
+the same direction.&lt;/p&gt;
+&lt;p&gt;For those of you more familiar with Linear Algebra, this
+should not be confused with the fact that a linear transformation can have
+degenerate eigenvalues. This concept of degenerate eigenvalues comes up when
+the rank of the matrix representation of a linear transformation is less than
+its dimension, but given that our transformation has rank equal to to the
+dimension of the vector space, we can ignore this.&lt;/p&gt;
+&lt;h2 id=&quot;statistics-in-300-words&quot;&gt;Statistics in ~300 words&lt;/h2&gt;
+&lt;p&gt;Sticking  one dimension, plenty of data seems to be random while also favoring
+a central point. Consider the usual example of height across a population of
+people. Height can be thought of as a &lt;em&gt;random variable&lt;/em&gt;. But this isn’t random
+in the way that people might think about randomness without some knowledge of
+statistics. There is a central point where the heights of people tend to cluster,
+and the likelihood of someone being taller or shorter than this central point
+decreases on a ‘bell-curve’.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/articles/pca/univar_gaussian.svg&quot; alt=&quot;normal&quot;&gt;&lt;/p&gt;
+&lt;p&gt;This is called a &lt;em&gt;normal distribution&lt;/em&gt;. Many datasets can be thought of as
+describing the a set of outcomes for some random variable in nature.
+These outcomes are distributed in some fashion. In our example, the &lt;em&gt;mean&lt;/em&gt; of
+the data is the average height over the entire population. The &lt;em&gt;variance&lt;/em&gt; of
+our data is how far the height of a  is spread out from its mean. When the
+distribution of outcomes follows a bell-curve such as it does in our example,
+the distribution is referred to as &lt;em&gt;normal&lt;/em&gt;. (There are some more
+technical details, but the phrase normal stems from the fact that total area
+under the bell-curve defined by the normal distribution is equal to one.) When
+the data we want to describe is reflects more than one random variable this
+is a &lt;em&gt;multivariate distribution&lt;/em&gt;.
+&lt;img src=&quot;/articles/pca/multivar_gaussian.svg&quot; alt=&quot;multivariate&quot;&gt;
+Statistics introduces the concept of &lt;em&gt;covariance&lt;/em&gt; to describe the relationship
+that random variables have with one another. The magnitude of a covariance indicates in some fashion the
+relationship between random variables; it is not easily interpretable without
+some set of constraints on the covariances, which will come up in
+Principal Component Analysis. The sign of the covariance between two random
+variables (X,Y) indicates if the two points are inversely related or directly
+related.  A negative covariance between X and Y means that increasing X decreases
+while a positive covariance means that increasing X increases Y. The normalized
+version of covariance is called the &lt;em&gt;correlation coefficient&lt;/em&gt; and might be
+more familiar to those previously acquainted with statistics.&lt;/p&gt;
+&lt;h2 id=&quot;constrained-optimization&quot;&gt;Constrained Optimization&lt;/h2&gt;
+&lt;p&gt;Again, please do look at the Feynman Lectures, if you’re unfamiliar
+with statistics look at the &lt;a href=&quot;https://onlinecourses.science.psu.edu/stat505/node/2&quot;&gt;Penn State&lt;/a&gt;
+material for the ideas I just went over to better understand them.
+The last subject I want to broach before getting into the details of PCA is
+optimization with &lt;a href=&quot;https://www.youtube.com/watch?v=nDuS5uQ7-lo&quot;&gt;Lagrange Multipliers&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Lagrange Multipliers are one method of solving a &lt;em&gt;constrained optimization problem&lt;/em&gt;.
+Such a problem requires an objective function to be optimized and constraints
+to optimize against. An objective function is any function that we wish to
+maximize or minimize to reflect some target quantity achieving an optimum value.
+In short, the method of Lagrange Multipliers creates a system of linear equations
+such that we can solve for a term $\lambda$ that shows when the objective
+function achieves a maximum subject to constraints. In the case the of PCA, the
+function we want to maximize is $M^{T} cov(X) M$, describing the
+covariance of our data matrix $X$.  &lt;/p&gt;
+&lt;h2 id=&quot;pca&quot;&gt;PCA&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/articles/pca/PCA-vectors.svg&quot; alt=&quot;PCA-vectors&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Although it is not quite a fortuitous circumstance, the principal components of
+the covariance matrix are precisely it’s eigenvectors. For a multivariate dataset
+generated by $n$ random variables, PCA will return a sequence of $n$ eigenvectors each
+describing more covariance in the dataset than the next. The picture above
+presents an example of the eigenvectors reflecting the covariance of a 2-dimensional
+multivariate dataset.&lt;/p&gt;
+&lt;p&gt;To be perfectly honest, I don’t know a satisfying way to explain why the eigenvectors
+are the principal components. The best explanation I can come up with is that
+the algorithm for PCA is in correspondence with the algorithm for eigenvalue
+decomposition. It’s one of those things where I &lt;em&gt;should&lt;/em&gt; be able to provide a
+proof for why the two problems are the same, but I cannot at the moment. (Commence
+hand-waving…)&lt;/p&gt;
+&lt;p&gt;Let’s look at the algorithm for Principal Component Analysis to better understand
+things. PCA is an iterative method that seeks to create a sequence
+of vectors that describe the covariance in a collection of data, each vector describing
+more than those that will follow. This introduces an optimization problem, an
+issue that I referenced earlier. In order to guarantee uniqueness of our solution,
+this optimization is subject to constraints using Lagrange Multipliers.
+remember, the video provides an example of a constrained optimization problem
+from calculus. Principal Component Analysis finds this set of vectors by creating a linear
+transformation $M$ that maximizes the covariance objective function given below.&lt;/p&gt;
+&lt;p&gt;PCA’s objective function is  $trace(M^{T} cov(X) M)$, we are looking to maximize this.
+From the Penn State lectures:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Earlier in the course we defined the total variation of X as the trace of the
+variance-covariance matrix, or if you like, the sum of the variances of the
+individual variables. This is also equal to the sum of the eigenvalues.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In the first step of PCA, we can think of our objective function as:
+$$a^T cov(X) a$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$a$ in this case is a single vector&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We seek to maximize this a term such that the sum of the squares of the coefficients
+of a is equal to one. (In math terms this is saying that the
+$L^2$ norm is one). This constraint is introduced to ensure that a unique answer
+is obtained, (remember eigenvectors are not unique, this is the same process one
+would undertake to get a unique sequence of eigenvectors from a decomposition!).
+In the second step, the objective function is :
+$$B^T cov(X) B$$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$B$ consists of $a$ and a new vector $b$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;We look to maximize $b$ such that it explains covariance &lt;em&gt;not&lt;/em&gt;
+previously explained by the first, for this reason we introduce an
+optimization problem with two constraints:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$a$ remains the same&lt;/li&gt;
+&lt;li&gt;The sum of the squares of the coefficients of $b$ equals one&lt;/li&gt;
+&lt;li&gt;None of the covariance explained by vector $a$ is explained by $b$, (the two vectors are &lt;em&gt;orthogonal&lt;/em&gt;, another property of eigenvectors!)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This process is repeated for the entire transformation $M$. This gives us a sequence
+of eigenvalues that each reflect some fraction of the covariance, and sum to one.
+For our previously mentioned n-dimensional multivariate dataset, generally some
+number $k \lt n$ of eigenvectors explain the total variance well enough to ignore
+the $n - k$ vectors remaining. This gives a set of principal components to investigate.  &lt;/p&gt;
+&lt;p&gt;It might follow that this corresponds to an eigenvalue problem:
+$$cov(X)M = \lamba M$$
+If it doesn’t appear to be clear, let’s step back and
+look again at eigenvectors. As I said earlier, eigenvectors provide insight
+into what vectors don’t change direction under a linear map. We are trying find
+a linearly independent set of vectors that provide insight into the structure
+of our covariance from our multivariate distribution. Eigenvectors are either
+the same or orthogonal. This algorithm we described, is &lt;em&gt;precisely&lt;/em&gt; the
+algorithm one would use to find the eigenvectors of any (full-rank) linear transformation,
+not just the linear transformation done in Principal Component Analysis.&lt;/p&gt;
+&lt;h2 id=&quot;chemistry-application-and-interpretation-&quot;&gt;Chemistry application and interpretation:&lt;/h2&gt;
+&lt;p&gt;Before PCA is done on an MD Simulation, we have to consider what goals we
+have for the analysis of results. We are searching to arrange the data
+outputted by PCA such it gives us intuition into some physical behavior of our
+system. This is usually done a single structure, and in order to focus insight
+on relative structural change rather than some sort of translational motion of
+the entire structure, an alignment of an entire trajectory to some structure of
+interest by minimization of the Root Mean Square Distance must be done prior to
+analysis. After RMS alignment, any variance in data should be variance due to
+changes in structure.  &lt;/p&gt;
+&lt;p&gt;Cecilia Clementi has this quote in her Free Energy Landscapes paper:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Essentially, PCA computes a hyperplane that passes through the data points as
+best as possible in a least-squares sense. The principal components are the
+tangent vectors that describe this hyperplane&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;How do we interpret n-dimensional physical data from the tangent vectors of an
+k-dimensional hyperplane embedded in this higher dimensional space? This is all
+very mathematical and abstract, . What we do is reduce the analysis to some
+visually interpretable subset of components, and see if there is any indication
+of clustering that occurs.  &lt;/p&gt;
+&lt;p&gt;Remember, we have an explicit linear map relating the higher dimensional
+space to the lower-dimensional space . By taking our trajectory and projecting
+it onto one of the set of eigenvector components of our analysis, we can
+extract embeddings in different ways, from Clementi again:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;So, the first principal component corresponds to the best possible projection onto
+a line, the first two correspond to the best possible projection onto a plane, and so on.
+Clearly, if the manifold of interest is inherently non-linear the low-dimensional e
+mbedding obtained by means of PCA is severely distorted… The fact that empirical
+reaction coordinates routinely used in protein folding studies can not be
+reduced to a linear combination of the Cartesian coordinates underscores the
+inadequacy of linear dimensionality reduction techniques to characterize a
+folding landscape.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Again, this is all esoteric for the lay reader. What is a manifold, a reaction
+coordinate, a linear combination of cartesian coordinates? All we should know is
+that PCA is a limited investigational tool for complex systems, the variance the
+principal components explain should not necessarily be interpreted as physical
+parameters governing the behavior of a system.&lt;/p&gt;
+&lt;p&gt;My mentor max has a great Jupyter notebook up demonstrating PCA done on MD
+simulations &lt;a href=&quot;https://gist.github.com/kain88-de/0bfe0813e27ad601004b247fedb2ee7d&quot;&gt;here&lt;/a&gt;.
+All of these topics are covered in the notebook and should be relatively accessible
+if you understand what I’ve said so far. In my next post I will write about how
+I will be implementing PCA as a module in MDAnalysis.&lt;/p&gt;
+&lt;p&gt;-John&lt;/p&gt;
+</description>
+    </item>
+    <item>
+      <title>A Note from the Author</title>
+      <link>/articles/note/</link>
+      <pubDate>Mon, 27 Jun 2016 17:00:00 -0700</pubDate>
+      <guid isPermaLink="true">/articles/note/</guid>
+      <author></author>
+      <description>&lt;p&gt;In the last blog post I wrote the most common critique I received was that
+I alienated myself from most of my potential audience. In an email I expressed
+to my Summer of Code mentor &lt;a href=&quot;http://www.biophys.mpg.de/en/hummer.html&quot;&gt;Max Linke&lt;/a&gt;
+my problem:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;My number one worry in all of these matters is coming off as unrigorous or
+pseudo-scientific, and I think I probably overcompensate by being borderline
+inaccessible. I think this stems from some time spent enjoying a lack of rigor
+and the fun that is being pseudo-scientific.  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;span class=&quot;more&quot;&gt;&lt;/span&gt;
+&lt;a href=&quot;https://www.youtube.com/watch?v=n0-jKmcNr_8&quot;&gt;Cue Bill Nye making fun of Neil deGrasse Tyson for being full of it&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For a while, after perusing blogs and social media, I thought, “Hey, I strongly
+identify with this ‘impostor syndrome’ thing.” Now I realize that’s a pretty ignorant
+and borderline insulting view to have. From what I can tell, I may have insecurities,
+but the difference between my anxieties and people with who struggle with true
+‘impostor syndrome’ is that someone has to have experience tangible evidence that
+they are an outsider. As a straight white male, I don’t have these problems.
+So I guess in the future I will refrain from letting these anxieties be confused
+with something more serious — I have it pretty easy.&lt;/p&gt;
+&lt;p&gt;Going further, as a student and a tutor I noticed that far too often when people
+were in over their heads, they would get quiet and close off to the outside
+world. Especially in my math classes; a professor could be explaining Jordan
+Normal Forms, reciting proofs and corollaries and lemmas as if they were
+gospel, and although everyone was baffled, they would stay quiet. Nobody likes
+it when someone dominates a lecture with their own questions and at the same
+time a lot of people have missed fundamentals out of fear of sounding stupid.
+If I’m ever asked in a job interview to give a personal strength, it would be
+that I ask questions that might seem stupid with reckless abandon.
+&lt;img src=&quot;/articles/note/mayonnaise.jpg&quot; alt=&quot;me in class&quot;&gt;&lt;/p&gt;
+&lt;p&gt;These posts are intended for people working to teach
+themselves a some difficult topics. I apologize for being obtuse and abstract
+and abstruse earlier. I will do my best to  teach things from an
+intuition-first standpoint from here on and provide resources for refreshing
+on math and statistics topics. &lt;em&gt;Please&lt;/em&gt; get in touch with me if something I say
+is unclear or wrong; this blog is as much for my own education as it is others.&lt;/p&gt;
+&lt;p&gt;-John&lt;/p&gt;
+</description>
+    </item>
     <item>
       <title>Diffusion Maps in Molecular Dynamics Analysis</title>
       <link>/articles/diffusion_maps/</link>
