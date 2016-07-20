@@ -18,22 +18,22 @@ and [datreant](www.datreant.org). It was surreal to meet the people you have bee
 working with over the internet for 3 months and get an idea of how they
 communicate and what they enjoy outside of work. It was the modern day
 equivalent of meeting penpals for the first time. I especially appreciated
-that David Dotson and Sean Seyler, both approximately years my senior, provided invaluable
-advice to a recent graduate. (If you’re reading this, thanks guys).
+that David Dotson and Sean Seyler, both approximately four years my senior, provided
+invaluable advice to a recent graduate. (If you’re reading this, thanks guys).
 
 The most valuable moments were the conversations I had in informal settings.
 There is a huge diversity in career trajectories among those attending Scipy,
 everyone has career advice and technical knowledge to impart upon a young
-graduate as long as you are willing to ask. I had excellent conversations with people from
-[Clover Health](cloverhealth.com), Apple data scientists, Andreas Klockner
-(Keynote Speaker), Brian Van de Ven (Bokeh Dev), Ana Ruvalcaba at
+graduate as long as you are willing to ask. I had excellent conversations with
+people from [Clover Health](cloverhealth.com), Apple data scientists, Andreas
+Klockner (Keynote Speaker), Brian Van de Ven (Bokeh Dev), Ana Ruvalcaba at
 [Jupyter](jupyter.org), the list goes on…
 
 ## Fascinating, Troubling, and Unexpected Insights
 + Scipy doubled in size in the last year!
 + So many free shirts (and stickers), don’t even bother coming with more than one shirt,
   also nobody wears professional attire.
-+ Overheard some troubling comments made by men at Scipy e.g.
++ Overheard some troubling comments made by men at Scipy, e.g.
   “Well, all the women are getting the jobs I’m applying for… “ (said in a hallway group, not even appropriate if it was a joke)
 + The amount of beer involved in social events is kind of nuts, probably comes with the territory of professional programming
 + There are a lot of apologists for rude people, someone can be extremely nonverbally dismissive and when you bring it up to other
@@ -43,8 +43,9 @@ graduate as long as you are willing to ask. I had excellent conversations with p
 + Open source does not always imply open contribution, some companies represented at
   Scipy maintain open source projects while making the barriers to contribution prohibitively high
 + A lot of people at Scipy apologize for their job (half-seriously) if they aren’t
-  someone super-special like a matplotlib core developer or the inventor of Python. Your jobs are awesome people!
-+ It is really hot in Austin
+  someone super-special like a matplotlib core developer or the inventor of Python.
+  Your jobs are awesome people!
++ It is *really* hot in Austin
 + `git pull` is just `git fetch` + `git merge`
 + A lot of women in computing have joined and left male dominated organizations not because people are necessarily mean,
   but because they’ve been asked out too much or harassed in a similar fashion. Stay professional folks.
