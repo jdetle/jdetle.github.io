@@ -1,0 +1,69 @@
+---
+title: Scipy 2016!
+author: John Detlefs
+date: 2016-07-20
+template: article.jade
+---
+Last week I went to Austin, TX to Scipy2016. I wasn’t sure what to expect. How would people communicate?
+Would I fit in, what talks would interest me? Fortunately the conference was a huge success.
+I have came away a far more confident and motivated programmer than when I went in.
+
+<span class="more"></span>
+## So what were the highlights of my experience at Scipy?
+
+On a personal level, I got to meet some of my coworkers, the members of the
+Beckstein Lab. Dr. Oliver Beckstein, David Dotson, and Sean Seyler are brilliant
+physicists and programmers who I have been working with on [MDAnalysis](www.mdanalysis.org)
+and [datreant](www.datreant.org). It was surreal to meet the people you have been
+working with over the internet for 3 months and get an idea of how they
+communicate and what they enjoy outside of work. It was the modern day
+equivalent of meeting penpals for the first time. I especially appreciated
+that David Dotson and Sean Seyler, both approximately years my senior, provided invaluable
+advice to a recent graduate. (If you’re reading this, thanks guys).
+
+The most valuable moments were the conversations I had in informal settings.
+There is a huge diversity in career trajectories among those attending Scipy,
+everyone has career advice and technical knowledge to impart upon a young
+graduate as long as you are willing to ask. I had excellent conversations with people from
+[Clover Health](cloverhealth.com), Apple data scientists, Andreas Klockner
+(Keynote Speaker), Brian Van de Ven (Bokeh Dev), Ana Ruvalcaba at
+[Jupyter](jupyter.org), the list goes on…
+
+## Fascinating, Troubling, and Unexpected Insights
++ Scipy doubled in size in the last year!
++ So many free shirts (and stickers), don’t even bother coming with more than one shirt,
+  also nobody wears professional attire.
++ Overheard some troubling comments made by men at Scipy e.g.
+  “Well, all the women are getting the jobs I’m applying for… “ (said in a hallway group, not even appropriate if it was a joke)
++ The amount of beer involved in social events is kind of nuts, probably comes with the territory of professional programming
++ There are a lot of apologists for rude people, someone can be extremely nonverbally dismissive and when you bring it up to other
+  people they will defend him (yes, always him) saying he has been really busy recently.
+  Oliver Beckstein is a shining example of someone who is very busy and makes a
+  conscious effort to always be thoughtful and kind.
++ Open source does not always imply open contribution, some companies represented at
+  Scipy maintain open source projects while making the barriers to contribution prohibitively high
++ A lot of people at Scipy apologize for their job (half-seriously) if they aren’t
+  someone super-special like a matplotlib core developer or the inventor of Python. Your jobs are awesome people!
++ It is really hot in Austin
++ `git pull` is just `git fetch` + `git merge`
++ A lot of women in computing have joined and left male dominated organizations not because people are necessarily mean,
+  but because they’ve been asked out too much or harassed in a similar fashion. Stay professional folks.
++ Cows turn inedible corn into edible steak.
++ As a young professional you have to work harder and take every moment more seriously than those older than you
+  in order to get ahead.
++ Breakfast tacos are delicious
++ Being able to get out of your comfort zone is a professional asset
++ Slow down, take a breath, read things over, don’t make simple mistakes.
+
+## Here are some talks I really enjoyed
+### Datashader!
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6m3CFbKmK_c" frameborder="0" allowfullscreen></iframe>
+
+### Dating!
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dtgmMj8W298" frameborder="0" allowfullscreen></iframe>
+
+### Loo.py!
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Zz_6P5qAJck" frameborder="0" allowfullscreen></iframe>
+
+### Dask!
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PAGjm4BMKlk" frameborder="0" allowfullscreen></iframe>

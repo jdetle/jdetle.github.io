@@ -23,6 +23,18 @@
       <div class="content-wrap">
         <article class="article intro">
           <header>
+            <p class="date"><span>20. July 2016</span></p>
+            <h2><a href="/articles/scipy2016/">Scipy 2016!</a></h2>
+          </header>
+          <section class="content"><p>Last week I went to Austin, <span class="caps">TX</span> to Scipy2016. I wasn’t sure what to expect. How would people communicate?
+Would I fit in, what talks would interest me? Fortunately the conference was a huge success.
+I have came away a far more confident and motivated programmer than when I went&nbsp;in.</p>
+<p>
+            <p class="more"><a href="/articles/scipy2016/">more</a></p>
+          </section>
+        </article>
+        <article class="article intro">
+          <header>
             <p class="date"><span>29. June 2016</span></p>
             <h2><a href="/articles/pca/">Principal Component Analysis</a></h2>
           </header>
@@ -70,58 +82,6 @@ and the fun that is being&nbsp;pseudo-scientific.  </p>
 </blockquote>
 <p>
             <p class="more"><a href="/articles/note/">more</a></p>
-          </section>
-        </article>
-        <article class="article intro">
-          <header>
-            <p class="date"><span>15. June 2016</span></p>
-            <h2><a href="/articles/diffusion_maps/">Diffusion Maps in Molecular Dynamics Analysis</a></h2>
-          </header>
-          <section class="content"><script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-});
-</script>
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-<p>It occurs to me in my previous post I didn’t thoroughly explain the motivation
-for dimension reduction in general. When we have this data matrix $X$ with $n$
-samples and each sample having $m$ features, this number m can be very large.
-This data contains information that we want to extract, in the case of molecular
-dynamics simulations these are parameters describing how the dynamics are occurring.
-But this data can be features that distinguish faces from others in the dataset,
-handwritten letters and numbers from other numbers, etc. As it is so eloquently put
-by <a href="http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf">Porte and Herbst at&nbsp;Arizona</a></p>
-<blockquote>
-<p>The breakdown of common similarity measures hampers
-the efficient organisation of data, which, in turn, has
-serious implications in the field of pattern recognition.
-For example, consider a collection of n × m images,
-each encoding a digit between 0 and 9. Furthermore, the
-images differ in their orientation, as shown in Fig.1. A
-human, faced with the task of organising such images,
-would likely first notice the different digits, and thereafter
-that they are oriented. The observer intuitively attaches
-greater value to parameters that encode larger variances in the observations,
-and therefore clusters the data in 10 groups, one for each&nbsp;digit</p>
-</blockquote>
-<p>Here we’ve been introduced to the idea of pattern recognition and ‘clustering’,
-the latter will be discussed in some detail later. Continuing&nbsp;on…</p>
-<blockquote>
-<p>On the other hand, a computer sees each image as a
-data point in $R^{nm}$, an nm-dimensional coordinate space.
-The data points are, by nature, organised according to
-their position in the coordinate space, where the most
-common similarity measure is the Euclidean&nbsp;distance.</p>
-</blockquote>
-<p>The idea of the data being in a $nm$ dimensional space is introduced by the
-authors. The important part is that a computer has no knowledge of the the patterns
-inside this data. The human brain is excellent at plenty of algorithms, but dimension
-reduction is one it is especially good&nbsp;at.</p>
-
-            <p class="more"><a href="/articles/diffusion_maps/">more</a></p>
           </section>
         </article>
       </div>

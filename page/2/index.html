@@ -23,6 +23,58 @@
       <div class="content-wrap">
         <article class="article intro">
           <header>
+            <p class="date"><span>15. June 2016</span></p>
+            <h2><a href="/articles/diffusion_maps/">Diffusion Maps in Molecular Dynamics Analysis</a></h2>
+          </header>
+          <section class="content"><script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>It occurs to me in my previous post I didn’t thoroughly explain the motivation
+for dimension reduction in general. When we have this data matrix $X$ with $n$
+samples and each sample having $m$ features, this number m can be very large.
+This data contains information that we want to extract, in the case of molecular
+dynamics simulations these are parameters describing how the dynamics are occurring.
+But this data can be features that distinguish faces from others in the dataset,
+handwritten letters and numbers from other numbers, etc. As it is so eloquently put
+by <a href="http://dip.sun.ac.za/~herbst/research/publications/diff_maps_prasa2008.pdf">Porte and Herbst at&nbsp;Arizona</a></p>
+<blockquote>
+<p>The breakdown of common similarity measures hampers
+the efficient organisation of data, which, in turn, has
+serious implications in the field of pattern recognition.
+For example, consider a collection of n × m images,
+each encoding a digit between 0 and 9. Furthermore, the
+images differ in their orientation, as shown in Fig.1. A
+human, faced with the task of organising such images,
+would likely first notice the different digits, and thereafter
+that they are oriented. The observer intuitively attaches
+greater value to parameters that encode larger variances in the observations,
+and therefore clusters the data in 10 groups, one for each&nbsp;digit</p>
+</blockquote>
+<p>Here we’ve been introduced to the idea of pattern recognition and ‘clustering’,
+the latter will be discussed in some detail later. Continuing&nbsp;on…</p>
+<blockquote>
+<p>On the other hand, a computer sees each image as a
+data point in $R^{nm}$, an nm-dimensional coordinate space.
+The data points are, by nature, organised according to
+their position in the coordinate space, where the most
+common similarity measure is the Euclidean&nbsp;distance.</p>
+</blockquote>
+<p>The idea of the data being in a $nm$ dimensional space is introduced by the
+authors. The important part is that a computer has no knowledge of the the patterns
+inside this data. The human brain is excellent at plenty of algorithms, but dimension
+reduction is one it is especially good&nbsp;at.</p>
+
+            <p class="more"><a href="/articles/diffusion_maps/">more</a></p>
+          </section>
+        </article>
+        <article class="article intro">
+          <header>
             <p class="date"><span>13. June 2016</span></p>
             <h2><a href="/articles/dim_reduction/">Dimension Reduction, a review of a review</a></h2>
           </header>
@@ -65,26 +117,11 @@ cleared, I have no excuses preventing me from writing a post about my&nbsp;work.
             <p class="more"><a href="/articles/5_things/">more</a></p>
           </section>
         </article>
-        <article class="article intro">
-          <header>
-            <p class="date"><span>11. May 2016</span></p>
-            <h2><a href="/articles/hello_world/">Hello World</a></h2>
-          </header>
-          <section class="content"><p>Hello world! I recently was given the amazing opportunity
-    to contribute to MDAnalysis, an open source Molecular Dynamics simulation
-    Analysis project through the Google Summer of Code initiative. I’ve
-    been encouraged to maintain a blog by those giving me this opportunity
-    so I’ll start things off by explaining how I got this great summer&nbsp;job.
-</p>
-
-            <p class="more"><a href="/articles/hello_world/">more</a></p>
-          </section>
-        </article>
       </div>
     </div>
     <footer>
       <div class="content-wrap">
-        <div class="nav"><a href="/">&laquo; Newer</a>
+        <div class="nav"><a href="/">&laquo; Newer</a><a href="/page/3/">Next page &raquo;</a>
         </div>
         <section class="about"><p>Wintersmith is made by <a href="http://johan-nordberg.com">Johan Nordberg</a> and licensed under the <a href="http://opensource.org/licenses/MIT">MIT-license</a>.</p>
 
