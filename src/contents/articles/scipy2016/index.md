@@ -19,7 +19,7 @@ working with over the internet for 3 months and get an idea of how they
 communicate and what they enjoy outside of work. It was the modern day
 equivalent of meeting penpals for the first time. I especially appreciated
 that David Dotson and Sean Seyler, both approximately four years my senior, provided
-invaluable advice to a recent graduate. (If you’re reading this, thanks guys).
+invaluable advice to a recent graduate. If you’re reading this, thanks guys.
 
 The most valuable moments were the conversations I had in informal settings.
 There is a huge diversity in career trajectories among those attending Scipy,
