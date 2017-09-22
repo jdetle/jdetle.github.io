@@ -1,0 +1,21 @@
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           pretty
+
+# Setup
+title:               John Detlefs
+tagline:             'Programmer'
+description:         'A website for my blog. This is a <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
+url:                 'jdetle.com'
+baseurl:             ''
+paginate:            2
+plugins: [jekyll-paginate]
+# About/contact
+author:
+  name:              John Detlefs
+  url:               https://twitter.com/mdo
+  email:             jdetle@gmail.com
+
+# Custom vars
+version:             1.0.0
