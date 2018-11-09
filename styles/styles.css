@@ -1,0 +1,120 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #0b1e27;
+    font-family: sans-serif;
+    color: bisque;
+}
+a {
+    text-decoration: none;
+    color: bisque;
+}
+header {
+    padding: 10px;
+    font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 40px 0px 40px;
+    text-transform: uppercase;
+}
+img {
+    max-width: 100%;
+    width: 200px;
+    height: auto;
+}
+footer {
+    display: flex;
+    flex: 0 1 20px;
+    text-align: right;
+    justify-content: flex-end;
+    padding:20px;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 800;
+    background-color: #031d28;
+}
+li {
+    display: block;
+}
+article {
+    padding: 0px 40px 0px 40px;
+    max-width: 900px;
+}
+article > p {
+    margin: 5px;
+    font-weight: 800;
+}
+.nav-bar ol {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.nav-bar ol > li {
+    margin: 10px;
+    text-transform: uppercase;
+    line-height: 10px;
+    font-weight: 800;
+}
+
+.contents {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.nav-bar {
+    flex: 0 0 50px;
+    justify-content: flex-end;
+    display: flex;
+}
+.left-sidebar {
+    flex: 0 0 200px;
+}
+.right-sidebar {
+    flex: 0 0 200px;
+}
+
+.main-content {
+    flex: 1 0 400px;
+}
+.hidden {
+    display: none;
+}
+.blog-post .blog-title {
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.blog-post .blog-title > * {
+    max-width: 20%;
+}
+.hero {
+    display: block;
+    color: #08455f;
+    background-color: #ffffff;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+}
+.hero > * {
+    padding: 10px;
+    margin: 10px;;
+}
+.hero > p {
+    font-size: 20px;
+    font-weight: 800;
+    font-stretch: condensed;
+    margin: non;
+}
+.hero > img {
+    height: 400px;
+    width: 300px;
+}
+.blog-post {
+    background-color: #1e475a5c;
+    height: 100%;
+}
