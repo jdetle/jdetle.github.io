@@ -19,14 +19,49 @@
             <div>This is the left sidebar.</div>
         </aside>
         <section class="main-content">
-            <div class="hero">
-                <h1> My name is John Detlefs </h1>
-                <p>
-                    I have been a professional software developer since June of 2016.
-                </p>
-                <p>
-                    This site should serve to highlight some of the things I have learned during that time.
-                </p>
+                <div class="split-2">
+                    <div class="hero">
+                        <h1> My name is John Detlefs </h1>
+                        <p>
+                            I have been a professional software developer since June of 2016.
+                        </p>
+                        <p> During that time I have:
+                        <ul>
+                            <li>
+                                Implemented Dimensionality Reduction Algorithms with MDAnalysis with the Google Summer of Code
+                            </li>
+                            <li>
+                                Became a core maintainer of nteract, at nteract.io
+                            </li>
+                            <li> 
+                                Scraped the web and built out Inventory Management Software with a California-based (now-dead) startup named Troves.
+                            </li>
+                            <li>
+                                Aprendí Español
+                            </li>
+                            <li>
+                                Worked on the Anaconda Enterprise Platform
+                            </li>
+                            <li>
+                                Worked as a React Developer, SRE, and sole fulltime Individual Contributor for coincart.co
+                            </li>
+                            <li> But most of all...</li>
+                        </ul>
+                        <h4> I have learned some things related to Javascript and the Web </h4>
+                    </div>
+                </div>
+                <div class="split-2">
+                    <div class="carousel carousel-wrapper">
+                            <div class="carousel-body">
+                                <button class="carousel-btn" id="carousel-btn-left"></button>
+                                <div class="carousel-slide">
+                                    <div>Carousel</div>
+                                </div>
+                                <button class="carousel-btn" id="carousel-btn-right"></button>
+                            </div>
+                        
+                    </div>
+                </div>
             </div>
         </section>
         <aside class="right-sidebar hidden">
@@ -35,4 +70,5 @@
     <footer>
         <span><a href="https://github.com/jdetle">Github</a></span>
     </footer>
+    <script src="./js/carousel.js" async></script>
 </body>
